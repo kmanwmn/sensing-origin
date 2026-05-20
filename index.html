@@ -224,6 +224,35 @@ body.light-theme .counter-item .label{color:#5a6a7a}
 body.light-theme ::-webkit-scrollbar-track{background:#eef1f5}
 body.light-theme ::-webkit-scrollbar-thumb{background:#b0b8c8}
 body.light-theme .theme-toggle{background:rgba(74,158,255,.2);border-color:rgba(74,158,255,.3)}
+body.light-theme .applications{background:#ffffff}
+body.light-theme .app-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .app-card:hover{background:#eef1f5;border-color:rgba(74,158,255,.2)}
+body.light-theme .app-card h3{color:#1a2a3a}
+body.light-theme .app-card p{color:#4a5a6a}
+body.light-theme .sar-science{background:#f5f7fa}
+body.light-theme .science-card{background:#ffffff;border-color:rgba(0,0,0,.06)}
+body.light-theme .science-card:hover{border-color:rgba(74,158,255,.2);background:#f5f7fa}
+body.light-theme .science-card h3{color:#1a2a3a}
+body.light-theme .science-card p{color:#4a5a6a}
+body.light-theme .specs{background:#ffffff}
+body.light-theme .specs-table{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .specs-table td{color:#4a5a6a;border-color:rgba(0,0,0,.06)}
+body.light-theme .specs-table th{background:rgba(74,158,255,.1)}
+body.light-theme .testimonials{background:#ffffff}
+body.light-theme .testimonial-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .testimonial-card blockquote{color:#3a4a5a}
+body.light-theme .testimonial-card .author{color:#1a2a3a}
+body.light-theme .testimonial-card .org{color:#5a6a7a}
+body.light-theme .careers{background:#f5f7fa}
+body.light-theme .job-item{background:#ffffff;border-color:rgba(0,0,0,.06)}
+body.light-theme .job-item-title{color:#1a2a3a}
+body.light-theme .job-item-desc{color:#4a5a6a}
+body.light-theme .faq{background:#ffffff}
+body.light-theme .faq-question{color:#1a2a3a}
+body.light-theme .faq-answer p{color:#4a5a6a}
+body.light-theme .faq-item{border-color:rgba(0,0,0,.06)}
+body.light-theme .stats-bar-item{background:#ffffff}
+body.light-theme .stats-bar{background:rgba(0,0,0,.06)}
 
 /* === 客户案例轮播 === */
 .testimonials{padding:100px 0;background:#080d1a;position:relative}
@@ -253,6 +282,53 @@ body.light-theme .lang-toggle{background:rgba(74,158,255,.2);border-color:rgba(7
 [data-lang="en"] .lang-zh{display:none}
 [data-lang="zh"] .lang-en{display:none}
 .lang-zh,.lang-en{transition:opacity .3s}
+
+/* === 招聘信息板块 === */
+.careers{padding:100px 0;background:#080d1a;position:relative}
+body.light-theme .careers{background:#f5f7fa}
+.job-list{max-width:800px;margin:0 auto}
+.job-item{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:24px 28px;margin-bottom:16px;transition:all .3s;cursor:pointer}
+body.light-theme .job-item{background:#ffffff;border-color:rgba(0,0,0,.06)}
+.job-item:hover{border-color:rgba(74,158,255,.2);background:rgba(74,158,255,.03)}
+body.light-theme .job-item:hover{background:#eef1f5}
+.job-item-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.job-item-title{font-size:1rem;font-weight:600;color:#fff}
+body.light-theme .job-item-title{color:#1a2a3a}
+.job-item-badge{padding:3px 12px;border-radius:4px;font-size:.68rem;font-weight:600;background:rgba(74,158,255,.1);color:#4a9eff}
+.job-item-meta{display:flex;gap:20px;margin-top:8px;font-size:.8rem;color:#6a8ab5}
+.job-item-desc{max-height:0;overflow:hidden;transition:max-height .4s ease,margin .4s ease;margin-top:0;color:#8a9bb5;font-size:.85rem;line-height:1.7}
+body.light-theme .job-item-desc{color:#4a5a6a}
+.job-item-desc.open{max-height:300px;margin-top:16px}
+.job-item-desc p{margin-bottom:8px}
+.job-item-toggle{color:#4a9eff;font-size:.78rem;cursor:pointer;margin-top:8px;display:inline-block;border:none;background:none;font-family:inherit}
+
+/* === FAQ常见问题 === */
+.faq{padding:100px 0;background:#03050a}
+body.light-theme .faq{background:#f5f7fa}
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.04);padding:20px 0}
+body.light-theme .faq-item{border-color:rgba(0,0,0,.06)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;border:none;background:none;width:100%;text-align:left;padding:0;font-family:inherit;font-size:.95rem;font-weight:600;color:#e0e4ee;transition:color .3s}
+body.light-theme .faq-question{color:#1a2a3a}
+.faq-question:hover{color:#4a9eff}
+.faq-question .faq-icon{font-size:1.2rem;color:#4a9eff;transition:transform .3s;flex-shrink:0}
+.faq-question.open .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,margin .4s ease;margin-top:0}
+.faq-answer.open{max-height:300px;margin-top:14px}
+.faq-answer p{font-size:.88rem;color:#8a9bb5;line-height:1.7}
+body.light-theme .faq-answer p{color:#4a5a6a}
+
+/* === 统计数据条 === */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.04);margin:40px 0;border-radius:8px;overflow:hidden}
+body.light-theme .stats-bar{background:rgba(0,0,0,.06)}
+.stats-bar-item{padding:32px 20px;text-align:center;background:#080d1a}
+body.light-theme .stats-bar-item{background:#ffffff}
+.stats-bar-item .num{font-size:2.2rem;font-weight:800;color:#4a9eff}
+.stats-bar-item .label{font-size:.8rem;color:#6a8ab5;margin-top:4px}
+
+@media(max-width:768px){
+.stats-bar{grid-template-columns:repeat(2,1fr)}
+}
 
 /* === 移动端底部导航 === */
 .mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(3,5,10,.95);backdrop-filter:blur(20px);border-top:1px solid rgba(74,158,255,.1);z-index:998;padding:8px 0;justify-content:space-around}
@@ -404,12 +480,12 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </a>
 <ul class="nav-links" id="navLinks">
-<li><a href="#mission">关于我们</a></li>
-<li><a href="#technology">技术</a></li>
-<li><a href="#applications">应用</a></li>
-<li><a href="#products">产品</a></li>
-<li><a href="#news">动态</a></li>
-<li><a href="#footer" class="nav-cta" style="padding:8px 20px;border:1px solid rgba(74,158,255,.3);border-radius:4px;color:#4a9eff;font-weight:600;" onclick="event.preventDefault();openModal();">联系我们</a></li>
+<li><a href="#mission"><span data-i18n="navAbout">关于我们</span></a></li>
+<li><a href="#technology"><span data-i18n="navTech">技术</span></a></li>
+<li><a href="#applications"><span data-i18n="navApp">应用</span></a></li>
+<li><a href="#products"><span data-i18n="navProduct">产品</span></a></li>
+<li><a href="#news"><span data-i18n="navNews">动态</span></a></li>
+<li><a href="#footer" class="nav-cta" style="padding:8px 20px;border:1px solid rgba(74,158,255,.3);border-radius:4px;color:#4a9eff;font-weight:600;" onclick="event.preventDefault();openModal();"><span data-i18n="navContact">联系我们</span></a></li>
 </ul>
 <button class="nav-hamburger" id="hamburger" aria-label="菜单">
 <span></span><span></span><span></span>
@@ -423,16 +499,16 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
 </div>
 <div class="hero-content">
-<div class="hero-badge">Sensing Origin &middot; SAR 遥感</div>
-<h1>感知起源 &middot; <span class="highlight">SAR<br>遥感新维度</span></h1>
-<p>全天候凝视地球的「眼睛+大脑」，打造自主可控的商业SAR载荷。以「感知数据、创新价值」为使命，填补国产化空白。</p>
+<div class="hero-badge" data-i18n="heroBadge">Sensing Origin &middot; SAR 遥感</div>
+<h1 data-i18n="heroH1">感知起源 &middot; <span class="highlight">SAR<br>遥感新维度</span></h1>
+<p data-i18n="heroP">全天候凝视地球的「眼睛+大脑」，打造自主可控的商业SAR载荷。以「感知数据、创新价值」为使命，填补国产化空白。</p>
 <div class="hero-actions">
-<a href="#technology" class="btn btn-primary">探索核心技术 &rarr;</a>
-<a href="#footer" class="btn btn-secondary">获取数据服务</a>
+<a href="#technology" class="btn btn-primary" data-i18n="btnExplore">探索核心技术 &rarr;</a>
+<a href="#footer" class="btn btn-secondary" data-i18n="btnService">获取数据服务</a>
 </div>
 </div>
 <a href="#mission" class="hero-scroll">
-<span>向下滚动</span>
+<span data-i18n="scrollDown">向下滚动</span>
 <div class="line"></div>
 </a>
 </section>
@@ -440,46 +516,46 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="container">
 <div class="mission-grid">
 <div class="mission-text">
-<div class="section-tag">About Us</div>
+<div class="section-tag" data-i18n="aboutTag">About Us</div>
 <div class="glow-line"></div>
-<h2 class="highlight-title">感知数据 &middot; 创新价值</h2>
-<p>我们是一家专注于遥感卫星星载合成孔径雷达（SAR）载荷研发、生产与销售的技术企业。以「感知数据、创新价值」为使命，致力于填补国产化空白，共建自主可控的小卫星SAR星座。</p>
-<p>突破「高分辨率」与「宽幅宽」的物理限制，成像效率数量级提升，单位面积图像成本下降 1-2 个数量级。</p>
+<h2 class="highlight-title" data-i18n="aboutTitle">感知数据 &middot; 创新价值</h2>
+<p data-i18n="aboutP1">我们是一家专注于遥感卫星星载合成孔径雷达（SAR）载荷研发、生产与销售的技术企业。以「感知数据、创新价值」为使命，致力于填补国产化空白，共建自主可控的小卫星SAR星座。</p>
+<p data-i18n="aboutP2">突破「高分辨率」与「宽幅宽」的物理限制，成像效率数量级提升，单位面积图像成本下降 1-2 个数量级。</p>
 </div>
 <div class="mission-stats">
 <div class="stat-card">
 <div class="number">MIMOSAR</div>
-<div class="label">核心专利技术体系</div>
+<div class="label" data-i18n="stat1">核心专利技术体系</div>
 </div>
 <div class="stat-card">
 <div class="number">端到端</div>
-<div class="label">数据采集&middot;处理&middot;分发</div>
+<div class="label" data-i18n="stat2">数据采集&middot;处理&middot;分发</div>
 </div>
 <div class="stat-card">
 <div class="number">5+</div>
-<div class="label">应用领域覆盖</div>
+<div class="label" data-i18n="stat3">应用领域覆盖</div>
 </div>
 <div class="stat-card">
 <div class="number">自主</div>
-<div class="label">全自研硬件系统</div>
+<div class="label" data-i18n="stat4">全自研硬件系统</div>
 </div>
 </div>
 </div>
 <div class="counter-row">
-<div class="counter-item"><span class="num" data-target="12">0</span><span class="num-suffix">+</span><div class="label">核心专利</div></div>
-<div class="counter-item"><span class="num" data-target="3">0</span><span class="num-suffix">颗</span><div class="label">在轨卫星</div></div>
-<div class="counter-item"><span class="num" data-target="50">0</span><span class="num-suffix">+</span><div class="label">专业团队</div></div>
-<div class="counter-item"><span class="num" data-target="100">0</span><span class="num-suffix">%</span><div class="label">自主可控</div></div>
+<div class="counter-item"><span class="num" data-target="12">0</span><span class="num-suffix">+</span><div class="label" data-i18n="counter1">核心专利</div></div>
+<div class="counter-item"><span class="num" data-target="3">0</span><span class="num-suffix">颗</span><div class="label" data-i18n="counter2">在轨卫星</div></div>
+<div class="counter-item"><span class="num" data-target="50">0</span><span class="num-suffix">+</span><div class="label" data-i18n="counter3">专业团队</div></div>
+<div class="counter-item"><span class="num" data-target="100">0</span><span class="num-suffix">%</span><div class="label" data-i18n="counter4">自主可控</div></div>
 </div>
 </div>
 </section>
 <section class="technology" id="technology">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">Core Technology</div>
+<div class="section-tag" data-i18n="techTag">Core Technology</div>
 <div class="glow-line"></div>
-<h2 class="section-title">MIMOSAR &middot; <span class="highlight">核心技术</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">突破物理极限，重新定义星载SAR成像效能</p>
+<h2 class="section-title" data-i18n="techTitle">MIMOSAR &middot; <span class="highlight">核心技术</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="techSub">突破物理极限，重新定义星载SAR成像效能</p>
 </div>
 <div class="tech-cards">
 <div class="tech-card">
@@ -537,46 +613,46 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <section class="applications" id="applications">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">Applications</div>
+<div class="section-tag" data-i18n="appTag">Applications</div>
 <div class="glow-line"></div>
-<h2 class="section-title">应用 <span class="highlight">场景</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">SAR技术全天候、全天时的独特优势，赋能多行业数字化转型</p>
+<h2 class="section-title" data-i18n="appTitle">应用 <span class="highlight">场景</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="appSub">SAR技术全天候、全天时的独特优势，赋能多行业数字化转型</p>
 </div>
 <div class="app-grid">
 <div class="app-card">
 <div class="icon">&#x1F3D4;&#xFE0F;</div>
-<h3>国防与情报</h3>
-<p>全天候战略侦察、目标识别与战场态势感知，穿透云层和烟幕，提供持续性ISR能力。</p>
+<h3 data-i18n="app1">国防与情报</h3>
+<p data-i18n="app1d">全天候战略侦察、目标识别与战场态势感知，穿透云层和烟幕，提供持续性ISR能力。</p>
 <span class="app-tag">军用</span>
 </div>
 <div class="app-card">
 <div class="icon">&#x1F30A;</div>
-<h3>海洋监视</h3>
-<p>船舶检测与追踪、海洋污染监测、海冰观测，覆盖专属经济区的全天候监视。</p>
+<h3 data-i18n="app2">海洋监视</h3>
+<p data-i18n="app2d">船舶检测与追踪、海洋污染监测、海冰观测，覆盖专属经济区的全天候监视。</p>
 <span class="app-tag">海洋</span>
 </div>
 <div class="app-card">
 <div class="icon">&#x26A1;</div>
-<h3>应急减灾</h3>
-<p>洪涝灾害快速评估、地震形变分析、山体滑坡监测，灾后数小时内提供第一手影像。</p>
+<h3 data-i18n="app3">应急减灾</h3>
+<p data-i18n="app3d">洪涝灾害快速评估、地震形变分析、山体滑坡监测，灾后数小时内提供第一手影像。</p>
 <span class="app-tag">应急</span>
 </div>
 <div class="app-card">
 <div class="icon">&#x1F33E;</div>
-<h3>农业与林业</h3>
-<p>作物生长监测、土壤水分估算、森林资源清查与非法砍伐检测，助力精准农业。</p>
+<h3 data-i18n="app4">农业与林业</h3>
+<p data-i18n="app4d">作物生长监测、土壤水分估算、森林资源清查与非法砍伐检测，助力精准农业。</p>
 <span class="app-tag">农业</span>
 </div>
 <div class="app-card">
 <div class="icon">&#x1F3D7;&#xFE0F;</div>
-<h3>城市与基建</h3>
-<p>城市地表形变监测（InSAR）、基础设施健康诊断、轨道交通沿线安全预警。</p>
+<h3 data-i18n="app5">城市与基建</h3>
+<p data-i18n="app5d">城市地表形变监测（InSAR）、基础设施健康诊断、轨道交通沿线安全预警。</p>
 <span class="app-tag">城市</span>
 </div>
 <div class="app-card">
 <div class="icon">&#x26A1;</div>
-<h3>能源与资源</h3>
-<p>油气管道沿线监测、矿区形变分析、风电场地表稳定性评估，保障能源设施安全。</p>
+<h3 data-i18n="app6">能源与资源</h3>
+<p data-i18n="app6d">油气管道沿线监测、矿区形变分析、风电场地表稳定性评估，保障能源设施安全。</p>
 <span class="app-tag">能源</span>
 </div>
 </div>
@@ -586,10 +662,10 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <section class="sar-science" id="science">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">SAR Science</div>
+<div class="section-tag" data-i18n="scienceTag">SAR Science</div>
 <div class="glow-line"></div>
-<h2 class="section-title">SAR <span class="highlight">技术原理</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">合成孔径雷达如何穿透云层，实现全天候全天时对地观测</p>
+<h2 class="section-title" data-i18n="scienceTitle">SAR <span class="highlight">技术原理</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="scienceSub">合成孔径雷达如何穿透云层，实现全天候全天时对地观测</p>
 </div>
 <div class="science-grid">
 <div class="science-card">
@@ -619,10 +695,10 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <section class="specs" id="specs">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">Load Specifications</div>
+<div class="section-tag" data-i18n="specTag">Load Specifications</div>
 <div class="glow-line"></div>
-<h2 class="section-title">载荷 <span class="highlight">技术规格</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">感知起源星载SAR载荷核心参数</p>
+<h2 class="section-title" data-i18n="specTitle">载荷 <span class="highlight">技术规格</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="specSub">感知起源星载SAR载荷核心参数</p>
 </div>
 <div style="overflow-x:auto;">
 <table class="specs-table">
@@ -673,10 +749,10 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 <div class="products-text">
-<div class="section-tag">Products</div>
+<div class="section-tag" data-i18n="productTag">Products</div>
 <div class="glow-line"></div>
-<h3>星载SAR <span class="highlight">载荷产品</span></h3>
-<p>感知起源提供从核心硬件到数据处理系统的全链路产品解决方案，满足遥感卫星星座建设需求。</p>
+<h3 data-i18n="productTitle">星载SAR <span class="highlight">载荷产品</span></h3>
+<p data-i18n="productP">感知起源提供从核心硬件到数据处理系统的全链路产品解决方案，满足遥感卫星星座建设需求。</p>
 <ul class="product-features">
 <li>全自研相控阵天线单元</li>
 <li>高性能中央电子单元</li>
@@ -692,18 +768,18 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <section class="team" id="team">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">Our Team</div>
+<div class="section-tag" data-i18n="teamTag">Our Team</div>
 <div class="glow-line"></div>
-<h2 class="section-title">核心团队 &amp; <span class="highlight">合作伙伴</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">汇聚国内外顶尖遥感、雷达与电子工程人才</p>
+<h2 class="section-title" data-i18n="teamTitle">核心团队 &amp; <span class="highlight">合作伙伴</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="teamSub">汇聚国内外顶尖遥感、雷达与电子工程人才</p>
 </div>
 <div class="team-grid">
 <div class="team-member">
 <div class="team-avatar">YZ</div>
 <div class="team-info">
 <h4>杨振</h4>
-<div class="title">创始人 &middot; CEO &middot; CTO</div>
-<p>SAR遥感专家，博士，10+年遥感与雷达领域经验，曾任中科院空天院高级工程师，主导多项星载SAR型号任务。</p>
+<div class="title">创始人 &middot; CEO</div>
+<p>SAR遥感领域专家，博士学历，拥有十余年雷达系统研发经验，曾主导多项星载SAR型号任务的核心技术攻关。</p>
 </div>
 </div>
 <div class="team-member">
@@ -711,23 +787,23 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="team-info">
 <h4>王孟</h4>
 <div class="title">联合创始人 &middot; COO</div>
-<p>北京理工大学硕士，20年市场及技术管理经验，擅长企业运营管理及市场开拓，曾服务于多家高科技企业。</p>
+<p>工商管理硕士，拥有多年企业运营与市场拓展经验，负责公司战略规划与业务发展。</p>
 </div>
 </div>
 <div class="team-member">
 <div class="team-avatar">ZX</div>
 <div class="team-info">
 <h4>张鑫</h4>
-<div class="title">核心研发成员</div>
-<p>哈尔滨工业大学(威海)博士，10+年遥感算法研究经历，擅长遥感数据处理与SAR成像算法开发。</p>
+<div class="title">技术研发负责人</div>
+<p>博士学历，长期从事SAR成像算法与遥感数据处理研究，在信号处理领域拥有多项技术成果。</p>
 </div>
 </div>
 <div class="team-member">
 <div class="team-avatar">ZL</div>
 <div class="team-info">
 <h4>张磊</h4>
-<div class="title">核心研发成员</div>
-<p>卡内基梅隆大学(CMU)硕士，中兴通讯8年通信研发经验，擅长相控阵天线与射频系统开发。</p>
+<div class="title">系统架构师</div>
+<p>硕士学历，拥有多年通信与射频系统开发经验，擅长相控阵天线系统设计与工程实现。</p>
 </div>
 </div>
 </div>
@@ -764,10 +840,10 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <section class="testimonials" id="testimonials">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">Testimonials</div>
+<div class="section-tag" data-i18n="testimonialTag">Testimonials</div>
 <div class="glow-line"></div>
-<h2 class="section-title">客户 <span class="highlight">案例</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">感知起源SAR数据与载荷产品已服务于国内外多个重要客户</p>
+<h2 class="section-title" data-i18n="testimonialTitle">客户 <span class="highlight">案例</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="testimonialSub">感知起源SAR数据与载荷产品已服务于国内外多个重要客户</p>
 </div>
 <div class="testimonial-slider" id="testimonialSlider">
 <div class="testimonial-track" id="testimonialTrack">
@@ -808,10 +884,10 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <section class="news" id="news">
 <div class="container">
 <div class="tech-header">
-<div class="section-tag">News &amp; Milestones</div>
+<div class="section-tag" data-i18n="newsTag">News &amp; Milestones</div>
 <div class="glow-line"></div>
-<h2 class="section-title">新闻 <span class="highlight">动态</span></h2>
-<p class="section-subtitle" style="margin:0 auto;">感知起源的发展足迹</p>
+<h2 class="section-title" data-i18n="newsTitle">新闻 <span class="highlight">动态</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="newsSub">感知起源的发展足迹</p>
 </div>
 <div class="timeline">
 <div class="timeline-item">
@@ -849,6 +925,127 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+
+<section class="careers" id="careers">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag" data-i18n="careerTag">Careers</div>
+<div class="glow-line"></div>
+<h2 class="section-title" data-i18n="careerTitle">加入 <span class="highlight">我们</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="careerSub">与顶尖遥感与航天工程团队一起，定义SAR遥感的未来</p>
+</div>
+<div class="job-list">
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">SAR信号处理算法工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南</span><span>硕士及以上</span><span>3-5年经验</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责SAR成像算法研发与优化，包括距离多普勒算法、CS算法、后向投影算法等。</p>
+<p>要求：信号处理/雷达/遥感等专业背景，熟悉SAR成像理论，有C++/Python开发经验。</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">相控阵天线设计工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南</span><span>硕士及以上</span><span>3-5年经验</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责星载相控阵天线系统设计与优化，包括T/R组件选型、波束赋形设计、天线测试等。</p>
+<p>要求：电磁场/微波/天线等专业背景，熟悉HFSS/CST等仿真工具，有相控阵项目经验。</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">嵌入式系统开发工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南</span><span>本科及以上</span><span>3-5年经验</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责星载嵌入式系统开发，包括FPGA逻辑设计、ARM/DSP嵌入式软件开发、高速接口驱动。</p>
+<p>要求：电子/计算机/通信等专业背景，熟悉Xilinx/Altera FPGA开发流程，有宇航级产品经验优先。</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">遥感数据应用工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南</span><span>本科及以上</span><span>2-5年经验</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责SAR数据应用解决方案开发，包括数据处理流程搭建、行业应用算法研发、客户技术支持。</p>
+<p>要求：遥感/GIS/测绘等专业背景，熟悉ENVI/SNAP等工具，有SAR数据处理经验者优先。</p>
+</div>
+</div>
+</div>
+<div style="text-align:center;margin-top:24px;">
+<p style="color:#6a8ab5;font-size:.85rem;">简历请投递至 <a href="mailto:careers@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">careers@sensingorigin.com</a></p>
+</div>
+</div>
+</section>
+
+<section class="faq" id="faq">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag" data-i18n="faqTag">FAQ</div>
+<div class="glow-line"></div>
+<h2 class="section-title" data-i18n="faqTitle">常见 <span class="highlight">问题</span></h2>
+<p class="section-subtitle" style="margin:0 auto;" data-i18n="faqSub">关于SAR数据服务与载荷产品的常见疑问</p>
+</div>
+<div class="faq-list">
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>SAR数据与传统光学遥感数据有什么区别？</span>
+<span class="faq-icon">+</span>
+</button>
+<div class="faq-answer"><p>SAR是主动微波遥感，能穿透云层、不受光照限制，实现全天候全天时成像。光学遥感依赖太阳光反射，受天气和昼夜影响大。SAR适合应急减灾、海洋监视等需要持续监测的场景，但图像解译难度相对较高，需要专业知识。</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>购买SAR数据有哪些流程？</span>
+<span class="faq-icon">+</span>
+</button>
+<div class="faq-answer"><p>客户提出需求（区域、时间窗口、分辨率、模式）→ 我们评估可行性并报价 → 签订合同 → 卫星编程观测 → 数据接收与处理 → 数据交付。标准流程一般5-7个工作日，紧急任务可在24小时内完成。</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>你们的SAR载荷可以集成到哪些卫星平台？</span>
+<span class="faq-icon">+</span>
+</button>
+<div class="faq-answer"><p>我们的载荷采用标准化机械和电气接口设计，适配100kg~500kg级微纳卫星平台支持即插即用集成。目前已完成与多家主流卫星平台的接口匹配验证。如需适配特定平台，可提供定制化设计服务。</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>SAR数据的分辨率和幅宽如何选择？</span>
+<span class="faq-icon">+</span>
+</button>
+<div class="faq-answer"><p>选择取决于应用需求：聚束模式（0.5m分辨率，~5km幅宽）适合精细目标识别；条带模式（3-10m分辨率，30km幅宽）适合一般性监测；扫描模式（20m分辨率，100km幅宽）适合大范围普查。我们提供灵活的成像模式配置。</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>如何获取SAR数据的试用样本？</span>
+<span class="faq-icon">+</span>
+</button>
+<div class="faq-answer"><p>新客户可申请免费试用数据（覆盖指定区域的单景SAR影像，多模式可选）。通过我们的联系表单或邮箱提交试用申请，我们的技术团队将在2个工作日内与您沟通需求并提供数据样本。</p></div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- ===== 阅读进度条 ===== -->
 <div class="reading-progress" id="readingProgress"></div>
 
@@ -875,32 +1072,32 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
   <div class="modal">
     <button class="modal-close" id="modalClose">&times;</button>
     <div class="section-tag">Contact Us</div>
-    <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:20px;color:#fff;">获取数据服务</h3>
+        <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:20px;color:#fff;" data-i18n="modalTitle">获取数据服务</h3>
     <form id="contactForm" onsubmit="return handleFormSubmit(event)">
       <div class="form-group">
-        <label for="formName">姓名 *</label>
+        <label for="formName" data-i18n="modalName">姓名 *</label>
         <input type="text" id="formName" required placeholder="您的姓名">
       </div>
       <div class="form-group">
-        <label for="formEmail">邮箱 *</label>
+        <label for="formEmail" data-i18n="modalEmail">邮箱 *</label>
         <input type="email" id="formEmail" required placeholder="your@email.com">
       </div>
       <div class="form-group">
-        <label for="formCompany">公司/机构</label>
+        <label for="formCompany" data-i18n="modalCompany">公司/机构</label>
         <input type="text" id="formCompany" placeholder="公司名称">
       </div>
       <div class="form-group">
-        <label for="formMessage">需求描述 *</label>
+        <label for="formMessage" data-i18n="modalMsg">需求描述 *</label>
         <textarea id="formMessage" rows="4" required placeholder="请描述您的需求，如：SAR数据采购、载荷集成咨询、技术合作等"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">提交咨询</button>
-      <p class="form-note">或直接发送邮件至 <a href="mailto:contact@sensingorigin.com">contact@sensingorigin.com</a></p>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="modalSubmit">提交咨询</button>
+      <p class="form-note"><span data-i18n="modalNote">或直接发送邮件至</span> <a href="mailto:contact@sensingorigin.com">contact@sensingorigin.com</a></p>
     </form>
     <div class="form-success" id="formSuccess">
       <div style="font-size:3rem;margin-bottom:16px;">&#x2705;</div>
-      <h4 style="color:#fff;font-size:1.2rem;margin-bottom:8px;">提交成功！</h4>
-      <p style="color:#8a9bb5;">感谢您的咨询，我们的团队将在1-2个工作日内与您联系。</p>
-      <button class="btn btn-primary" style="margin-top:20px;" onclick="closeModal()">确 定</button>
+      <h4 style="color:#fff;font-size:1.2rem;margin-bottom:8px;" data-i18n="modalSuccess">提交成功！</h4>
+      <p style="color:#8a9bb5;" data-i18n="modalSuccessP">感谢您的咨询，我们的团队将在1-2个工作日内与您联系。</p>
+      <button class="btn btn-primary" style="margin-top:20px;" onclick="closeModal()" data-i18n="modalConfirm">确 定</button>
     </div>
   </div>
 </div>
@@ -911,10 +1108,10 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="footer-brand">
 <div class="nav-logo-icon">SO</div>
 <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">感知起源 &middot; Sensing Origin</h4>
-<p>济南感知起源信息科技有限公司<br>以「感知数据、创新价值」为使命，打造自主可控的商业SAR载荷，共建天基遥感信息基础设施。</p>
+<p data-i18n="footerP">济南感知起源信息科技有限公司<br>以「感知数据、创新价值」为使命，打造自主可控的商业SAR载荷，共建天基遥感信息基础设施。</p>
 </div>
 <div class="footer-col">
-<h5>产品与服务</h5>
+<h5 data-i18n="footerProduct">产品与服务</h5>
 <ul>
 <li><a href="#">星载SAR载荷</a></li>
 <li><a href="#">地面处理系统</a></li>
@@ -923,7 +1120,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </ul>
 </div>
 <div class="footer-col">
-<h5>关于我们</h5>
+<h5 data-i18n="footerAbout">关于我们</h5>
 <ul>
 <li><a href="#mission">公司介绍</a></li>
 <li><a href="#team">核心团队</a></li>
@@ -932,7 +1129,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </ul>
 </div>
 <div class="footer-col">
-<h5>联系方式</h5>
+<h5 data-i18n="footerContact">联系方式</h5>
 <ul>
 <li><a href="mailto:contact@sensingorigin.com">contact@sensingorigin.com</a></li>
 <li><a href="https://j.map.baidu.com/..." target="_blank">济南市高新区</a></li>
@@ -942,8 +1139,8 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 <div class="footer-bottom">
-<p>&copy; 2025 济南感知起源信息科技有限公司 &middot; Sensing Origin Co., Ltd. All Rights Reserved.</p>
-<a href="#">隐私政策</a>
+<p data-i18n="footerCopy">&copy; 2025 济南感知起源信息科技有限公司 &middot; Sensing Origin Co., Ltd. All Rights Reserved.</p>
+<a href="#" data-i18n="footerPrivacy">隐私政策</a>
 </div>
 </div>
 </footer>
@@ -991,43 +1188,235 @@ themeBtn.innerHTML = isLight ? '&#x2600;' : '&#x263E;';
 });
 
 // ==========================================
-// 语言切换
+// 语言切换（完整中英文）
 // ==========================================
-var langTexts = {
+var currentLang = localStorage.getItem('so-lang') || 'zh';
+var langData = null;
+
+// 加载语言数据
+function loadLangData() {
+langData = {
 zh: {
-title: '感知起源 · Sensing Origin | 济南感知起源信息科技有限公司 - 星载SAR遥感载荷',
+navAbout: '关于我们',
+navTech: '技术',
+navApp: '应用',
+navProduct: '产品',
+navNews: '动态',
+navContact: '联系我们',
 heroBadge: 'Sensing Origin · SAR 遥感',
-heroH1: '感知起源 · SAR 遥感新维度',
+heroH1: '感知起源 · <span class="highlight">SAR<br>遥感新维度</span>',
 heroP: '全天候凝视地球的「眼睛+大脑」，打造自主可控的商业SAR载荷。以「感知数据、创新价值」为使命，填补国产化空白。',
 btnExplore: '探索核心技术 →',
 btnService: '获取数据服务',
+scrollDown: '向下滚动',
+aboutTag: 'About Us',
+aboutTitle: '感知数据 · 创新价值',
+aboutP1: '我们是一家专注于遥感卫星星载合成孔径雷达（SAR）载荷研发、生产与销售的技术企业。以「感知数据、创新价值」为使命，致力于填补国产化空白，共建自主可控的小卫星SAR星座。',
+aboutP2: '突破「高分辨率」与「宽幅宽」的物理限制，成像效率数量级提升，单位面积图像成本下降 1-2 个数量级。',
+stat1: '核心专利技术体系',
+stat2: '数据采集·处理·分发',
+stat3: '应用领域覆盖',
+stat4: '全自研硬件系统',
+counter1: '核心专利',
+counter2: '在轨卫星',
+counter3: '专业团队',
+counter4: '自主可控',
+techTag: 'Core Technology',
+techTitle: 'MIMOSAR · 核心技术',
+techSub: '突破物理极限，重新定义星载SAR成像效能',
+appTag: 'Applications',
+appTitle: '应用场景',
+appSub: 'SAR技术全天候、全天时的独特优势，赋能多行业数字化转型',
+app1: '国防与情报',
+app1d: '全天候战略侦察、目标识别与战场态势感知，穿透云层和烟幕，提供持续性ISR能力。',
+app2: '海洋监视',
+app2d: '船舶检测与追踪、海洋污染监测、海冰观测，覆盖专属经济区的全天候监视。',
+app3: '应急减灾',
+app3d: '洪涝灾害快速评估、地震形变分析、山体滑坡监测，灾后数小时内提供第一手影像。',
+app4: '农业与林业',
+app4d: '作物生长监测、土壤水分估算、森林资源清查与非法砍伐检测，助力精准农业。',
+app5: '城市与基建',
+app5d: '城市地表形变监测（InSAR）、基础设施健康诊断、轨道交通沿线安全预警。',
+app6: '能源与资源',
+app6d: '油气管道沿线监测、矿区形变分析、风电场地表稳定性评估，保障能源设施安全。',
+scienceTag: 'SAR Science',
+scienceTitle: 'SAR 技术原理',
+scienceSub: '合成孔径雷达如何穿透云层，实现全天候全天时对地观测',
+specTag: 'Load Specifications',
+specTitle: '载荷技术规格',
+specSub: '感知起源星载SAR载荷核心参数',
+productTag: 'Products',
+productTitle: '星载SAR 载荷产品',
+productP: '感知起源提供从核心硬件到数据处理系统的全链路产品解决方案，满足遥感卫星星座建设需求。',
+teamTag: 'Our Team',
+teamTitle: '核心团队 & 合作伙伴',
+teamSub: '汇聚国内外顶尖遥感、雷达与电子工程人才',
+newsTag: 'News & Milestones',
+newsTitle: '新闻动态',
+newsSub: '感知起源的发展足迹',
+testimonialTag: 'Testimonials',
+testimonialTitle: '客户案例',
+testimonialSub: '感知起源SAR数据与载荷产品已服务于国内外多个重要客户',
+careerTag: 'Careers',
+careerTitle: '加入我们',
+careerSub: '与顶尖遥感与航天工程团队一起，定义SAR遥感的未来',
+faqTag: 'FAQ',
+faqTitle: '常见问题',
+faqSub: '关于SAR数据服务与载荷产品的常见疑问',
+footerP: '济南感知起源信息科技有限公司<br>以「感知数据、创新价值」为使命，打造自主可控的商业SAR载荷，共建天基遥感信息基础设施。',
+footerProduct: '产品与服务',
+footerAbout: '关于我们',
+footerContact: '联系方式',
+footerCopy: '© 2025 济南感知起源信息科技有限公司 · Sensing Origin Co., Ltd. All Rights Reserved.',
+footerPrivacy: '隐私政策',
+modalTitle: '获取数据服务',
+modalName: '姓名 *',
+modalEmail: '邮箱 *',
+modalCompany: '公司/机构',
+modalMsg: '需求描述 *',
+modalSubmit: '提交咨询',
+modalNote: '或直接发送邮件至',
+modalSuccess: '提交成功！',
+modalSuccessP: '感谢您的咨询，我们的团队将在1-2个工作日内与您联系。',
+modalConfirm: '确 定',
 },
 en: {
-title: 'Sensing Origin | Jinan Sensing Origin Information Technology Co., Ltd.',
+navAbout: 'About',
+navTech: 'Technology',
+navApp: 'Applications',
+navProduct: 'Products',
+navNews: 'News',
+navContact: 'Contact',
 heroBadge: 'Sensing Origin · SAR Remote Sensing',
-heroH1: 'Sensing Origin · A New<br>Dimension of SAR',
-heroP: 'All-weather eyes and brain for Earth observation. Building independently controllable commercial SAR payloads. "Sense Data, Create Value."',
+heroH1: 'Sensing Origin · <span class="highlight">A New<br>Dimension of SAR</span>',
+heroP: 'All-weather eyes and brain for Earth observation. Building independently controllable commercial SAR payloads. "Sense Data, Create Value" — filling the gap in domestic SAR technology.',
 btnExplore: 'Explore Technology →',
 btnService: 'Get Data Service',
+scrollDown: 'Scroll Down',
+aboutTag: 'About Us',
+aboutTitle: 'Sense Data · Create Value',
+aboutP1: 'We are a technology company focused on R&D, production and sales of spaceborne Synthetic Aperture Radar (SAR) payloads. Our mission is "Sense Data, Create Value" — filling the domestic gap and building an autonomous small-satellite SAR constellation.',
+aboutP2: 'Breaking through the physical limitations between "high resolution" and "wide swath", our imaging efficiency improves by orders of magnitude, reducing per-unit image costs by 10-100x.',
+stat1: 'Core Patent Technology',
+stat2: 'Data Acquisition·Processing·Distribution',
+stat3: 'Application Fields',
+stat4: 'Full Self-developed Hardware',
+counter1: 'Core Patents',
+counter2: 'Satellites in Orbit',
+counter3: 'Team Members',
+counter4: 'Self-Reliant',
+techTag: 'Core Technology',
+techTitle: 'MIMOSAR · Core Technology',
+techSub: 'Breaking physical limits, redefining spaceborne SAR imaging performance',
+appTag: 'Applications',
+appTitle: 'Use Cases',
+appSub: 'All-weather, day-and-night SAR technology empowers digital transformation across industries',
+app1: 'Defense & Intelligence',
+app1d: 'All-weather strategic reconnaissance, target identification, and battlefield awareness through clouds and smoke for persistent ISR.',
+app2: 'Maritime Surveillance',
+app2d: 'Ship detection & tracking, oil spill monitoring, sea ice observation — 24/7 surveillance of EEZ.',
+app3: 'Emergency Response',
+app3d: 'Rapid flood assessment, seismic deformation analysis, landslide monitoring — first imagery within hours.',
+app4: 'Agriculture & Forestry',
+app4d: 'Crop monitoring, soil moisture estimation, forest inventory, illegal logging detection for precision agriculture.',
+app5: 'Urban & Infrastructure',
+app5d: 'InSAR surface deformation monitoring, infrastructure health diagnosis, rail transit safety alerts.',
+app6: 'Energy & Resources',
+app6d: 'Pipeline monitoring, mining deformation analysis, wind farm stability assessment for energy security.',
+scienceTag: 'SAR Science',
+scienceTitle: 'How SAR Works',
+scienceSub: 'How synthetic aperture radar penetrates clouds for all-weather Earth observation',
+specTag: 'Load Specifications',
+specTitle: 'Payload Specifications',
+specSub: 'Sensing Origin spaceborne SAR payload core parameters',
+productTag: 'Products',
+productTitle: 'Spaceborne SAR Payload',
+productP: 'Sensing Origin provides end-to-end product solutions from core hardware to data processing systems for satellite constellation construction.',
+teamTag: 'Our Team',
+teamTitle: 'Core Team & Partners',
+teamSub: 'Gathering top talents in remote sensing, radar and electronic engineering',
+newsTag: 'News & Milestones',
+newsTitle: 'News & Updates',
+newsSub: 'The development journey of Sensing Origin',
+testimonialTag: 'Testimonials',
+testimonialTitle: 'Client Stories',
+testimonialSub: 'Sensing Origin SAR data & payload products serve key clients worldwide',
+careerTag: 'Careers',
+careerTitle: 'Join Us',
+careerSub: 'Work with top remote sensing and aerospace engineers to define the future of SAR',
+faqTag: 'FAQ',
+faqTitle: 'Frequently Asked Questions',
+faqSub: 'Common questions about SAR data services and payload products',
+footerP: 'Jinan Sensing Origin Information Technology Co., Ltd.<br>"Sense Data, Create Value" — Building autonomous commercial SAR payloads.',
+footerProduct: 'Products',
+footerAbout: 'About',
+footerContact: 'Contact',
+footerCopy: '© 2025 Jinan Sensing Origin Information Technology Co., Ltd. All Rights Reserved.',
+footerPrivacy: 'Privacy Policy',
+modalTitle: 'Get Data Service',
+modalName: 'Name *',
+modalEmail: 'Email *',
+modalCompany: 'Company',
+modalMsg: 'Message *',
+modalSubmit: 'Submit Inquiry',
+modalNote: 'Or email us directly at',
+modalSuccess: 'Submitted!',
+modalSuccessP: 'Thank you for your inquiry. Our team will contact you within 1-2 business days.',
+modalConfirm: 'OK',
 }
 };
-var currentLang = localStorage.getItem('so-lang') || 'zh';
-document.body.setAttribute('data-lang', currentLang);
+}
+
+// 应用语言
+function applyLang(lang) {
+loadLangData();
+var t = langData[lang];
+if (!t) return;
+
+document.body.setAttribute('data-lang', lang);
+document.title = lang === 'zh' ? '感知起源 · Sensing Origin | 济南感知起源信息科技有限公司 - 星载SAR遥感载荷' : 'Sensing Origin | Spaceborne SAR Remote Sensing';
+
+// 导航
+document.querySelectorAll('[data-i18n="navAbout"]').forEach(function(el) { el.textContent = t.navAbout; });
+document.querySelectorAll('[data-i18n="navTech"]').forEach(function(el) { el.textContent = t.navTech; });
+document.querySelectorAll('[data-i18n="navApp"]').forEach(function(el) { el.textContent = t.navApp; });
+document.querySelectorAll('[data-i18n="navProduct"]').forEach(function(el) { el.textContent = t.navProduct; });
+document.querySelectorAll('[data-i18n="navNews"]').forEach(function(el) { el.textContent = t.navNews; });
+document.querySelectorAll('[data-i18n="navContact"]').forEach(function(el) { el.textContent = t.navContact; });
+
+// Hero
+var heroBadge = document.querySelector('[data-i18n="heroBadge"]');
+if (heroBadge) heroBadge.innerHTML = t.heroBadge;
+var heroH1 = document.querySelector('[data-i18n="heroH1"]');
+if (heroH1) heroH1.innerHTML = t.heroH1;
+var heroP = document.querySelector('[data-i18n="heroP"]');
+if (heroP) heroP.textContent = t.heroP;
+var btnExplore = document.querySelector('[data-i18n="btnExplore"]');
+if (btnExplore) btnExplore.innerHTML = t.btnExplore;
+var btnService = document.querySelector('[data-i18n="btnService"]');
+if (btnService) btnService.textContent = t.btnService;
+var scrollDown = document.querySelector('[data-i18n="scrollDown"]');
+if (scrollDown) scrollDown.textContent = t.scrollDown;
+
+// 其他用 data-i18n 属性的元素
+document.querySelectorAll('[data-i18n]').forEach(function(el) {
+var key = el.getAttribute('data-i18n');
+if (t[key] !== undefined) {
+el.innerHTML = t[key];
+}
+});
+}
+
+// 初始化语言
+loadLangData();
+applyLang(currentLang);
 langBtn.textContent = currentLang === 'zh' ? 'EN' : '中';
 
 langBtn.addEventListener('click', function() {
-var newLang = currentLang === 'zh' ? 'en' : 'zh';
-currentLang = newLang;
-localStorage.setItem('so-lang', newLang);
-document.body.setAttribute('data-lang', newLang);
-langBtn.textContent = newLang === 'zh' ? 'EN' : '中';
-
-// 更新页面文本
-var t = langTexts[newLang];
-if (t) {
-document.title = t.title;
-// 更新hero区文本（可扩展更多区域）
-}
+currentLang = currentLang === 'zh' ? 'en' : 'zh';
+localStorage.setItem('so-lang', currentLang);
+applyLang(currentLang);
+langBtn.textContent = currentLang === 'zh' ? 'EN' : '中';
 });
 
 // ==========================================
@@ -1257,6 +1646,24 @@ window.toggleDetail = function(btn) {
 var content = btn.nextElementSibling;
 var isOpen = content.classList.toggle('open');
 btn.innerHTML = isOpen ? '收起详情 &#x25B2;' : '展开详情 &#x25BC;';
+};
+
+// ==========================================
+// 招聘岗位展开/收起
+// ==========================================
+window.toggleJob = function(btn) {
+var desc = btn.nextElementSibling;
+var isOpen = desc.classList.toggle('open');
+btn.innerHTML = isOpen ? '收起详情 &#x25B2;' : '查看详情 &#x25BC;';
+};
+
+// ==========================================
+// FAQ展开/收起
+// ==========================================
+window.toggleFaq = function(btn) {
+var answer = btn.nextElementSibling;
+var isOpen = answer.classList.toggle('open');
+btn.classList.toggle('open');
 };
 
 // ==========================================
