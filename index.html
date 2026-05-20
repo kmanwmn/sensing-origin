@@ -1370,34 +1370,191 @@ document.body.setAttribute('data-lang', lang);
 document.title = lang === 'zh' ? '感知起源 · Sensing Origin | 济南感知起源信息科技有限公司 - 星载SAR遥感载荷' : 'Sensing Origin | Spaceborne SAR Remote Sensing';
 
 // 导航
-document.querySelectorAll('[data-i18n="navAbout"]').forEach(function(el) { el.textContent = t.navAbout; });
-document.querySelectorAll('[data-i18n="navTech"]').forEach(function(el) { el.textContent = t.navTech; });
-document.querySelectorAll('[data-i18n="navApp"]').forEach(function(el) { el.textContent = t.navApp; });
-document.querySelectorAll('[data-i18n="navProduct"]').forEach(function(el) { el.textContent = t.navProduct; });
-document.querySelectorAll('[data-i18n="navNews"]').forEach(function(el) { el.textContent = t.navNews; });
-document.querySelectorAll('[data-i18n="navContact"]').forEach(function(el) { el.textContent = t.navContact; });
-
-// Hero
-var heroBadge = document.querySelector('[data-i18n="heroBadge"]');
-if (heroBadge) heroBadge.innerHTML = t.heroBadge;
-var heroH1 = document.querySelector('[data-i18n="heroH1"]');
-if (heroH1) heroH1.innerHTML = t.heroH1;
-var heroP = document.querySelector('[data-i18n="heroP"]');
-if (heroP) heroP.textContent = t.heroP;
-var btnExplore = document.querySelector('[data-i18n="btnExplore"]');
-if (btnExplore) btnExplore.innerHTML = t.btnExplore;
-var btnService = document.querySelector('[data-i18n="btnService"]');
-if (btnService) btnService.textContent = t.btnService;
-var scrollDown = document.querySelector('[data-i18n="scrollDown"]');
-if (scrollDown) scrollDown.textContent = t.scrollDown;
-
-// 其他用 data-i18n 属性的元素
 document.querySelectorAll('[data-i18n]').forEach(function(el) {
 var key = el.getAttribute('data-i18n');
 if (t[key] !== undefined) {
 el.innerHTML = t[key];
 }
 });
+
+// --- 以下为没有 data-i18n 属性的硬编码文本翻译 ---
+// 技术卡片标题
+var techTitles = {
+zh: ['相控阵天线单元', '中央电子单元', '地面成像处理系统', '高分辨率宽幅成像', '多模式成像能力', 'AI增强数据处理'],
+en: ['Phased Array Antenna Unit', 'Central Electronic Unit', 'Ground Imaging Processing System', 'High-Res Wide-Swath Imaging', 'Multi-Mode Imaging', 'AI-Enhanced Data Processing']
+};
+var techCards = document.querySelectorAll('.tech-card h3');
+if (techCards.length === 6) {
+for (var ti = 0; ti < 6; ti++) { techCards[ti].textContent = techTitles[lang][ti]; }
+}
+
+// 技术卡片描述
+var techDescs = {
+zh: [
+'自主研发相控阵天线系统，实现高精度波束控制和快速扫描，支撑宽幅高分辨率成像。',
+'高性能星载计算平台，集成信号处理与数据压缩，实现实时在轨成像能力。',
+'全链路地面处理软件套件，从原始数据到高级产品的自动化处理流水线。',
+'突破「高分辨率」与「宽幅宽」物理限制，成像效率数量级提升，图像成本下降1-2个数量级。',
+'支持条带、聚束、扫描、滑动聚束等多种成像模式，灵活适配不同应用场景需求。',
+'集成深度学习与计算机视觉技术，实现目标检测、变化识别、图像解译的智能化分析。'
+],
+en: [
+'Self-developed phased array antenna system with high-precision beam steering and fast scanning for wide-swath high-resolution imaging.',
+'High-performance spaceborne computing platform integrating signal processing and data compression for real-time on-orbit imaging.',
+'End-to-end ground processing software suite for automated processing from raw data to advanced products.',
+'Breaking the physical limitations between high resolution and wide swath, with order-of-magnitude improvement in imaging efficiency.',
+'Supports strip, spotlight, scan, sliding spotlight and GMTI modes for diverse application scenarios.',
+'Integrates deep learning and computer vision for intelligent target detection, change recognition and image interpretation.'
+]
+};
+var techPs = document.querySelectorAll('.tech-card > p');
+if (techPs.length >= 6) {
+for (var tdi = 0; tdi < 6; tdi++) {
+if (techPs[tdi] && !techPs[tdi].hasAttribute('data-i18n')) techPs[tdi].textContent = techDescs[lang][tdi];
+}
+}
+
+// 技术卡片详情
+var techDetails = {
+zh: [
+'采用高性能T/R组件，支持多种波束模式快速切换，波束指向精度优于0.1°，具备在轨波束重构能力。工作频段覆盖X波段，支持双极化模式，天线效率＞60%。',
+'基于FPGA+CPU异构架构，支持多模式成像参数实时解算与波控码生成。集成高速数据存储与压缩模块，支持在轨实时成像处理，数据吞吐量＞5Gbps。',
+'支持原始数据解包、成像聚焦、辐射定标、几何校正全流程自动化处理。基于GPU加速，单景处理时间＜5分钟。支持SLC、GEC、GTC等多种标准产品输出。',
+'MIMOSAR核心专利技术，通过多通道合成孔径与数字波束形成技术，同时实现高分辨率（优于1m）与大宽幅（＞50km）。成像效率较传统SAR提升5-10倍。',
+'聚束模式分辨率优于0.5m，条带模式幅宽＞30km，扫描模式幅宽＞100km。支持GMTI动目标检测模式，可实现地面运动目标检测与跟踪。',
+'基于深度卷积神经网络与Transformer架构，支持舰船、车辆、建筑等多类目标自动检测识别。变化检测精度＞90%，单景图像智能解译时间＜30秒。'
+],
+en: [
+'High-performance T/R modules supporting fast beam mode switching, beam pointing accuracy better than 0.1°, on-orbit beam reconfiguration. X-band, dual-polarization, antenna efficiency > 60%.',
+'FPGA+CPU heterogeneous architecture supporting real-time multi-mode imaging parameter calculation. Integrated high-speed data storage and compression, on-orbit processing throughput > 5Gbps.',
+'Full pipeline: raw data unpacking, focusing, radiometric calibration, geometric correction. GPU-accelerated, single scene processing < 5 min. Outputs: SLC, GEC, GTC.',
+'MIMOSAR core patent technology using multi-channel aperture synthesis and digital beamforming for simultaneous high resolution (<1m) and wide swath (>50km). 5-10x efficiency improvement.',
+'Spotlight resolution < 0.5m, strip swath > 30km, scan swath > 100km. Supports GMTI moving target detection and tracking.',
+'Deep CNN and transformer architectures for automatic detection of ships, vehicles, buildings. Change detection accuracy > 90%, single-scene interpretation < 30s.'
+]
+};
+var detailDivs = document.querySelectorAll('.detail-content p');
+if (detailDivs.length >= 6) {
+for (var ddi = 0; ddi < 6; ddi++) {
+if (detailDivs[ddi]) detailDivs[ddi].textContent = techDetails[lang][ddi];
+}
+}
+
+// Badge 文本
+var badges = document.querySelectorAll('.tech-card .badge');
+var badgeTexts = { zh: ['自研硬件', '自研硬件', '自研硬件', 'MIMOSAR', '多模式', 'AI驱动'], en: ['Hardware', 'Hardware', 'Hardware', 'MIMOSAR', 'Multi-Mode', 'AI-Powered'] };
+if (badges.length === 6) { for (var bi = 0; bi < 6; bi++) badges[bi].textContent = badgeTexts[lang][bi]; }
+
+// 科学卡片标题
+var sciTitles = document.querySelectorAll('.science-card h3');
+var sciTitleTexts = {
+zh: ['为什么SAR能穿透云层', '为什么SAR昼夜都能工作', '如何从太空生成清晰的图像', '为何这对实际应用至关重要'],
+en: ['Why SAR penetrates clouds', 'Why SAR works day and night', 'How SAR creates sharp images from space', 'Why this matters operationally']
+};
+if (sciTitles.length === 4) { for (var si = 0; si < 4; si++) sciTitles[si].textContent = sciTitleTexts[lang][si]; }
+
+// 科学卡片内容
+var sciPs = document.querySelectorAll('.science-card p');
+var sciPTexts = {
+zh: [
+'SAR工作在X波段（约9.6GHz，波长~3cm）。云滴和大气粒子的尺寸远小于该波长，因此不会对信号产生明显散射或阻挡。而可见光的波长不足1微米，会被云层强烈散射——这就是为什么光学卫星看到白色云层，而SAR卫星能看到云层之下的地面。',
+'光学传感器依赖太阳光反射。SAR是主动传感器——它自主发射雷达脉冲并测量返回的能量。太阳光不参与这个过程。SAR卫星在午夜和正午生成的图像质量完全一致，风暴天和晴天亦然。',
+'小到可以发射入轨的天线无法单独分辨微波波段的细微特征。SAR通过利用卫星沿轨道的运动来合成一个更大的虚拟天线。卫星在过顶时从地面同一点收集数千个雷达回波，通过相干处理生成高分辨率影像。',
+'地球约三分之二的表面在任何时刻都被云层覆盖。光学卫星在热带雨林、极地、冬季的北欧以及任何被烟尘或天气遮蔽的冲突区域都会失去观测能力。SAR不受这些条件限制，提供持续一致的成像能力。'
+],
+en: [
+'SAR operates in X-band (~9.6 GHz, wavelength ~3cm). Cloud droplets are far smaller than this wavelength, so they do not scatter the signal. Visible light under 1 micron is heavily scattered by clouds — that is why optical satellites see white clouds while SAR sees the ground beneath.',
+'Optical sensors depend on sunlight. SAR is an active sensor — it transmits its own radar pulses and measures the returning energy. Sunlight is not part of the equation. A SAR satellite produces the same quality image at midnight as at noon.',
+'A satellite antenna small enough to launch cannot resolve fine detail at microwave wavelengths. SAR uses the motion of the satellite to synthesize a much larger virtual antenna, collecting thousands of radar returns that are combined coherently to produce high-resolution imagery.',
+'Roughly two thirds of the Earth is covered by clouds at any given moment. Optical satellites lose coverage over rainforests, polar regions, and any area obscured by smoke or weather. SAR delivers consistent imagery regardless.'
+]
+};
+if (sciPs.length === 4) { for (var spi = 0; spi < 4; spi++) sciPs[spi].textContent = sciPTexts[lang][spi]; }
+
+// 产品特性列表
+var prodFeatures = document.querySelectorAll('.product-features li');
+var prodFT = {
+zh: ['全自研相控阵天线单元', '高性能中央电子单元', '端到端地面成像处理系统', '支持多模式成像配置', '标准化接口设计，快速集成'],
+en: ['Self-developed Phased Array Antenna', 'High-Performance Central Electronic Unit', 'End-to-End Ground Processing System', 'Multi-Mode Imaging Support', 'Standardized Interface for Quick Integration']
+};
+if (prodFeatures.length === 5) { for (var pfi = 0; pfi < 5; pfi++) prodFeatures[pfi].innerHTML = prodFT[lang][pfi]; }
+
+// 应用标签
+var appTags = document.querySelectorAll('.app-tag');
+var appTagsText = { zh: ['军用', '海洋', '应急', '农业', '城市', '能源'], en: ['Defense', 'Maritime', 'Emergency', 'Agriculture', 'Urban', 'Energy'] };
+if (appTags.length === 6) { for (var ati = 0; ati < 6; ati++) appTags[ati].textContent = appTagsText[lang][ati]; }
+
+// 新闻时间线
+var timelineDates = document.querySelectorAll('.timeline-date');
+var timelineH4 = document.querySelectorAll('.timeline-content h4');
+var timelineP = document.querySelectorAll('.timeline-content p');
+var timelineData = {
+zh: { dates: ['2026 · 在轨验证', '2025 · 融资', '2024', '2023 · Q3'], titles: ['首套商业MIMOSAR载荷进入正样阶段', '完成天使+轮融资 累计融资近亿元', '首套地面成像处理系统交付 & 天使轮融资', '公司成立'], descs: ['首套商业MIMOSAR载荷已完成研制进入正样阶段，计划年内完成入轨验证并启动批量生产，有望成为国内首台全自研商业SAR载荷在轨验证的先例。', '完成新一轮数千万元融资，由山东财金领投，厦门高新创臻、苏州里奥未来、济南财鑫股权投资共同参与。完成天使轮及天使+轮融资，累计融资额近亿元。', '自主研发的地面成像处理系统完成验收并交付客户。完成天使轮融资，由济南源创天使领投，资金用于首台套自研SAR载荷研发及商业拓展。', '济南感知起源信息科技有限公司正式成立，核心团队组建完成，启动星载SAR载荷原型研发。'] },
+en: { dates: ['2026 · In-Orbit', '2025 · Funding', '2024', '2023 · Q3'], titles: ['First Commercial MIMOSAR Payload Enters Qualification Phase', 'Angel+ Round Completed, Nearly ¥100M Total Funding', 'First Ground Processing System Delivered & Angel Round', 'Company Founded'], descs: ['The first commercial MIMOSAR payload has entered the qualification phase and is scheduled for in-orbit verification this year, potentially becoming China\'s first fully self-developed commercial SAR payload verified in orbit.', 'Completed a new round of tens of millions RMB led by Shandong Caijin, with participation from Xiamen Gaoxin Chuangzhen, Suzhou Li\'ao Future, and Jinan Caixin. Total funding nearly ¥100M.', 'Self-developed ground imaging processing system delivered to customer. Completed angel round led by Jinan Yuanchuang Angel for SAR payload development.', 'Jinan Sensing Origin Information Technology Co., Ltd. was officially established with the core team assembled, initiating spaceborne SAR payload prototype development.'] }
+};
+if (timelineDates.length === 4 && timelineH4.length === 4 && timelineP.length === 4) {
+for (var tli = 0; tli < 4; tli++) {
+timelineDates[tli].textContent = timelineData[lang].dates[tli];
+timelineH4[tli].textContent = timelineData[lang].titles[tli];
+timelineP[tli].textContent = timelineData[lang].descs[tli];
+}
+}
+
+// FAQ
+var faqQs = document.querySelectorAll('.faq-question span:first-child');
+var faqAs = document.querySelectorAll('.faq-answer p');
+var faqData = {
+zh: {
+qs: ['SAR数据与传统光学遥感数据有什么区别？', '购买SAR数据有哪些流程？', '你们的SAR载荷可以集成到哪些卫星平台？', 'SAR数据的分辨率和幅宽如何选择？', '如何获取SAR数据的试用样本？'],
+as: ['SAR是主动微波遥感，能穿透云层、不受光照限制，实现全天候全天时成像。光学遥感依赖太阳光反射，受天气和昼夜影响大。SAR适合应急减灾、海洋监视等需要持续监测的场景，但图像解译难度相对较高，需要专业知识。', '客户提出需求（区域、时间窗口、分辨率、模式）→ 我们评估可行性并报价 → 签订合同 → 卫星编程观测 → 数据接收与处理 → 数据交付。标准流程一般5-7个工作日，紧急任务可在24小时内完成。', '我们的载荷采用标准化机械和电气接口设计，适配100kg~500kg级微纳卫星平台支持即插即用集成。目前已完成与多家主流卫星平台的接口匹配验证。如需适配特定平台，可提供定制化设计服务。', '选择取决于应用需求：聚束模式（0.5m分辨率，~5km幅宽）适合精细目标识别；条带模式（3-10m分辨率，30km幅宽）适合一般性监测；扫描模式（20m分辨率，100km幅宽）适合大范围普查。我们提供灵活的成像模式配置。', '新客户可申请免费试用数据（覆盖指定区域的单景SAR影像，多模式可选）。通过我们的联系表单或邮箱提交试用申请，我们的技术团队将在2个工作日内与您沟通需求并提供数据样本。']
+},
+en: {
+qs: ['What is the difference between SAR and optical data?', 'What is the process of purchasing SAR data?', 'Which satellite platforms can integrate your SAR payload?', 'How to choose between resolution and swath?', 'How to get trial SAR data samples?'],
+as: ['SAR is active microwave remote sensing that penetrates clouds and works day/night. Optical relies on sunlight and is affected by weather. SAR suits emergency response and maritime surveillance needing persistent monitoring, but image interpretation requires expertise.', 'Customer submits requirements (area, time window, resolution, mode) → Feasibility assessment & quote → Contract → Satellite tasking → Data reception & processing → Delivery. Standard: 5-7 business days. Emergency: within 24 hours.', 'Our payload uses standardized mechanical and electrical interfaces, compatible with 100kg-500kg micro-satellite platforms for plug-and-play integration. Interface matching verified with major satellite platforms. Customization available.', 'Depends on application: Spotlight (0.5m, ~5km swath) for fine target ID; Strip (3-10m, 30km) for general monitoring; Scan (20m, 100km) for large-area survey. Flexible configuration options.', 'New clients can apply for free trial data (single SAR scene over specified area, multiple modes available). Submit trial application via our contact form or email. Technical team will respond within 2 business days.']
+}
+};
+if (faqQs.length === 5 && faqAs.length === 5) {
+for (var fqi = 0; fqi < 5; fqi++) {
+faqQs[fqi].textContent = faqData[lang].qs[fqi];
+faqAs[fqi].textContent = faqData[lang].as[fqi];
+}
+}
+
+// 招聘岗位
+var jobTitles = document.querySelectorAll('.job-item-title');
+var jobBadges = document.querySelectorAll('.job-item-badge');
+var jobMetas = document.querySelectorAll('.job-item-meta');
+var jobDescs = document.querySelectorAll('.job-item-desc p');
+var jobData = {
+zh: {
+titles: ['SAR信号处理算法工程师', '相控阵天线设计工程师', '嵌入式系统开发工程师', '遥感数据应用工程师'],
+badges: ['全职', '全职', '全职', '全职'],
+metas: ['济南 | 硕士及以上 | 3-5年经验', '济南 | 硕士及以上 | 3-5年经验', '济南 | 本科及以上 | 3-5年经验', '济南 | 本科及以上 | 2-5年经验'],
+descs: ['负责SAR成像算法研发与优化，包括距离多普勒算法、CS算法、后向投影算法等。要求：信号处理/雷达/遥感等专业背景，熟悉SAR成像理论，有C++/Python开发经验。', '负责星载相控阵天线系统设计与优化，包括T/R组件选型、波束赋形设计、天线测试等。要求：电磁场/微波/天线等专业背景，熟悉HFSS/CST等仿真工具，有相控阵项目经验。', '负责星载嵌入式系统开发，包括FPGA逻辑设计、ARM/DSP嵌入式软件开发、高速接口驱动。要求：电子/计算机/通信等专业背景，熟悉Xilinx/Altera FPGA开发流程，有宇航级产品经验优先。', '负责SAR数据应用解决方案开发，包括数据处理流程搭建、行业应用算法研发、客户技术支持。要求：遥感/GIS/测绘等专业背景，熟悉ENVI/SNAP等工具，有SAR数据处理经验者优先。']
+},
+en: {
+titles: ['SAR Signal Processing Engineer', 'Phased Array Antenna Engineer', 'Embedded Systems Engineer', 'SAR Data Application Engineer'],
+badges: ['Full-time', 'Full-time', 'Full-time', 'Full-time'],
+metas: ['Jinan | Master+ | 3-5 yrs', 'Jinan | Master+ | 3-5 yrs', 'Jinan | Bachelor+ | 3-5 yrs', 'Jinan | Bachelor+ | 2-5 yrs'],
+descs: ['R&D of SAR imaging algorithms including RD, CS, and back-projection algorithms. Requirements: signal processing/radar/remote sensing background, familiar with SAR imaging theory, C++/Python experience.', 'Design and optimization of spaceborne phased array antenna systems including T/R module selection, beamforming, and antenna testing. Requirements: EM/microwave/antenna background, HFSS/CST experience.', 'Spaceborne embedded system development including FPGA logic, ARM/DSP firmware, and high-speed interface drivers. Requirements: EE/CS/CE background, Xilinx/Altera FPGA experience, aerospace-grade products preferred.', 'SAR data application solution development including data processing pipelines, industry application algorithms, and client technical support. Requirements: remote sensing/GIS/surveying background, ENVI/SNAP experience, SAR data processing preferred.']
+}
+};
+if (jobTitles.length === 4 && jobDescs.length === 4) {
+for (var ji = 0; ji < 4; ji++) {
+jobTitles[ji].textContent = jobData[lang].titles[ji];
+if (jobBadges[ji]) jobBadges[ji].textContent = jobData[lang].badges[ji];
+if (jobMetas[ji]) jobMetas[ji].innerHTML = jobData[lang].metas[ji];
+jobDescs[ji].textContent = jobData[lang].descs[ji];
+}
+}
+
+// "了解产品详情" 按钮
+var productBtn = document.querySelector('.products-text .btn');
+if (productBtn) productBtn.textContent = lang === 'zh' ? '了解产品详情 →' : 'Learn More →';
+
+// "简历请投递至" 文本
+var careerNote = document.querySelector('.careers .container > div > p');
+if (careerNote) careerNote.innerHTML = (lang === 'zh' ? '简历请投递至 ' : 'Send resume to ') + '<a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a>';
 }
 
 // 初始化语言
