@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿z<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -82,6 +82,10 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 .page-loader.hidden{opacity:0;pointer-events:none}
 .loader-icon{width:40px;height:40px;border:2px solid rgba(74,158,255,.15);border-top-color:#4a9eff;border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes barGrow{from{width:0%}to{width:var(--target)}}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.5);opacity:1}}
 .loader-text{font-size:.8rem;color:#4a6a8a;letter-spacing:4px;text-transform:uppercase}
 
 /* === 导航栏激活状态 === */
@@ -97,6 +101,52 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 
 /* === 数字滚动动画 === */
 .stat-card .number.counting{display:inline-block}
+
+/* === 应用场景板块 === */
+.applications{padding:100px 0;background:#080d1a;position:relative;overflow:hidden}
+.app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.app-card{background:linear-gradient(145deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:32px 24px;text-align:center;transition:all .4s;position:relative;overflow:hidden;cursor:default}
+.app-card:hover{border-color:rgba(74,158,255,.2);transform:translateY(-6px);background:linear-gradient(145deg,rgba(74,158,255,.06),rgba(74,158,255,.02))}
+.app-card .icon{width:56px;height:56px;margin:0 auto 16px;background:rgba(74,158,255,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;transition:transform .3s}
+.app-card:hover .icon{transform:scale(1.1)}
+.app-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:8px}
+.app-card p{font-size:.85rem;color:#8a9bb5;line-height:1.7;margin-bottom:12px}
+.app-card .app-tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#4a9eff;background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.12)}
+
+/* === SAR科普板块 === */
+.sar-science{padding:100px 0;background:#03050a;position:relative}
+.science-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.science-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:28px;transition:all .3s}
+.science-card:hover{border-color:rgba(74,158,255,.15);background:rgba(74,158,255,.03)}
+.science-card .science-num{font-size:2.5rem;font-weight:800;color:rgba(74,158,255,.12);line-height:1;margin-bottom:8px}
+.science-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:8px}
+.science-card p{font-size:.85rem;color:#8a9bb5;line-height:1.7}
+.science-card .science-icon{font-size:2rem;margin-bottom:12px;display:block}
+
+/* === 规格参数表 === */
+.specs{padding:100px 0;background:#080d1a}
+.specs-table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.02);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+.specs-table th,.specs-table td{padding:16px 20px;text-align:left;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.specs-table th{background:rgba(74,158,255,.08);color:#4a9eff;font-weight:600;letter-spacing:1px;font-size:.75rem;text-transform:uppercase}
+.specs-table td{color:#bcc5d6}
+.specs-table tr:hover td{background:rgba(74,158,255,.03)}
+.specs-table .spec-label{color:#6a8ab5;font-weight:500}
+
+/* === 合作伙伴轮播 === */
+.partners{padding:60px 0;background:#03050a;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.partner-scroll{display:flex;gap:40px;overflow:hidden;position:relative;padding:20px 0;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.partner-scroll-inner{display:flex;gap:40px;animation:scrollLeft 30s linear infinite}
+.partner-scroll-inner:hover{animation-play-state:paused}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.partner-item{flex-shrink:0;padding:12px 28px;border:1px solid rgba(255,255,255,.05);border-radius:8px;background:rgba(255,255,255,.02);font-size:.85rem;color:#6a8ab5;letter-spacing:1px;white-space:nowrap;transition:all .3s}
+.partner-item:hover{border-color:rgba(74,158,255,.2);color:#e0e4ee;background:rgba(74,158,255,.04)}
+
+/* === 计数器数字动画 === */
+.counter-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;padding-top:40px;border-top:1px solid rgba(255,255,255,.04)}
+.counter-item{text-align:center}
+.counter-item .num{font-size:2.8rem;font-weight:800;color:#4a9eff;line-height:1.2}
+.counter-item .num-suffix{font-size:1.4rem;font-weight:600;color:rgba(74,158,255,.6)}
+.counter-item .label{font-size:.82rem;color:#6a8ab5;margin-top:4px}
 
 /* === 联系弹窗 === */
 .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
@@ -234,10 +284,11 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </a>
 <ul class="nav-links" id="navLinks">
 <li><a href="#mission">关于我们</a></li>
-<li><a href="#technology">技术与产品</a></li>
-<li><a href="#news">新闻动态</a></li>
-<li><a href="#footer">加入我们</a></li>
-<li><a href="#footer">联系我们</a></li>
+<li><a href="#technology">技术</a></li>
+<li><a href="#applications">应用</a></li>
+<li><a href="#products">产品</a></li>
+<li><a href="#news">动态</a></li>
+<li><a href="#footer" class="nav-cta" style="padding:8px 20px;border:1px solid rgba(74,158,255,.3);border-radius:4px;color:#4a9eff;font-weight:600;" onclick="event.preventDefault();openModal();">联系我们</a></li>
 </ul>
 <button class="nav-hamburger" id="hamburger" aria-label="菜单">
 <span></span><span></span><span></span>
@@ -292,6 +343,12 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="label">全自研硬件系统</div>
 </div>
 </div>
+</div>
+<div class="counter-row">
+<div class="counter-item"><span class="num" data-target="12">0</span><span class="num-suffix">+</span><div class="label">核心专利</div></div>
+<div class="counter-item"><span class="num" data-target="3">0</span><span class="num-suffix">颗</span><div class="label">在轨卫星</div></div>
+<div class="counter-item"><span class="num" data-target="50">0</span><span class="num-suffix">+</span><div class="label">专业团队</div></div>
+<div class="counter-item"><span class="num" data-target="100">0</span><span class="num-suffix">%</span><div class="label">自主可控</div></div>
 </div>
 </div>
 </section>
@@ -355,6 +412,119 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+
+<section class="applications" id="applications">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">Applications</div>
+<div class="glow-line"></div>
+<h2 class="section-title">应用 <span class="highlight">场景</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">SAR技术全天候、全天时的独特优势，赋能多行业数字化转型</p>
+</div>
+<div class="app-grid">
+<div class="app-card">
+<div class="icon">&#x1F3D4;&#xFE0F;</div>
+<h3>国防与情报</h3>
+<p>全天候战略侦察、目标识别与战场态势感知，穿透云层和烟幕，提供持续性ISR能力。</p>
+<span class="app-tag">军用</span>
+</div>
+<div class="app-card">
+<div class="icon">&#x1F30A;</div>
+<h3>海洋监视</h3>
+<p>船舶检测与追踪、海洋污染监测、海冰观测，覆盖专属经济区的全天候监视。</p>
+<span class="app-tag">海洋</span>
+</div>
+<div class="app-card">
+<div class="icon">&#x26A1;</div>
+<h3>应急减灾</h3>
+<p>洪涝灾害快速评估、地震形变分析、山体滑坡监测，灾后数小时内提供第一手影像。</p>
+<span class="app-tag">应急</span>
+</div>
+<div class="app-card">
+<div class="icon">&#x1F33E;</div>
+<h3>农业与林业</h3>
+<p>作物生长监测、土壤水分估算、森林资源清查与非法砍伐检测，助力精准农业。</p>
+<span class="app-tag">农业</span>
+</div>
+<div class="app-card">
+<div class="icon">&#x1F3D7;&#xFE0F;</div>
+<h3>城市与基建</h3>
+<p>城市地表形变监测（InSAR）、基础设施健康诊断、轨道交通沿线安全预警。</p>
+<span class="app-tag">城市</span>
+</div>
+<div class="app-card">
+<div class="icon">&#x26A1;</div>
+<h3>能源与资源</h3>
+<p>油气管道沿线监测、矿区形变分析、风电场地表稳定性评估，保障能源设施安全。</p>
+<span class="app-tag">能源</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sar-science" id="science">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">SAR Science</div>
+<div class="glow-line"></div>
+<h2 class="section-title">SAR <span class="highlight">技术原理</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">合成孔径雷达如何穿透云层，实现全天候全天时对地观测</p>
+</div>
+<div class="science-grid">
+<div class="science-card">
+<span class="science-icon">&#x2601;&#xFE0F;</span>
+<h3>为什么SAR能穿透云层</h3>
+<p>SAR工作在X波段（约9.6GHz，波长~3cm）。云滴和大气粒子的尺寸远小于该波长，因此不会对信号产生明显散射或阻挡。而可见光的波长不足1微米，会被云层强烈散射——这就是为什么光学卫星看到白色云层，而SAR卫星能看到云层之下的地面。</p>
+</div>
+<div class="science-card">
+<span class="science-icon">&#x1F31E;</span>
+<h3>为什么SAR昼夜都能工作</h3>
+<p>光学传感器依赖太阳光反射。SAR是主动传感器——它自主发射雷达脉冲并测量返回的能量。太阳光不参与这个过程。SAR卫星在午夜和正午生成的图像质量完全一致，风暴天和晴天亦然。</p>
+</div>
+<div class="science-card">
+<span class="science-icon">&#x1F4E1;</span>
+<h3>如何从太空生成清晰的图像</h3>
+<p>小到可以发射入轨的天线无法单独分辨微波波段的细微特征。SAR通过利用卫星沿轨道的运动来合成一个更大的虚拟天线。卫星在过顶时从地面同一点收集数千个雷达回波，通过相干处理生成高分辨率影像。ICEYE卫星在Dwell Precise模式下分辨率可达25cm。感知起源MIMOSAR技术同样采用先进的数字波束形成与孔径合成技术。</p>
+</div>
+<div class="science-card">
+<span class="science-icon">&#x1F30D;</span>
+<h3>为何这对实际应用至关重要</h3>
+<p>地球约三分之二的表面在任何时刻都被云层覆盖。光学卫星在热带雨林、极地、冬季的北欧以及任何被烟尘或天气遮蔽的冲突区域都会失去观测能力。SAR不受这些条件限制，提供持续一致的成像能力。这就是为什么SAR是国防情报、海洋监视、应急响应和环境监测等持续监视任务的支柱技术。</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="specs" id="specs">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">Load Specifications</div>
+<div class="glow-line"></div>
+<h2 class="section-title">载荷 <span class="highlight">技术规格</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">感知起源星载SAR载荷核心参数</p>
+</div>
+<div style="overflow-x:auto;">
+<table class="specs-table">
+<thead>
+<tr><th>参数类别</th><th>指标</th><th>备注</th></tr>
+</thead>
+<tbody>
+<tr><td class="spec-label">工作频段</td><td>X波段 (9.6 GHz)</td><td>可扩展至Ku/Ka波段</td></tr>
+<tr><td class="spec-label">极化方式</td><td>单极化 / 双极化 / 全极化</td><td>可选配置</td></tr>
+<tr><td class="spec-label">条带模式分辨率</td><td>3m - 10m</td><td>幅宽 &gt; 30km</td></tr>
+<tr><td class="spec-label">聚束模式分辨率</td><td>优于 0.5m</td><td>滑动聚束可达 0.3m</td></tr>
+<tr><td class="spec-label">扫描模式幅宽</td><td>&gt; 100km</td><td>分辨率 &lt; 20m</td></tr>
+<tr><td class="spec-label">成像模式</td><td>条带 / 聚束 / 扫描 / 滑动聚束 / GMTI</td><td>5种标准模式</td></tr>
+<tr><td class="spec-label">载荷重量</td><td>&lt; 80 kg</td><td>适配微纳卫星平台</td></tr>
+<tr><td class="spec-label">峰值功耗</td><td>&lt; 500 W</td><td>低功耗设计</td></tr>
+<tr><td class="spec-label">数据压缩比</td><td>&gt; 3:1 (无损) / &gt; 8:1 (有损)</td><td>自适应压缩</td></tr>
+<tr><td class="spec-label">在轨处理能力</td><td>实时成像 &amp; 目标检测</td><td>AI加速器</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
 <section class="products" id="products">
 <div class="container">
 <div class="products-content">
@@ -452,6 +622,24 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+
+<section class="partners">
+<div class="container">
+<div class="partner-scroll">
+<div class="partner-scroll-inner" id="partnerScrollInner">
+<span class="partner-item">中国科学院</span>
+<span class="partner-item">哈尔滨工业大学</span>
+<span class="partner-item">北京理工大学</span>
+<span class="partner-item">中国空间技术研究院</span>
+<span class="partner-item">中电科集团</span>
+<span class="partner-item">航天科工集团</span>
+<span class="partner-item">上海卫星工程研究所</span>
+<span class="partner-item">西安空间无线电技术研究所</span>
+</div>
+</div>
+</div>
+</section>
+
 <section class="news" id="news">
 <div class="container">
 <div class="tech-header">
@@ -716,6 +904,39 @@ return false;
 };
 
 // ==========================================
+// 数字递增计数器动画
+// ==========================================
+function animateCounters() {
+var counters = document.querySelectorAll('.num[data-target]');
+counters.forEach(function(el) {
+var target = parseInt(el.getAttribute('data-target'));
+var current = 0;
+var increment = Math.ceil(target / 40);
+var timer = setInterval(function() {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+el.textContent = current;
+}, 40);
+});
+}
+
+// 用 IntersectionObserver 触发计数器
+var counterObserver = new IntersectionObserver(function(entries) {
+entries.forEach(function(entry) {
+if (entry.isIntersecting) {
+animateCounters();
+counterObserver.unobserve(entry.target);
+}
+});
+}, { threshold: 0.3 });
+
+var counterRow = document.querySelector('.counter-row');
+if (counterRow) counterObserver.observe(counterRow);
+
+// ==========================================
 // 技术卡片展开/收起
 // ==========================================
 window.toggleDetail = function(btn) {
@@ -797,7 +1018,7 @@ entry.target.style.transform = 'translateY(0)';
 });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.stat-card, .tech-card, .team-member, .timeline-item').forEach(function(el) {
+document.querySelectorAll('.stat-card, .tech-card, .team-member, .timeline-item, .app-card, .science-card, .specs-table tr').forEach(function(el) {
 el.style.opacity = '0';
 el.style.transform = 'translateY(30px)';
 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
