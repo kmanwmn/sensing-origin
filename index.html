@@ -1,0 +1,690 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>感知起源 · Sensing Origin | 济南感知起源信息科技有限公司</title>
+    <meta name="description" content="感知起源 · SAR遥感新维度 - 全天候凝视地球的眼睛+大脑，打造自主可控的商业SAR载荷。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden}
+::selection{background:rgba(0,123,255,0.3)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0a0e1a}
+::-webkit-scrollbar-thumb{background:#1a3a5a;border-radius:3px}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseGlow{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:0.8;transform:scale(1.05)}}
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes starTwinkle{0%,100%{opacity:0.2}50%{opacity:1}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-tag{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:#4a9eff;font-weight:500;margin-bottom:12px}
+.section-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:20px;letter-spacing:-.5px}
+.section-subtitle{font-size:clamp(.95rem,1.2vw,1.1rem);color:#8a9bb5;max-width:700px;line-height:1.7}
+.section-title .highlight{color:#4a9eff}
+.glow-line{width:60px;height:2px;background:linear-gradient(90deg,#4a9eff,transparent);margin-bottom:24px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:background .4s,padding .3s}
+nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(74,158,255,.1);padding:10px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;border:2px solid #4a9eff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#4a9eff;background:rgba(74,158,255,.08)}
+.nav-logo-text{display:flex;flex-direction:column}
+.nav-logo-text .zh{font-size:.9rem;font-weight:700;color:#fff;letter-spacing:1px}
+.nav-logo-text .en{font-size:.65rem;color:#6a8ab5;letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{color:#9aabc5;text-decoration:none;font-size:.82rem;font-weight:500;transition:color .3s;letter-spacing:.5px;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#4a9eff;transition:width .3s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-hamburger span{width:26px;height:2px;background:#e0e4ee;transition:.3s;border-radius:1px}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#03050a}
+#hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+.hero-radar{position:absolute;top:50%;left:50%;width:700px;height:700px;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
+.hero-radar .ring{position:absolute;top:50%;left:50%;border:1px solid rgba(74,158,255,.08);border-radius:50%;transform:translate(-50%,-50%);animation:pulseGlow 4s ease-in-out infinite}
+.hero-radar .ring:nth-child(1){width:150px;height:150px;animation-delay:0s}
+.hero-radar .ring:nth-child(2){width:300px;height:300px;animation-delay:.8s}
+.hero-radar .ring:nth-child(3){width:450px;height:450px;animation-delay:1.6s}
+.hero-radar .ring:nth-child(4){width:600px;height:600px;animation-delay:2.4s}
+.hero-radar .ring:nth-child(5){width:750px;height:750px;animation-delay:3.2s}
+.hero-content{position:relative;z-index:5;max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
+.hero-badge{display:inline-block;padding:6px 16px;border:1px solid rgba(74,158,255,.25);border-radius:20px;font-size:.7rem;letter-spacing:3px;color:#4a9eff;text-transform:uppercase;margin-bottom:24px;background:rgba(74,158,255,.06)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+.hero h1 .highlight{color:#4a9eff}
+.hero h1 .light{font-weight:300;color:#6a8ab5}
+.hero p{font-size:clamp(1rem,1.4vw,1.25rem);color:#8a9bb5;max-width:620px;line-height:1.7;margin-bottom:36px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:4px;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:none;letter-spacing:.5px}
+.btn-primary{background:linear-gradient(135deg,#4a9eff,#1a6bcc);color:#fff;box-shadow:0 4px 20px rgba(74,158,255,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(74,158,255,.4)}
+.btn-secondary{background:transparent;color:#e0e4ee;border:1px solid rgba(255,255,255,.2)}
+.btn-secondary:hover{border-color:#4a9eff;color:#fff;background:rgba(74,158,255,.08)}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:5;color:#4a6a8a;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;text-decoration:none;transition:color .3s}
+.hero-scroll:hover{color:#4a9eff}
+.hero-scroll .line{width:1px;height:40px;background:linear-gradient(to bottom,#4a6a8a,transparent)}
+
+/* === 联系弹窗 === */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
+.modal-overlay.active{display:flex;opacity:1}
+.modal{background:#0a0e1a;border:1px solid rgba(74,158,255,.15);border-radius:16px;padding:40px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.95);transition:transform .3s}
+.modal-overlay.active .modal{transform:scale(1)}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#6a8ab5;font-size:1.8rem;cursor:pointer;transition:color .3s;line-height:1}
+.modal-close:hover{color:#fff}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:.8rem;color:#8a9bb5;margin-bottom:6px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:#e0e4ee;font-size:.9rem;font-family:inherit;transition:border-color .3s,background .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:#4a9eff;background:rgba(74,158,255,.04)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-note{text-align:center;margin-top:16px;font-size:.8rem;color:#5a7a9a}
+.form-note a{color:#4a9eff;text-decoration:none}
+.form-note a:hover{text-decoration:underline}
+.form-success{display:none;text-align:center;padding:30px 0}
+.form-success.active{display:block}
+.form-success + form{display:none}
+.form-success.active + form{display:none}
+.mission{padding:100px 0;background:linear-gradient(180deg,#03050a 0%,#080d1a 100%);position:relative}
+.mission::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(74,158,255,.2),transparent)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.mission-text .highlight-title{font-size:2rem;font-weight:700;color:#fff;margin-bottom:20px}
+.mission-text p{color:#8a9bb5;margin-bottom:20px;line-height:1.8}
+.mission-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.stat-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px;padding:24px;transition:border-color .3s,background .3s}
+.stat-card:hover{border-color:rgba(74,158,255,.2);background:rgba(74,158,255,.04)}
+.stat-card .number{font-size:2rem;font-weight:800;color:#4a9eff;margin-bottom:4px}
+.stat-card .label{font-size:.85rem;color:#8a9bb5}
+.technology{padding:100px 0;background:#080d1a;position:relative}
+.tech-header{text-align:center;margin-bottom:60px}
+.tech-header .glow-line{margin:0 auto 24px}
+.tech-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tech-card{background:linear-gradient(145deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:36px 28px;transition:all .4s;position:relative;overflow:hidden}
+.tech-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,#4a9eff,transparent);opacity:0;transition:opacity .4s}
+.tech-card:hover::before{opacity:1}
+.tech-card:hover{border-color:rgba(74,158,255,.2);transform:translateY(-4px);background:linear-gradient(145deg,rgba(74,158,255,.04),rgba(74,158,255,.02))}
+.tech-card .icon{width:48px;height:48px;background:rgba(74,158,255,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px}
+.tech-card h3{font-size:1.1rem;font-weight:700;margin-bottom:12px;color:#fff}
+.tech-card p{font-size:.88rem;color:#8a9bb5;line-height:1.7}
+.tech-card .badge{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;background:rgba(74,158,255,.12);color:#4a9eff;margin-top:16px}
+.products{padding:100px 0;background:linear-gradient(180deg,#080d1a 0%,#03050a 100%);position:relative}
+.products-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.products-visual{position:relative;aspect-ratio:4/3;background:linear-gradient(145deg,rgba(74,158,255,.03),rgba(74,158,255,.01));border-radius:12px;border:1px solid rgba(74,158,255,.08);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.satellite-container{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.satellite-svg{width:80%;max-width:320px;animation:floatSlow 6s ease-in-out infinite}
+.products-text h3{font-size:1.8rem;font-weight:700;margin-bottom:16px}
+.products-text p{color:#8a9bb5;line-height:1.8;margin-bottom:24px}
+.product-features{list-style:none;display:flex;flex-direction:column;gap:12px}
+.product-features li{display:flex;align-items:center;gap:12px;font-size:.9rem;color:#bcc5d6}
+.product-features li::before{content:'\25B8';color:#4a9eff;font-weight:700}
+.team{padding:100px 0;background:#080d1a}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:50px}
+.team-member{display:flex;gap:24px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:28px;transition:all .3s}
+.team-member:hover{border-color:rgba(74,158,255,.15);background:rgba(74,158,255,.03)}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(74,158,255,.2),rgba(74,158,255,.05));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:#4a9eff;border:1px solid rgba(74,158,255,.15)}
+.team-info h4{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:4px}
+.team-info .title{font-size:.82rem;color:#4a9eff;margin-bottom:8px}
+.team-info p{font-size:.85rem;color:#8a9bb5;line-height:1.6}
+.investors{border-top:1px solid rgba(255,255,255,.05);padding-top:40px;text-align:center}
+.investors h4{font-size:1rem;color:#6a8ab5;margin-bottom:24px;letter-spacing:2px;text-transform:uppercase}
+.investor-logos{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.investor-logo{padding:12px 24px;border:1px solid rgba(255,255,255,.05);border-radius:8px;background:rgba(255,255,255,.02);font-size:.8rem;color:#6a8ab5;letter-spacing:1px;transition:all .3s}
+.investor-logo:hover{border-color:rgba(74,158,255,.2);color:#e0e4ee}
+.investor-note{margin-top:16px;font-size:.85rem;color:#5a7a9a}
+.news{padding:100px 0;background:#03050a}
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,rgba(74,158,255,.3),rgba(74,158,255,.05))}
+.timeline-item{position:relative;padding-left:60px;margin-bottom:40px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-dot{position:absolute;left:12px;top:4px;width:16px;height:16px;background:#4a9eff;border-radius:50%;border:3px solid #03050a;box-shadow:0 0 0 1px rgba(74,158,255,.3)}
+.timeline-date{font-size:.75rem;color:#4a9eff;font-weight:600;letter-spacing:2px;margin-bottom:8px}
+.timeline-content{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px;padding:20px 24px;transition:all .3s}
+.timeline-content:hover{border-color:rgba(74,158,255,.15)}
+.timeline-content h4{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:6px}
+.timeline-content p{font-size:.85rem;color:#8a9bb5;line-height:1.6}
+footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60px 0 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .nav-logo-icon{margin-bottom:16px}
+.footer-brand p{font-size:.85rem;color:#6a8ab5;line-height:1.7;max-width:280px}
+.footer-col h5{font-size:.8rem;font-weight:600;color:#e0e4ee;margin-bottom:16px;letter-spacing:1px;text-transform:uppercase}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{color:#6a8ab5;text-decoration:none;font-size:.85rem;transition:color .3s}
+.footer-col a:hover{color:#4a9eff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.04);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:.78rem;color:#4a6a8a}
+.footer-bottom a{color:#4a6a8a;text-decoration:none;font-size:.78rem;transition:color .3s}
+.footer-bottom a:hover{color:#4a9eff}
+@media(max-width:1024px){
+.mission-grid{gap:40px}
+.products-content{gap:40px}
+.tech-cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(3,5,10,.98);backdrop-filter:blur(20px);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid rgba(74,158,255,.1)}
+.nav-links.open{display:flex}
+.nav-hamburger{display:flex}
+.mission-grid,.products-content,.team-grid{grid-template-columns:1fr}
+.tech-cards{grid-template-columns:1fr}
+.mission-stats{grid-template-columns:1fr 1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+.hero-radar{width:400px;height:400px}
+.hero-radar .ring:nth-child(4),.hero-radar .ring:nth-child(5){display:none}
+.team-member{flex-direction:column}
+.investor-logos{gap:12px}
+.investor-logo{padding:8px 16px;font-size:.7rem}
+}
+@media(max-width:480px){
+.footer-grid{grid-template-columns:1fr}
+.mission-stats{grid-template-columns:1fr}
+.hero-actions{flex-direction:column}
+.hero-actions .btn{width:100%;justify-content:center}
+.hero-radar{width:280px;height:280px}
+.hero-radar .ring:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+<nav id="navbar">
+<div class="nav-inner">
+<a href="#" class="nav-logo">
+<div class="nav-logo-icon">SO</div>
+<div class="nav-logo-text">
+<span class="zh">感知起源</span>
+<span class="en">Sensing Origin</span>
+</div>
+</a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#mission">关于我们</a></li>
+<li><a href="#technology">技术与产品</a></li>
+<li><a href="#news">新闻动态</a></li>
+<li><a href="#footer">加入我们</a></li>
+<li><a href="#footer">联系我们</a></li>
+</ul>
+<button class="nav-hamburger" id="hamburger" aria-label="菜单">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+
+<section class="hero" id="hero">
+<canvas id="hero-canvas"></canvas>
+<div class="hero-radar">
+<div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+</div>
+<div class="hero-content">
+<div class="hero-badge">Sensing Origin &middot; SAR 遥感</div>
+<h1>感知起源 &middot; <span class="highlight">SAR<br>遥感新维度</span></h1>
+<p>全天候凝视地球的「眼睛+大脑」，打造自主可控的商业SAR载荷。以「感知数据、创新价值」为使命，填补国产化空白。</p>
+<div class="hero-actions">
+<a href="#technology" class="btn btn-primary">探索核心技术 &rarr;</a>
+<a href="#footer" class="btn btn-secondary">获取数据服务</a>
+</div>
+</div>
+<a href="#mission" class="hero-scroll">
+<span>向下滚动</span>
+<div class="line"></div>
+</a>
+</section>
+<section class="mission" id="mission">
+<div class="container">
+<div class="mission-grid">
+<div class="mission-text">
+<div class="section-tag">About Us</div>
+<div class="glow-line"></div>
+<h2 class="highlight-title">感知数据 &middot; 创新价值</h2>
+<p>我们是一家专注于遥感卫星星载合成孔径雷达（SAR）载荷研发、生产与销售的技术企业。以「感知数据、创新价值」为使命，致力于填补国产化空白，共建自主可控的小卫星SAR星座。</p>
+<p>突破「高分辨率」与「宽幅宽」的物理限制，成像效率数量级提升，单位面积图像成本下降 1-2 个数量级。</p>
+</div>
+<div class="mission-stats">
+<div class="stat-card">
+<div class="number">MIMOSAR</div>
+<div class="label">核心专利技术体系</div>
+</div>
+<div class="stat-card">
+<div class="number">端到端</div>
+<div class="label">数据采集&middot;处理&middot;分发</div>
+</div>
+<div class="stat-card">
+<div class="number">5+</div>
+<div class="label">应用领域覆盖</div>
+</div>
+<div class="stat-card">
+<div class="number">自主</div>
+<div class="label">全自研硬件系统</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="technology" id="technology">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">Core Technology</div>
+<div class="glow-line"></div>
+<h2 class="section-title">MIMOSAR &middot; <span class="highlight">核心技术</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">突破物理极限，重新定义星载SAR成像效能</p>
+</div>
+<div class="tech-cards">
+<div class="tech-card">
+<div class="icon">&#x1F4E1;</div>
+<h3>相控阵天线单元</h3>
+<p>自主研发相控阵天线系统，实现高精度波束控制和快速扫描，支撑宽幅高分辨率成像。</p>
+<span class="badge">自研硬件</span>
+</div>
+<div class="tech-card">
+<div class="icon">&#x26A1;</div>
+<h3>中央电子单元</h3>
+<p>高性能星载计算平台，集成信号处理与数据压缩，实现实时在轨成像能力。</p>
+<span class="badge">自研硬件</span>
+</div>
+<div class="tech-card">
+<div class="icon">&#x1F6F0;&#xFE0F;</div>
+<h3>地面成像处理系统</h3>
+<p>全链路地面处理软件套件，从原始数据到高级产品的自动化处理流水线。</p>
+<span class="badge">自研硬件</span>
+</div>
+<div class="tech-card">
+<div class="icon">&#x1F680;</div>
+<h3>高分辨率宽幅成像</h3>
+<p>突破「高分辨率」与「宽幅宽」物理限制，成像效率数量级提升，图像成本下降1-2个数量级。</p>
+<span class="badge">MIMOSAR</span>
+</div>
+<div class="tech-card">
+<div class="icon">&#x1F30D;</div>
+<h3>多模式成像能力</h3>
+<p>支持条带、聚束、扫描、滑动聚束等多种成像模式，灵活适配不同应用场景需求。</p>
+<span class="badge">多模式</span>
+</div>
+<div class="tech-card">
+<div class="icon">&#x1F4CA;</div>
+<h3>AI增强数据处理</h3>
+<p>集成深度学习与计算机视觉技术，实现目标检测、变化识别、图像解译的智能化分析。</p>
+<span class="badge">AI驱动</span>
+</div>
+</div>
+</div>
+</section>
+<section class="products" id="products">
+<div class="container">
+<div class="products-content">
+<div class="products-visual">
+<div class="satellite-container">
+<svg class="satellite-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="100" y="80" width="200" height="100" rx="8" stroke="rgba(74,158,255,0.4)" stroke-width="2" fill="rgba(74,158,255,0.05)"/>
+<rect x="100" y="80" width="200" height="30" rx="8" stroke="rgba(74,158,255,0.3)" stroke-width="1" fill="rgba(74,158,255,0.08)"/>
+<text x="200" y="100" text-anchor="middle" fill="rgba(74,158,255,0.6)" font-size="10">SAR 载荷模块</text>
+<rect x="130" y="115" width="60" height="50" rx="4" stroke="rgba(74,158,255,0.2)" stroke-width="1" fill="rgba(74,158,255,0.03)"/>
+<rect x="210" y="115" width="60" height="50" rx="4" stroke="rgba(74,158,255,0.2)" stroke-width="1" fill="rgba(74,158,255,0.03)"/>
+<line x1="200" y1="180" x2="200" y2="220" stroke="rgba(74,158,255,0.3)" stroke-width="2"/>
+<rect x="170" y="220" width="60" height="40" rx="6" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" fill="rgba(74,158,255,0.05)"/>
+<text x="200" y="245" text-anchor="middle" fill="rgba(74,158,255,0.5)" font-size="8">天线阵列</text>
+<line x1="100" y1="130" x2="50" y2="100" stroke="rgba(74,158,255,0.2)" stroke-width="1.5"/>
+<line x1="300" y1="130" x2="350" y2="100" stroke="rgba(74,158,255,0.2)" stroke-width="1.5"/>
+<circle cx="50" cy="95" r="10" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" fill="rgba(74,158,255,0.08)"/>
+<circle cx="350" cy="95" r="10" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" fill="rgba(74,158,255,0.08)"/>
+<circle cx="200" cy="60" r="15" stroke="rgba(74,158,255,0.2)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+<circle cx="200" cy="60" r="25" stroke="rgba(74,158,255,0.1)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+<line x1="200" y1="35" x2="200" y2="10" stroke="rgba(74,158,255,0.15)" stroke-width="1"/>
+<line x1="185" y1="10" x2="215" y2="10" stroke="rgba(74,158,255,0.15)" stroke-width="1"/>
+<text x="200" y="290" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7">Sensing Origin &middot; SAR Payload</text>
+</svg>
+</div>
+</div>
+<div class="products-text">
+<div class="section-tag">Products</div>
+<div class="glow-line"></div>
+<h3>星载SAR <span class="highlight">载荷产品</span></h3>
+<p>感知起源提供从核心硬件到数据处理系统的全链路产品解决方案，满足遥感卫星星座建设需求。</p>
+<ul class="product-features">
+<li>全自研相控阵天线单元</li>
+<li>高性能中央电子单元</li>
+<li>端到端地面成像处理系统</li>
+<li>支持多模式成像配置</li>
+<li>标准化接口设计，快速集成</li>
+</ul>
+<a href="#footer" class="btn btn-primary" style="margin-top:24px;">了解产品详情 &rarr;</a>
+</div>
+</div>
+</div>
+</section>
+<section class="team" id="team">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">Our Team</div>
+<div class="glow-line"></div>
+<h2 class="section-title">核心团队 &amp; <span class="highlight">合作伙伴</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">汇聚国内外顶尖遥感、雷达与电子工程人才</p>
+</div>
+<div class="team-grid">
+<div class="team-member">
+<div class="team-avatar">YZ</div>
+<div class="team-info">
+<h4>杨振</h4>
+<div class="title">创始人 &middot; CEO &middot; CTO</div>
+<p>SAR遥感专家，博士，10+年遥感与雷达领域经验，曾任中科院空天院高级工程师，主导多项星载SAR型号任务。</p>
+</div>
+</div>
+<div class="team-member">
+<div class="team-avatar">MW</div>
+<div class="team-info">
+<h4>王孟</h4>
+<div class="title">联合创始人 &middot; COO</div>
+<p>北京理工大学硕士，20年市场及技术管理经验，擅长企业运营管理及市场开拓，曾服务于多家高科技企业。</p>
+</div>
+</div>
+<div class="team-member">
+<div class="team-avatar">ZX</div>
+<div class="team-info">
+<h4>张鑫</h4>
+<div class="title">核心研发成员</div>
+<p>哈尔滨工业大学(威海)博士，10+年遥感算法研究经历，擅长遥感数据处理与SAR成像算法开发。</p>
+</div>
+</div>
+<div class="team-member">
+<div class="team-avatar">ZL</div>
+<div class="team-info">
+<h4>张磊</h4>
+<div class="title">核心研发成员</div>
+<p>卡内基梅隆大学(CMU)硕士，中兴通讯8年通信研发经验，擅长相控阵天线与射频系统开发。</p>
+</div>
+</div>
+</div>
+<div class="investors">
+<h4>投资方</h4>
+<div class="investor-logos">
+<span class="investor-logo">济南天使创投</span>
+<span class="investor-logo">中科院资本</span>
+<span class="investor-logo">鲁信创投</span>
+<span class="investor-logo">山东产业技术研究院</span>
+</div>
+<p class="investor-note">已获多轮融资，加速推进SAR星座商业化进程</p>
+</div>
+</div>
+</section>
+<section class="news" id="news">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">News &amp; Milestones</div>
+<div class="glow-line"></div>
+<h2 class="section-title">新闻 <span class="highlight">动态</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">感知起源的发展足迹</p>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date">2025 &middot; Q1</div>
+<div class="timeline-content">
+<h4>MIMOSAR技术验证星成功发射</h4>
+<p>搭载MIMOSAR核心技术的验证卫星成功入轨，开展在轨成像与系统验证测试，标志着公司技术从实验室走向太空。</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date">2024 &middot; Q4</div>
+<div class="timeline-content">
+<h4>完成Pre-A轮融资</h4>
+<p>获得数千万Pre-A轮融资，由济南天使创投、中科院资本等多家机构联合投资，资金用于产品研发与星座建设。</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date">2024 &middot; Q2</div>
+<div class="timeline-content">
+<h4>首套地面成像处理系统交付</h4>
+<p>自主研发的地面成像处理系统完成验收并交付客户，实现从原始数据到高级产品的全自动化处理。</p>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date">2023 &middot; Q3</div>
+<div class="timeline-content">
+<h4>完成天使轮融资 &amp; 公司成立</h4>
+<p>济南感知起源信息科技有限公司正式成立，获得天使轮融资，核心团队组建完成，启动星载SAR载荷原型研发。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 联系弹窗 ===== -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="section-tag">Contact Us</div>
+    <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:20px;color:#fff;">获取数据服务</h3>
+    <form id="contactForm" onsubmit="return handleFormSubmit(event)">
+      <div class="form-group">
+        <label for="formName">姓名 *</label>
+        <input type="text" id="formName" required placeholder="您的姓名">
+      </div>
+      <div class="form-group">
+        <label for="formEmail">邮箱 *</label>
+        <input type="email" id="formEmail" required placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label for="formCompany">公司/机构</label>
+        <input type="text" id="formCompany" placeholder="公司名称">
+      </div>
+      <div class="form-group">
+        <label for="formMessage">需求描述 *</label>
+        <textarea id="formMessage" rows="4" required placeholder="请描述您的需求，如：SAR数据采购、载荷集成咨询、技术合作等"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">提交咨询</button>
+      <p class="form-note">或直接发送邮件至 <a href="mailto:contact@sensingorigin.com">contact@sensingorigin.com</a></p>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <div style="font-size:3rem;margin-bottom:16px;">&#x2705;</div>
+      <h4 style="color:#fff;font-size:1.2rem;margin-bottom:8px;">提交成功！</h4>
+      <p style="color:#8a9bb5;">感谢您的咨询，我们的团队将在1-2个工作日内与您联系。</p>
+      <button class="btn btn-primary" style="margin-top:20px;" onclick="closeModal()">确 定</button>
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="nav-logo-icon">SO</div>
+<h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">感知起源 &middot; Sensing Origin</h4>
+<p>济南感知起源信息科技有限公司<br>以「感知数据、创新价值」为使命，打造自主可控的商业SAR载荷，共建天基遥感信息基础设施。</p>
+</div>
+<div class="footer-col">
+<h5>产品与服务</h5>
+<ul>
+<li><a href="#">星载SAR载荷</a></li>
+<li><a href="#">地面处理系统</a></li>
+<li><a href="#">数据服务</a></li>
+<li><a href="#">技术咨询</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>关于我们</h5>
+<ul>
+<li><a href="#mission">公司介绍</a></li>
+<li><a href="#team">核心团队</a></li>
+<li><a href="#news">新闻动态</a></li>
+<li><a href="mailto:contact@sensingorigin.com?subject=应聘咨询">加入我们</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>联系方式</h5>
+<ul>
+<li><a href="mailto:contact@sensingorigin.com">contact@sensingorigin.com</a></li>
+<li><a href="https://j.map.baidu.com/..." target="_blank">济南市高新区</a></li>
+<li><a href="#" onclick="window.openModal();return false;">商务合作</a></li>
+<li><a href="#" onclick="window.openModal();return false;">技术支持</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 济南感知起源信息科技有限公司 &middot; Sensing Origin Co., Ltd. All Rights Reserved.</p>
+<a href="#">隐私政策</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function() {
+// === 全局变量 ===
+var nav = document.getElementById('navbar');
+var hamburger = document.getElementById('hamburger');
+var navLinks = document.getElementById('navLinks');
+var modal = document.getElementById('contactModal');
+var form = document.getElementById('contactForm');
+var successDiv = document.getElementById('formSuccess');
+
+// === 导航栏滚动效果 ===
+var ticking = false;
+window.addEventListener('scroll', function() {
+if (!ticking) {
+window.requestAnimationFrame(function() {
+nav.classList.toggle('scrolled', window.scrollY > 60);
+ticking = false;
+});
+ticking = true;
+}
+});
+
+// === 汉堡菜单 ===
+hamburger.addEventListener('click', function() {
+navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(function(a) {
+a.addEventListener('click', function() { navLinks.classList.remove('open'); });
+});
+
+// === 弹窗控制 ===
+function openModal() {
+modal.classList.add('active');
+document.body.style.overflow = 'hidden';
+form.style.display = 'block';
+successDiv.classList.remove('active');
+form.reset();
+}
+function closeModal() {
+modal.classList.remove('active');
+document.body.style.overflow = '';
+}
+// 暴露到全局供 HTML onclick 调用
+window.openModal = openModal;
+window.closeModal = closeModal;
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', function(e) {
+if (e.target === modal) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') closeModal();
+});
+
+// === 给所有"获取数据服务"和"联系"按钮绑定弹窗 ===
+document.querySelectorAll('a[href="#footer"]').forEach(function(a) {
+a.addEventListener('click', function(e) {
+if (this.classList.contains('btn')) {
+e.preventDefault();
+openModal();
+}
+});
+});
+
+// === 表单提交（用邮件发送） ===
+window.handleFormSubmit = function(e) {
+e.preventDefault();
+var name = document.getElementById('formName').value.trim();
+var email = document.getElementById('formEmail').value.trim();
+var company = document.getElementById('formCompany').value.trim();
+var message = document.getElementById('formMessage').value.trim();
+
+// 构造邮件内容
+var subject = encodeURIComponent('[' + company || '个人' + '] ' + name + ' - 数据服务咨询');
+var body = encodeURIComponent(
+'姓名：' + name + '\n' +
+'邮箱：' + email + '\n' +
+'公司：' + (company || '未填写') + '\n\n' +
+'需求描述：\n' + message
+);
+// 方式1：打开邮件客户端（推荐，用户自己发送）
+window.location.href = 'mailto:contact@sensingorigin.com?subject=' + subject + '&body=' + body;
+
+// 方式2：显示成功页面（同时保留邮件跳转）
+form.style.display = 'none';
+successDiv.classList.add('active');
+return false;
+};
+
+// === 星空Canvas ===
+var canvas = document.getElementById('hero-canvas');
+var ctx = canvas.getContext('2d');
+var stars = [];
+var SCREEN = { w: 0, h: 0 };
+
+function resize() {
+SCREEN.w = canvas.width = window.innerWidth;
+SCREEN.h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (var i = 0; i < 200; i++) {
+stars.push({
+x: Math.random() * SCREEN.w,
+y: Math.random() * SCREEN.h,
+r: Math.random() * 1.5 + 0.3,
+a: Math.random() * 0.8 + 0.2,
+speed: Math.random() * 0.3 + 0.05,
+phase: Math.random() * Math.PI * 2
+});
+}
+
+function drawStars(time) {
+ctx.clearRect(0, 0, SCREEN.w, SCREEN.h);
+for (var i = 0; i < stars.length; i++) {
+var s = stars[i];
+var alpha = s.a * (0.5 + 0.5 * Math.sin(time * s.speed + s.phase));
+ctx.beginPath();
+ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+ctx.fillStyle = 'rgba(200, 220, 255, ' + alpha + ')';
+ctx.fill();
+if (s.r > 1.0 && Math.sin(time * s.speed * 2 + s.phase) > 0.8) {
+ctx.beginPath();
+ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
+ctx.fillStyle = 'rgba(74, 158, 255, 0.04)';
+ctx.fill();
+}
+}
+requestAnimationFrame(drawStars);
+}
+requestAnimationFrame(drawStars);
+
+// === 锚点平滑滚动 ===
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+a.addEventListener('click', function(e) {
+var id = this.getAttribute('href');
+if (id === '#' || this.classList.contains('btn')) return;
+var target = document.querySelector(id);
+if (target) {
+e.preventDefault();
+window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
+}
+});
+});
+
+// === 滚动入场动画 ===
+var observer = new IntersectionObserver(function(entries) {
+entries.forEach(function(entry) {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stat-card, .tech-card, .team-member, .timeline-item').forEach(function(el) {
+el.style.opacity = '0';
+el.style.transform = 'translateY(30px)';
+el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+observer.observe(el);
+});
+})();
+</script>
+
+</body>
+</html>
