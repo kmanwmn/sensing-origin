@@ -71,6 +71,33 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 .hero-scroll:hover{color:#4a9eff}
 .hero-scroll .line{width:1px;height:40px;background:linear-gradient(to bottom,#4a6a8a,transparent)}
 
+/* === 返回顶部按钮 === */
+.back-to-top{position:fixed;bottom:30px;right:30px;z-index:999;width:44px;height:44px;background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4a9eff;font-size:1.2rem;cursor:pointer;transition:all .3s;opacity:0;transform:translateY(20px);pointer-events:none;text-decoration:none}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:rgba(74,158,255,.25);transform:translateY(-3px);box-shadow:0 4px 20px rgba(74,158,255,.2)}
+.back-to-top.visible:hover{transform:translateY(-3px)}
+
+/* === 页面加载动画 === */
+.page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:#03050a;z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .8s ease}
+.page-loader.hidden{opacity:0;pointer-events:none}
+.loader-icon{width:40px;height:40px;border:2px solid rgba(74,158,255,.15);border-top-color:#4a9eff;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{font-size:.8rem;color:#4a6a8a;letter-spacing:4px;text-transform:uppercase}
+
+/* === 导航栏激活状态 === */
+.nav-links a.active{color:#4a9eff}
+.nav-links a.active::after{width:100%}
+
+/* === 技术卡片展开详情 === */
+.tech-card .expand-btn{display:inline-block;margin-top:12px;font-size:.78rem;color:#4a9eff;cursor:pointer;border:none;background:none;padding:0;font-family:inherit;letter-spacing:.5px;transition:color .3s}
+.tech-card .expand-btn:hover{color:#7ab8ff}
+.tech-card .detail-content{max-height:0;overflow:hidden;transition:max-height .4s ease,margin .4s ease;margin-top:0}
+.tech-card .detail-content.open{max-height:200px;margin-top:12px}
+.tech-card .detail-content p{font-size:.82rem;color:#6a8ab5;line-height:1.6;padding:12px;background:rgba(74,158,255,.04);border-radius:6px;border:1px solid rgba(74,158,255,.08)}
+
+/* === 数字滚动动画 === */
+.stat-card .number.counting{display:inline-block}
+
 /* === 联系弹窗 === */
 .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
 .modal-overlay.active{display:flex;opacity:1}
@@ -189,6 +216,13 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </style>
 </head>
 <body>
+
+<!-- ===== 加载动画 ===== -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-icon"></div>
+  <div class="loader-text">感知起源 · 加载中</div>
+</div>
+
 <nav id="navbar">
 <div class="nav-inner">
 <a href="#" class="nav-logo">
@@ -275,36 +309,48 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>相控阵天线单元</h3>
 <p>自主研发相控阵天线系统，实现高精度波束控制和快速扫描，支撑宽幅高分辨率成像。</p>
 <span class="badge">自研硬件</span>
+<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<div class="detail-content"><p>采用高性能T/R组件，支持多种波束模式快速切换，波束指向精度优于0.1°，具备在轨波束重构能力。工作频段覆盖X波段，支持双极化模式，天线效率＞60%。</p></div>
 </div>
 <div class="tech-card">
 <div class="icon">&#x26A1;</div>
 <h3>中央电子单元</h3>
 <p>高性能星载计算平台，集成信号处理与数据压缩，实现实时在轨成像能力。</p>
 <span class="badge">自研硬件</span>
+<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<div class="detail-content"><p>基于FPGA+CPU异构架构，支持多模式成像参数实时解算与波控码生成。集成高速数据存储与压缩模块，支持在轨实时成像处理，数据吞吐量＞5Gbps。</p></div>
 </div>
 <div class="tech-card">
 <div class="icon">&#x1F6F0;&#xFE0F;</div>
 <h3>地面成像处理系统</h3>
 <p>全链路地面处理软件套件，从原始数据到高级产品的自动化处理流水线。</p>
 <span class="badge">自研硬件</span>
+<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<div class="detail-content"><p>支持原始数据解包、成像聚焦、辐射定标、几何校正全流程自动化处理。基于GPU加速，单景处理时间＜5分钟。支持SLC、GEC、GTC等多种标准产品输出。</p></div>
 </div>
 <div class="tech-card">
 <div class="icon">&#x1F680;</div>
 <h3>高分辨率宽幅成像</h3>
 <p>突破「高分辨率」与「宽幅宽」物理限制，成像效率数量级提升，图像成本下降1-2个数量级。</p>
 <span class="badge">MIMOSAR</span>
+<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<div class="detail-content"><p>MIMOSAR核心专利技术，通过多通道合成孔径与数字波束形成技术，同时实现高分辨率（优于1m）与大宽幅（＞50km）。成像效率较传统SAR提升5-10倍。</p></div>
 </div>
 <div class="tech-card">
 <div class="icon">&#x1F30D;</div>
 <h3>多模式成像能力</h3>
 <p>支持条带、聚束、扫描、滑动聚束等多种成像模式，灵活适配不同应用场景需求。</p>
 <span class="badge">多模式</span>
+<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<div class="detail-content"><p>聚束模式分辨率优于0.5m，条带模式幅宽＞30km，扫描模式幅宽＞100km。支持GMTI动目标检测模式，可实现地面运动目标检测与跟踪。</p></div>
 </div>
 <div class="tech-card">
 <div class="icon">&#x1F4CA;</div>
 <h3>AI增强数据处理</h3>
 <p>集成深度学习与计算机视觉技术，实现目标检测、变化识别、图像解译的智能化分析。</p>
 <span class="badge">AI驱动</span>
+<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<div class="detail-content"><p>基于深度卷积神经网络与Transformer架构，支持舰船、车辆、建筑等多类目标自动检测识别。变化检测精度＞90%，单景图像智能解译时间＜30秒。</p></div>
 </div>
 </div>
 </div>
@@ -450,6 +496,9 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<!-- ===== 返回顶部按钮 ===== -->
+<a href="#" class="back-to-top" id="backToTop" title="返回顶部">&#x2191;</a>
+
 <!-- ===== 联系弹窗 ===== -->
 <div class="modal-overlay" id="contactModal">
   <div class="modal">
@@ -530,35 +579,86 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 
 <script>
 (function() {
-// === 全局变量 ===
+// ==========================================
+// 全局变量
+// ==========================================
 var nav = document.getElementById('navbar');
 var hamburger = document.getElementById('hamburger');
-var navLinks = document.getElementById('navLinks');
+var navMenu = document.getElementById('navLinks');
 var modal = document.getElementById('contactModal');
 var form = document.getElementById('contactForm');
 var successDiv = document.getElementById('formSuccess');
+var backBtn = document.getElementById('backToTop');
+var loader = document.getElementById('pageLoader');
 
-// === 导航栏滚动效果 ===
+// ==========================================
+// 页面加载动画
+// ==========================================
+window.addEventListener('load', function() {
+setTimeout(function() {
+loader.classList.add('hidden');
+setTimeout(function() { loader.style.display = 'none'; }, 800);
+}, 400);
+});
+
+// ==========================================
+// 导航栏滚动效果 + 返回顶部按钮 + 高亮
+// ==========================================
+var sections = document.querySelectorAll('section[id]');
+var navAnchors = navMenu.querySelectorAll('a');
 var ticking = false;
+
 window.addEventListener('scroll', function() {
 if (!ticking) {
 window.requestAnimationFrame(function() {
-nav.classList.toggle('scrolled', window.scrollY > 60);
+var scrollY = window.scrollY;
+
+// 导航栏背景
+nav.classList.toggle('scrolled', scrollY > 60);
+
+// 返回顶部按钮
+backBtn.classList.toggle('visible', scrollY > 300);
+
+// 导航高亮
+var current = '';
+for (var i = 0; i < sections.length; i++) {
+var section = sections[i];
+var top = section.offsetTop - 120;
+var bottom = top + section.offsetHeight;
+if (scrollY >= top && scrollY < bottom) {
+current = '#' + section.getAttribute('id');
+break;
+}
+}
+for (var j = 0; j < navAnchors.length; j++) {
+navAnchors[j].classList.toggle('active', navAnchors[j].getAttribute('href') === current);
+}
+
 ticking = false;
 });
 ticking = true;
 }
 });
 
-// === 汉堡菜单 ===
-hamburger.addEventListener('click', function() {
-navLinks.classList.toggle('open');
-});
-navLinks.querySelectorAll('a').forEach(function(a) {
-a.addEventListener('click', function() { navLinks.classList.remove('open'); });
+// 返回顶部点击
+backBtn.addEventListener('click', function(e) {
+e.preventDefault();
+window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// === 弹窗控制 ===
+// ==========================================
+// 汉堡菜单
+// ==========================================
+hamburger.addEventListener('click', function() {
+navMenu.classList.toggle('open');
+});
+navMenu.querySelectorAll('a').forEach(function(a) {
+a.addEventListener('click', function() { navMenu.classList.remove('open'); });
+});
+
+// ==========================================
+// 弹窗控制
+// ==========================================
 function openModal() {
 modal.classList.add('active');
 document.body.style.overflow = 'hidden';
@@ -570,7 +670,6 @@ function closeModal() {
 modal.classList.remove('active');
 document.body.style.overflow = '';
 }
-// 暴露到全局供 HTML onclick 调用
 window.openModal = openModal;
 window.closeModal = closeModal;
 
@@ -582,7 +681,7 @@ document.addEventListener('keydown', function(e) {
 if (e.key === 'Escape') closeModal();
 });
 
-// === 给所有"获取数据服务"和"联系"按钮绑定弹窗 ===
+// 给"获取数据服务"等按钮绑定弹窗
 document.querySelectorAll('a[href="#footer"]').forEach(function(a) {
 a.addEventListener('click', function(e) {
 if (this.classList.contains('btn')) {
@@ -592,7 +691,9 @@ openModal();
 });
 });
 
-// === 表单提交（用邮件发送） ===
+// ==========================================
+// 表单提交
+// ==========================================
 window.handleFormSubmit = function(e) {
 e.preventDefault();
 var name = document.getElementById('formName').value.trim();
@@ -600,24 +701,32 @@ var email = document.getElementById('formEmail').value.trim();
 var company = document.getElementById('formCompany').value.trim();
 var message = document.getElementById('formMessage').value.trim();
 
-// 构造邮件内容
-var subject = encodeURIComponent('[' + company || '个人' + '] ' + name + ' - 数据服务咨询');
+var subject = encodeURIComponent('[' + (company || '个人') + '] ' + name + ' - 数据服务咨询');
 var body = encodeURIComponent(
 '姓名：' + name + '\n' +
 '邮箱：' + email + '\n' +
 '公司：' + (company || '未填写') + '\n\n' +
 '需求描述：\n' + message
 );
-// 方式1：打开邮件客户端（推荐，用户自己发送）
 window.location.href = 'mailto:contact@sensingorigin.com?subject=' + subject + '&body=' + body;
 
-// 方式2：显示成功页面（同时保留邮件跳转）
 form.style.display = 'none';
 successDiv.classList.add('active');
 return false;
 };
 
-// === 星空Canvas ===
+// ==========================================
+// 技术卡片展开/收起
+// ==========================================
+window.toggleDetail = function(btn) {
+var content = btn.nextElementSibling;
+var isOpen = content.classList.toggle('open');
+btn.innerHTML = isOpen ? '收起详情 &#x25B2;' : '展开详情 &#x25BC;';
+};
+
+// ==========================================
+// 星空Canvas
+// ==========================================
 var canvas = document.getElementById('hero-canvas');
 var ctx = canvas.getContext('2d');
 var stars = [];
@@ -661,7 +770,9 @@ requestAnimationFrame(drawStars);
 }
 requestAnimationFrame(drawStars);
 
-// === 锚点平滑滚动 ===
+// ==========================================
+// 锚点平滑滚动
+// ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 a.addEventListener('click', function(e) {
 var id = this.getAttribute('href');
@@ -674,7 +785,9 @@ window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset -
 });
 });
 
-// === 滚动入场动画 ===
+// ==========================================
+// 滚动入场动画
+// ==========================================
 var observer = new IntersectionObserver(function(entries) {
 entries.forEach(function(entry) {
 if (entry.isIntersecting) {
@@ -690,6 +803,7 @@ el.style.transform = 'translateY(30px)';
 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
 observer.observe(el);
 });
+
 })();
 </script>
 
