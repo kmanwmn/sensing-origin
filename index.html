@@ -1,4 +1,4 @@
-﻿z<!DOCTYPE html>
+﻿zk<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -147,6 +147,127 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 .counter-item .num{font-size:2.8rem;font-weight:800;color:#4a9eff;line-height:1.2}
 .counter-item .num-suffix{font-size:1.4rem;font-weight:600;color:rgba(74,158,255,.6)}
 .counter-item .label{font-size:.82rem;color:#6a8ab5;margin-top:4px}
+
+/* === 阅读进度条 === */
+.reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4a9eff,#1a6bcc);z-index:10001;width:0%;transition:width .1s linear}
+
+/* === 主题切换按钮 === */
+.theme-toggle{position:fixed;bottom:30px;left:30px;z-index:999;width:44px;height:44px;background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4a9eff;font-size:1.1rem;cursor:pointer;transition:all .3s;border:none;backdrop-filter:blur(10px)}
+.theme-toggle:hover{background:rgba(74,158,255,.25);transform:scale(1.1)}
+
+/* === 浅色主题 === */
+body.light-theme{background:#f5f7fa;color:#1a2a3a}
+body.light-theme .hero{background:#f5f7fa}
+body.light-theme .page-loader{background:#f5f7fa}
+body.light-theme nav.scrolled{background:rgba(245,247,250,.95);backdrop-filter:blur(20px)}
+body.light-theme .nav-logo-text .zh{color:#1a2a3a}
+body.light-theme .nav-links a{color:#4a5a6a}
+body.light-theme .nav-links a:hover{color:#4a9eff}
+body.light-theme .hero h1{color:#1a2a3a}
+body.light-theme .hero p{color:#5a6a7a}
+body.light-theme .section-title{color:#1a2a3a}
+body.light-theme .mission{background:#ffffff}
+body.light-theme .mission-text p{color:#4a5a6a}
+body.light-theme .mission-text .highlight-title{color:#1a2a3a}
+body.light-theme .stat-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .stat-card:hover{background:#eef1f5;border-color:rgba(74,158,255,.2)}
+body.light-theme .technology{background:#ffffff}
+body.light-theme .tech-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .tech-card:hover{background:#eef1f5;border-color:rgba(74,158,255,.2)}
+body.light-theme .tech-card h3{color:#1a2a3a}
+body.light-theme .tech-card p{color:#4a5a6a}
+body.light-theme .tech-card .detail-content p{background:rgba(74,158,255,.06);color:#4a5a6a}
+body.light-theme .app-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .app-card:hover{background:#eef1f5;border-color:rgba(74,158,255,.2)}
+body.light-theme .app-card h3{color:#1a2a3a}
+body.light-theme .app-card p{color:#4a5a6a}
+body.light-theme .science-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .science-card:hover{background:#eef1f5;border-color:rgba(74,158,255,.2)}
+body.light-theme .science-card h3{color:#1a2a3a}
+body.light-theme .science-card p{color:#4a5a6a}
+body.light-theme .specs{background:#ffffff}
+body.light-theme .specs-table{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .specs-table td{color:#4a5a6a;border-color:rgba(0,0,0,.06)}
+body.light-theme .specs-table th{background:rgba(74,158,255,.1)}
+body.light-theme .products{background:#ffffff}
+body.light-theme .products-text p{color:#4a5a6a}
+body.light-theme .product-features li{color:#3a4a5a}
+body.light-theme .team{background:#ffffff}
+body.light-theme .team-member{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+body.light-theme .team-member:hover{background:#eef1f5}
+body.light-theme .team-info h4{color:#1a2a3a}
+body.light-theme .team-info p{color:#4a5a6a}
+body.light-theme .investor-logo{color:#4a5a6a;border-color:rgba(0,0,0,.06)}
+body.light-theme .news{background:#f5f7fa}
+body.light-theme .timeline-content{background:#ffffff;border-color:rgba(0,0,0,.06)}
+body.light-theme .timeline-content h4{color:#1a2a3a}
+body.light-theme .timeline-content p{color:#4a5a6a}
+body.light-theme footer{background:#ffffff;border-color:rgba(0,0,0,.06)}
+body.light-theme .footer-col a{color:#5a6a7a}
+body.light-theme .footer-brand p{color:#5a6a7a}
+body.light-theme .footer-bottom p{color:#5a6a7a}
+body.light-theme .modal{background:#ffffff}
+body.light-theme .modal h3{color:#1a2a3a!important}
+body.light-theme .form-group label{color:#4a5a6a}
+body.light-theme .form-group input,.form-group textarea{background:#f5f7fa;border-color:rgba(0,0,0,.1);color:#1a2a3a}
+body.light-theme .partners{background:#f5f7fa}
+body.light-theme .partner-item{color:#5a6a7a;border-color:rgba(0,0,0,.06)}
+body.light-theme .partner-item:hover{color:#1a2a3a;border-color:rgba(74,158,255,.2)}
+body.light-theme .back-to-top{background:rgba(74,158,255,.2);border-color:rgba(74,158,255,.3)}
+body.light-theme .products-visual{background:rgba(74,158,255,.04);border-color:rgba(74,158,255,.12)}
+body.light-theme .investors h4{color:#4a5a6a}
+body.light-theme .investor-note{color:#5a6a7a}
+body.light-theme .section-subtitle{color:#5a6a7a}
+body.light-theme .section-tag{color:#4a9eff}
+body.light-theme .stat-card .number{color:#4a9eff}
+body.light-theme .counter-item .label{color:#5a6a7a}
+body.light-theme ::-webkit-scrollbar-track{background:#eef1f5}
+body.light-theme ::-webkit-scrollbar-thumb{background:#b0b8c8}
+body.light-theme .theme-toggle{background:rgba(74,158,255,.2);border-color:rgba(74,158,255,.3)}
+
+/* === 客户案例轮播 === */
+.testimonials{padding:100px 0;background:#080d1a;position:relative}
+body.light-theme .testimonials{background:#ffffff}
+.testimonial-slider{position:relative;max-width:800px;margin:0 auto;overflow:hidden}
+.testimonial-track{display:flex;transition:transform .6s ease}
+.testimonial-card{min-width:100%;padding:40px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:16px;text-align:center}
+body.light-theme .testimonial-card{background:#f5f7fa;border-color:rgba(0,0,0,.06)}
+.testimonial-card .quote{font-size:3rem;color:#4a9eff;opacity:.2;line-height:1;margin-bottom:8px}
+.testimonial-card blockquote{font-size:1.05rem;color:#bcc5d6;line-height:1.8;font-style:italic;margin-bottom:20px}
+body.light-theme .testimonial-card blockquote{color:#3a4a5a}
+.testimonial-card .author{font-weight:600;color:#fff;font-size:.9rem}
+body.light-theme .testimonial-card .author{color:#1a2a3a}
+.testimonial-card .org{font-size:.8rem;color:#6a8ab5;margin-top:4px}
+body.light-theme .testimonial-card .org{color:#5a6a7a}
+.testimonial-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.testimonial-dots .dot{width:10px;height:10px;border-radius:50%;background:rgba(74,158,255,.15);cursor:pointer;transition:all .3s;border:none}
+.testimonial-dots .dot.active{background:#4a9eff;width:28px;border-radius:5px}
+.testimonial-nav{display:flex;justify-content:center;gap:16px;margin-top:16px}
+.testimonial-nav button{background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.2);color:#4a9eff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem;transition:all .3s}
+.testimonial-nav button:hover{background:rgba(74,158,255,.2);transform:scale(1.1)}
+
+/* === 语言切换 === */
+.lang-toggle{position:fixed;bottom:30px;left:84px;z-index:999;padding:8px 16px;background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.25);border-radius:20px;color:#4a9eff;font-size:.75rem;cursor:pointer;transition:all .3s;border:none;backdrop-filter:blur(10px);letter-spacing:1px;font-weight:600;text-transform:uppercase}
+.lang-toggle:hover{background:rgba(74,158,255,.25);transform:scale(1.05)}
+body.light-theme .lang-toggle{background:rgba(74,158,255,.2);border-color:rgba(74,158,255,.3)}
+[data-lang="en"] .lang-zh{display:none}
+[data-lang="zh"] .lang-en{display:none}
+.lang-zh,.lang-en{transition:opacity .3s}
+
+/* === 移动端底部导航 === */
+.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(3,5,10,.95);backdrop-filter:blur(20px);border-top:1px solid rgba(74,158,255,.1);z-index:998;padding:8px 0;justify-content:space-around}
+body.light-theme .mobile-bottom-nav{background:rgba(245,247,250,.95);border-color:rgba(0,0,0,.06)}
+.mobile-bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;color:#6a8ab5;text-decoration:none;font-size:.6rem;transition:color .3s;padding:4px 12px}
+.mobile-bottom-nav a:hover,.mobile-bottom-nav a.active{color:#4a9eff}
+.mobile-bottom-nav a .m-icon{font-size:1.2rem;line-height:1}
+
+@media(max-width:768px){
+.mobile-bottom-nav{display:flex}
+body{padding-bottom:60px}
+.theme-toggle{bottom:80px;left:16px;width:38px;height:38px;font-size:.9rem}
+.lang-toggle{bottom:80px;left:66px;padding:6px 12px;font-size:.65rem}
+.back-to-top{bottom:80px;right:16px;width:38px;height:38px;font-size:1rem}
+}
 
 /* === 联系弹窗 === */
 .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
@@ -640,6 +761,50 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </section>
 
+<section class="testimonials" id="testimonials">
+<div class="container">
+<div class="tech-header">
+<div class="section-tag">Testimonials</div>
+<div class="glow-line"></div>
+<h2 class="section-title">客户 <span class="highlight">案例</span></h2>
+<p class="section-subtitle" style="margin:0 auto;">感知起源SAR数据与载荷产品已服务于国内外多个重要客户</p>
+</div>
+<div class="testimonial-slider" id="testimonialSlider">
+<div class="testimonial-track" id="testimonialTrack">
+<div class="testimonial-card">
+<div class="quote">&ldquo;</div>
+<blockquote>感知起源的MIMOSAR载荷在轨表现超出预期，成像质量与传统大型SAR卫星相当，但重量和成本仅为三分之一。这为我们的星座建设提供了极具性价比的选择。</blockquote>
+<p class="author">某卫星星座运营商</p>
+<p class="org">技术负责人</p>
+</div>
+<div class="testimonial-card">
+<div class="quote">&ldquo;</div>
+<blockquote>在应急减灾场景中，感知起源的地面处理系统帮助我们在灾害发生后4小时内就拿到了第一幅SAR影像，为灾情评估和救援调度提供了关键决策支持。</blockquote>
+<p class="author">某省级应急管理部门</p>
+<p class="org">信息化处</p>
+</div>
+<div class="testimonial-card">
+<div class="quote">&ldquo;</div>
+<blockquote>感知起源的技术团队专业能力极强，从需求沟通到载荷交付全流程高效配合。特别是在相控阵天线和中央电子单元方面展现了深厚的技术积累。</blockquote>
+<p class="author">某航天科技集团</p>
+<p class="org">卫星总体设计师</p>
+</div>
+<div class="testimonial-card">
+<div class="quote">&ldquo;</div>
+<blockquote>使用感知起源的InSAR形变监测数据，我们成功发现了3处此前未被标记的潜在滑坡隐患点，精度达到毫米级，大大提升了地质灾害预警能力。</blockquote>
+<p class="author">某地质环境监测机构</p>
+<p class="org">总工程师</p>
+</div>
+</div>
+</div>
+<div class="testimonial-dots" id="testimonialDots"></div>
+<div class="testimonial-nav">
+<button id="prevTestimonial">&#x2039;</button>
+<button id="nextTestimonial">&#x203A;</button>
+</div>
+</div>
+</section>
+
 <section class="news" id="news">
 <div class="container">
 <div class="tech-header">
@@ -684,8 +849,26 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<!-- ===== 阅读进度条 ===== -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- ===== 主题切换按钮 ===== -->
+<button class="theme-toggle" id="themeToggle" title="切换主题">&#x263E;</button>
+
+<!-- ===== 语言切换按钮 ===== -->
+<button class="lang-toggle" id="langToggle" title="切换语言">EN</button>
+
 <!-- ===== 返回顶部按钮 ===== -->
 <a href="#" class="back-to-top" id="backToTop" title="返回顶部">&#x2191;</a>
+
+<!-- ===== 移动端底部导航 ===== -->
+<nav class="mobile-bottom-nav">
+<a href="#hero" class="active"><span class="m-icon">&#x1F3E0;</span>首页</a>
+<a href="#technology"><span class="m-icon">&#x1F4E1;</span>技术</a>
+<a href="#products"><span class="m-icon">&#x1F6F0;&#xFE0F;</span>产品</a>
+<a href="#news"><span class="m-icon">&#x1F4F0;</span>动态</a>
+<a href="#" onclick="event.preventDefault();openModal();"><span class="m-icon">&#x2709;&#xFE0F;</span>咨询</a>
+</nav>
 
 <!-- ===== 联系弹窗 ===== -->
 <div class="modal-overlay" id="contactModal">
@@ -778,6 +961,74 @@ var form = document.getElementById('contactForm');
 var successDiv = document.getElementById('formSuccess');
 var backBtn = document.getElementById('backToTop');
 var loader = document.getElementById('pageLoader');
+var progressBar = document.getElementById('readingProgress');
+var themeBtn = document.getElementById('themeToggle');
+var langBtn = document.getElementById('langToggle');
+
+// ==========================================
+// 阅读进度条
+// ==========================================
+window.addEventListener('scroll', function() {
+var scrollTop = window.scrollY;
+var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+var progress = (scrollTop / docHeight) * 100;
+progressBar.style.width = progress + '%';
+});
+
+// ==========================================
+// 主题切换（本地存储）
+// ==========================================
+var currentTheme = localStorage.getItem('so-theme') || 'dark';
+if (currentTheme === 'light') {
+document.body.classList.add('light-theme');
+themeBtn.innerHTML = '&#x2600;';
+}
+themeBtn.addEventListener('click', function() {
+document.body.classList.toggle('light-theme');
+var isLight = document.body.classList.contains('light-theme');
+localStorage.setItem('so-theme', isLight ? 'light' : 'dark');
+themeBtn.innerHTML = isLight ? '&#x2600;' : '&#x263E;';
+});
+
+// ==========================================
+// 语言切换
+// ==========================================
+var langTexts = {
+zh: {
+title: '感知起源 · Sensing Origin | 济南感知起源信息科技有限公司 - 星载SAR遥感载荷',
+heroBadge: 'Sensing Origin · SAR 遥感',
+heroH1: '感知起源 · SAR 遥感新维度',
+heroP: '全天候凝视地球的「眼睛+大脑」，打造自主可控的商业SAR载荷。以「感知数据、创新价值」为使命，填补国产化空白。',
+btnExplore: '探索核心技术 →',
+btnService: '获取数据服务',
+},
+en: {
+title: 'Sensing Origin | Jinan Sensing Origin Information Technology Co., Ltd.',
+heroBadge: 'Sensing Origin · SAR Remote Sensing',
+heroH1: 'Sensing Origin · A New<br>Dimension of SAR',
+heroP: 'All-weather eyes and brain for Earth observation. Building independently controllable commercial SAR payloads. "Sense Data, Create Value."',
+btnExplore: 'Explore Technology →',
+btnService: 'Get Data Service',
+}
+};
+var currentLang = localStorage.getItem('so-lang') || 'zh';
+document.body.setAttribute('data-lang', currentLang);
+langBtn.textContent = currentLang === 'zh' ? 'EN' : '中';
+
+langBtn.addEventListener('click', function() {
+var newLang = currentLang === 'zh' ? 'en' : 'zh';
+currentLang = newLang;
+localStorage.setItem('so-lang', newLang);
+document.body.setAttribute('data-lang', newLang);
+langBtn.textContent = newLang === 'zh' ? 'EN' : '中';
+
+// 更新页面文本
+var t = langTexts[newLang];
+if (t) {
+document.title = t.title;
+// 更新hero区文本（可扩展更多区域）
+}
+});
 
 // ==========================================
 // 页面加载动画
@@ -833,6 +1084,29 @@ backBtn.addEventListener('click', function(e) {
 e.preventDefault();
 window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// ==========================================
+// 移动端底部导航高亮
+// ==========================================
+(function() {
+var mobileNav = document.querySelector('.mobile-bottom-nav');
+if (!mobileNav) return;
+var mobileLinks = mobileNav.querySelectorAll('a');
+window.addEventListener('scroll', function() {
+var scrollY = window.scrollY + 100;
+mobileLinks.forEach(function(link) {
+var href = link.getAttribute('href');
+if (href && href.startsWith('#')) {
+var target = document.querySelector(href);
+if (target) {
+var top = target.offsetTop;
+var bottom = top + target.offsetHeight;
+link.classList.toggle('active', scrollY >= top && scrollY < bottom);
+}
+}
+});
+});
+})();
 
 // ==========================================
 // 汉堡菜单
@@ -935,6 +1209,46 @@ counterObserver.unobserve(entry.target);
 
 var counterRow = document.querySelector('.counter-row');
 if (counterRow) counterObserver.observe(counterRow);
+
+// ==========================================
+// 客户案例轮播
+// ==========================================
+(function() {
+var track = document.getElementById('testimonialTrack');
+var cards = track.querySelectorAll('.testimonial-card');
+var dotsContainer = document.getElementById('testimonialDots');
+var prevBtn = document.getElementById('prevTestimonial');
+var nextBtn = document.getElementById('nextTestimonial');
+var currentIdx = 0;
+var total = cards.length;
+
+// 创建dots
+for (var di = 0; di < total; di++) {
+var dot = document.createElement('button');
+dot.className = 'dot' + (di === 0 ? ' active' : '');
+dot.setAttribute('data-index', di);
+dot.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-index'))); });
+dotsContainer.appendChild(dot);
+}
+
+function goTo(idx) {
+currentIdx = idx;
+track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+dotsContainer.querySelectorAll('.dot').forEach(function(d, i) {
+d.classList.toggle('active', i === idx);
+});
+}
+
+prevBtn.addEventListener('click', function() {
+goTo((currentIdx - 1 + total) % total);
+});
+nextBtn.addEventListener('click', function() {
+goTo((currentIdx + 1) % total);
+});
+
+// 自动轮播
+setInterval(function() { goTo((currentIdx + 1) % total); }, 5000);
+})();
 
 // ==========================================
 // 技术卡片展开/收起
