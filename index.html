@@ -9,9 +9,32 @@
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="感知起源 · Sensing Origin | 星载SAR遥感载荷">
     <meta property="og:description" content="全天候凝视地球的眼睛+大脑，打造自主可控的商业SAR载荷。">
-    <meta property="og:url" content="https://kmanwmn.github.io/sensing-origin">
+    <meta property="og:url" content="https://sensing-origin.vercel.app">
     <meta property="og:type" content="website">
-    <link rel="canonical" href="https://kmanwmn.github.io/sensing-origin">
+    <link rel="canonical" href="https://sensing-origin.vercel.app">
+    
+    <!-- 微信/QQ/夸克浏览器兼容修复 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="force-rendering" content="webkit">
+    <meta name="referrer" content="never">
+    <script>
+    // 浏览器环境检测与降级处理
+    (function(){
+      var ua = navigator.userAgent.toLowerCase();
+      var isWechat = /micromessenger/.test(ua);
+      var isQQ = /qq\//.test(ua);
+      var isQQBrowser = /mqqbrowser/.test(ua);
+      var isQuark = /quark/.test(ua);
+      window.__browserInfo = {
+        isWechat: isWechat, isQQ: isQQ, isQQBrowser: isQQBrowser,
+        isQuark: isQuark, isMobile: /iphone|ipad|ipod|android/.test(ua)
+      };
+      // 微信/QQ内置浏览器：快速隐藏加载动画防止卡死
+      if (isWechat || isQQ || isQQBrowser) {
+        document.documentElement.style.display = 'block';
+      }
+    })();
+    </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -930,63 +953,172 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="job-list">
 <div class="job-item">
 <div class="job-item-header">
-<span class="job-item-title">SAR信号处理算法工程师</span>
+<span class="job-item-title">FPGA开发工程师</span>
 <span class="job-item-badge">全职</span>
 </div>
 <div class="job-item-meta">
-<span>济南</span><span>硕士及以上</span><span>3-5年经验</span>
+<span>济南·市中区</span><span>本科及以上</span><span>15-25K·14薪</span><span>3-5年</span>
 </div>
 <button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
 <div class="job-item-desc">
-<p>负责SAR成像算法研发与优化，包括距离多普勒算法、CS算法、后向投影算法等。</p>
-<p>要求：信号处理/雷达/遥感等专业背景，熟悉SAR成像理论，有C++/Python开发经验。</p>
+<p>负责FPGA逻辑设计与开发，参与星载SAR载荷FPGA架构设计与实现。</p>
+<p>要求：电子/通信/计算机等相关专业本科及以上，3年以上FPGA开发经验，熟悉Xilinx/Altera开发流程，有高速接口开发经验优先。</p>
+<p>联系人：崔文奇·人事行政专员</p>
 </div>
 </div>
 <div class="job-item">
 <div class="job-item-header">
-<span class="job-item-title">相控阵天线设计工程师</span>
+<span class="job-item-title">硬件研发工程师（base济南）</span>
 <span class="job-item-badge">全职</span>
 </div>
 <div class="job-item-meta">
-<span>济南</span><span>硕士及以上</span><span>3-5年经验</span>
+<span>济南·市中区</span><span>本科及以上</span><span>15-25K·14薪</span><span>1-3年</span>
 </div>
 <button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
 <div class="job-item-desc">
-<p>负责星载相控阵天线系统设计与优化，包括T/R组件选型、波束赋形设计、天线测试等。</p>
-<p>要求：电磁场/微波/天线等专业背景，熟悉HFSS/CST等仿真工具，有相控阵项目经验。</p>
+<p>负责星载SAR载荷硬件系统设计与开发，包括原理图设计、PCB布局、硬件调试等。</p>
+<p>要求：电子工程/通信等相关专业本科及以上，1-3年硬件开发经验，熟悉射频/模拟电路设计。</p>
+<p>联系人：崔文奇·人事行政专员</p>
 </div>
 </div>
 <div class="job-item">
 <div class="job-item-header">
-<span class="job-item-title">嵌入式系统开发工程师</span>
+<span class="job-item-title">热设计工程师</span>
 <span class="job-item-badge">全职</span>
 </div>
 <div class="job-item-meta">
-<span>济南</span><span>本科及以上</span><span>3-5年经验</span>
+<span>北京·海淀区</span><span>本科及以上</span><span>12-20K·14薪</span><span>3-5年</span>
 </div>
 <button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
 <div class="job-item-desc">
-<p>负责星载嵌入式系统开发，包括FPGA逻辑设计、ARM/DSP嵌入式软件开发、高速接口驱动。</p>
-<p>要求：电子/计算机/通信等专业背景，熟悉Xilinx/Altera FPGA开发流程，有宇航级产品经验优先。</p>
+<p>负责星载电子设备热设计与仿真分析，包括热控方案设计、热分析、热试验等。</p>
+<p>要求：工程热物理/热能工程等相关专业本科及以上，3年以上热设计经验，熟悉Icepak/Flotherm等工具，有航天产品热设计经验优先。</p>
+<p>联系人：崔文奇·人事行政专员</p>
 </div>
 </div>
 <div class="job-item">
 <div class="job-item-header">
-<span class="job-item-title">遥感数据应用工程师</span>
+<span class="job-item-title">射频工程师</span>
 <span class="job-item-badge">全职</span>
 </div>
 <div class="job-item-meta">
-<span>济南</span><span>本科及以上</span><span>2-5年经验</span>
+<span>济南/北京</span><span>本科及以上</span><span>10-25K·14薪</span><span>1-5年</span>
 </div>
 <button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
 <div class="job-item-desc">
-<p>负责SAR数据应用解决方案开发，包括数据处理流程搭建、行业应用算法研发、客户技术支持。</p>
-<p>要求：遥感/GIS/测绘等专业背景，熟悉ENVI/SNAP等工具，有SAR数据处理经验者优先。</p>
+<p>负责射频电路设计与调试，包括T/R组件、功放、低噪声放大器等射频模块开发。</p>
+<p>要求：电磁场/微波/电子工程等相关专业本科及以上，熟悉射频仿真与测试仪器，有相控阵射频系统经验优先。</p>
+<p>联系人：崔文奇·人事行政专员</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">硬件工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南·市中区</span><span>本科及以上</span><span>14-25K·14薪</span><span>1-3年</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责SAR载荷硬件系统设计、调试与验证，参与整机联调与环境试验。</p>
+<p>要求：电子/通信等相关专业本科及以上，1-3年工作经验，熟悉硬件开发全流程。</p>
+<p>联系人：崔文奇·人事行政专员</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">天线工程师</span>
+<span class="job-item-badge">全职/实习</span>
+</div>
+<div class="job-item-meta">
+<span>济南·市中区</span><span>本科及以上</span><span>15-25K·14薪</span><span>经验不限</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责星载天线设计与测试，包括反射面天线、相控阵天线设计、仿真与测试。</p>
+<p>要求：电磁场/微波/天线等相关专业本科及以上，熟悉HFSS/CST等仿真工具，接收应届生和实习生。</p>
+<p>联系人：崔文奇·人事行政专员</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">SAR雷达算法工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南/北京</span><span>本科及以上</span><span>13-23K·14薪</span><span>1-3年</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责SAR成像算法研发、雷达信号处理算法开发与优化。</p>
+<p>要求：信号处理/雷达/遥感等相关专业本科及以上，1-3年经验，熟悉SAR成像理论、C++/Python、Matlab。</p>
+<p>联系人：崔文奇·人事行政专员</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">高级FPGA工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>北京·海淀区</span><span>硕士及以上</span><span>30-35K·14薪</span><span>3-5年</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>负责星载SAR载荷高速FPGA系统架构设计、关键模块开发与验证。</p>
+<p>要求：电子/通信等相关专业硕士及以上，3-5年FPGA开发经验，精通高速接口（Serdes、JESD204B等），有雷达/通信信号处理经验优先。</p>
+<p>联系人：崔文奇·人事行政专员</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">C++软件工程师</span>
+<span class="job-item-badge">全职</span>
+</div>
+<div class="job-item-meta">
+<span>济南·市中区</span><span>本科及以上</span><span>9-13K·14薪</span><span>1-3年</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>基于Qt框架进行Windows/Linux桌面应用程序开发，参与地面成像处理系统开发。</p>
+<p>要求：通信/计算机/电子等相关专业本科及以上，精通C++，1年以上Qt开发经验，熟悉Widgets/Serialport/Network/Sql等模块，熟悉Matlab/Python优先。</p>
+<p>联系人：刘玉进·软件工程师</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">QT/C++实习生</span>
+<span class="job-item-badge">实习</span>
+</div>
+<div class="job-item-meta">
+<span>北京·海淀区</span><span>本科及以上</span><span>260-320元/天</span><span>4天/周</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>参与基于Qt的桌面应用程序开发，协助完成软件设计、编码与调试。</p>
+<p>要求：通信/计算机/电子等相关专业本科在读及以上，熟悉C++，了解Qt框架，学习能力强。</p>
+<p>联系人：崔文奇·人事行政专员</p>
+</div>
+</div>
+<div class="job-item">
+<div class="job-item-header">
+<span class="job-item-title">C++实习生</span>
+<span class="job-item-badge">实习</span>
+</div>
+<div class="job-item-meta">
+<span>北京·海淀区</span><span>本科及以上</span><span>120-180元/天</span>
+</div>
+<button class="job-item-toggle" onclick="toggleJob(this)">查看详情 &#x25BC;</button>
+<div class="job-item-desc">
+<p>参与C++软件开发与测试，协助团队完成SAR数据处理相关模块开发。</p>
+<p>要求：计算机/电子/通信等相关专业本科在读及以上，熟悉C++基础，有良好的学习能力和团队协作精神。</p>
+<p>联系人：葛云瑞·软件工程师</p>
 </div>
 </div>
 </div>
 <div style="text-align:center;margin-top:24px;">
-<p style="color:#6a8ab5;font-size:.85rem;">简历请投递至 <a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a></p>
+<p style="color:#6a8ab5;font-size:.85rem;">更多职位请查看 <a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;text-decoration:none;">BOSS直聘 · 感知起源招聘主页</a> 或投递简历至 <a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a></p>
 </div>
 </div>
 </section>
@@ -1570,14 +1702,28 @@ langBtn.textContent = currentLang === 'zh' ? 'EN' : '中';
 });
 
 // ==========================================
-// 页面加载动画
+// 页面加载动画（含浏览器兼容修复）
 // ==========================================
+var loader = document.getElementById('pageLoader');
+// 微信/QQ/夸克浏览器：快速移除加载动画防卡死
+if (window.__browserInfo && (window.__browserInfo.isWechat || window.__browserInfo.isQQ || window.__browserInfo.isQuark)) {
+  if (loader) { loader.style.transition = 'opacity 0.3s'; loader.classList.add('hidden'); }
+}
 window.addEventListener('load', function() {
-setTimeout(function() {
-loader.classList.add('hidden');
-setTimeout(function() { loader.style.display = 'none'; }, 800);
-}, 400);
+  setTimeout(function() {
+    if (loader) loader.classList.add('hidden');
+    document.body.style.visibility = 'visible';
+    setTimeout(function() { if (loader) loader.style.display = 'none'; }, 800);
+  }, 400);
 });
+// 最大超时保险：3秒后无论如何移除加载动画
+setTimeout(function() {
+  if (loader && !loader.classList.contains('hidden')) {
+    loader.style.display = 'none';
+    document.body.style.visibility = 'visible';
+  }
+  document.body.style.visibility = 'visible';
+}, 3000);
 
 // ==========================================
 // 导航栏滚动效果 + 返回顶部按钮 + 高亮
