@@ -13,28 +13,9 @@
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://sensing-origin.vercel.app">
     
-    <!-- 微信/QQ/夸克浏览器兼容修复 -->
+    <!-- 浏览器兼容性设置 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="force-rendering" content="webkit">
-    <meta name="referrer" content="never">
-    <script>
-    // 浏览器环境检测与降级处理
-    (function(){
-      var ua = navigator.userAgent.toLowerCase();
-      var isWechat = /micromessenger/.test(ua);
-      var isQQ = /qq\//.test(ua);
-      var isQQBrowser = /mqqbrowser/.test(ua);
-      var isQuark = /quark/.test(ua);
-      window.__browserInfo = {
-        isWechat: isWechat, isQQ: isQQ, isQQBrowser: isQQBrowser,
-        isQuark: isQuark, isMobile: /iphone|ipad|ipod|android/.test(ua)
-      };
-      // 微信/QQ内置浏览器：快速隐藏加载动画防止卡死
-      if (isWechat || isQQ || isQQBrowser) {
-        document.documentElement.style.display = 'block';
-      }
-    })();
-    </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -69,7 +50,8 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 .nav-links a:hover::after{width:100%}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .nav-hamburger span{width:26px;height:2px;background:#e0e4ee;transition:.3s;border-radius:1px}
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#03050a}
+.hero{position:relative;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;overflow:hidden;background:#03050a}
+html,body{height:100%;min-height:100%}
 #hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
 .hero-radar{position:absolute;top:50%;left:50%;width:700px;height:700px;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
 .hero-radar .ring{position:absolute;top:50%;left:50%;border:1px solid rgba(74,158,255,.08);border-radius:50%;transform:translate(-50%,-50%);animation:pulseGlow 4s ease-in-out infinite}
@@ -1704,26 +1686,24 @@ langBtn.textContent = currentLang === 'zh' ? 'EN' : '中';
 // ==========================================
 // 页面加载动画（含浏览器兼容修复）
 // ==========================================
+// ==========================================
+// 页面加载动画
+// ==========================================
 var loader = document.getElementById('pageLoader');
-// 微信/QQ/夸克浏览器：快速移除加载动画防卡死
-if (window.__browserInfo && (window.__browserInfo.isWechat || window.__browserInfo.isQQ || window.__browserInfo.isQuark)) {
-  if (loader) { loader.style.transition = 'opacity 0.3s'; loader.classList.add('hidden'); }
-}
+// 页面加载完成后隐藏加载动画
 window.addEventListener('load', function() {
   setTimeout(function() {
     if (loader) loader.classList.add('hidden');
-    document.body.style.visibility = 'visible';
     setTimeout(function() { if (loader) loader.style.display = 'none'; }, 800);
   }, 400);
 });
-// 最大超时保险：3秒后无论如何移除加载动画
+// 强制保险：无论加载是否完成，4秒后隐藏加载动画
 setTimeout(function() {
   if (loader && !loader.classList.contains('hidden')) {
-    loader.style.display = 'none';
-    document.body.style.visibility = 'visible';
+    loader.classList.add('hidden');
+    setTimeout(function() { loader.style.display = 'none'; }, 500);
   }
-  document.body.style.visibility = 'visible';
-}, 3000);
+}, 4000);
 
 // ==========================================
 // 导航栏滚动效果 + 返回顶部按钮 + 高亮
