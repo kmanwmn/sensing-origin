@@ -533,7 +533,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="label" data-i18n="stat1">核心专利技术体系</div>
 </div>
 <div class="stat-card">
-<div class="number">端到端</div>
+<div class="number" data-i18n="statNum2">端到端</div>
 <div class="label" data-i18n="stat2">数据采集&middot;处理&middot;分发</div>
 </div>
 <div class="stat-card">
@@ -541,14 +541,14 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="label" data-i18n="stat3">应用领域覆盖</div>
 </div>
 <div class="stat-card">
-<div class="number">自主</div>
+<div class="number" data-i18n="statNum4">自主</div>
 <div class="label" data-i18n="stat4">全自研硬件系统</div>
 </div>
 </div>
 </div>
 <div class="counter-row">
 <div class="counter-item"><span class="num" data-target="12">0</span><span class="num-suffix">+</span><div class="label" data-i18n="counter1">核心专利</div></div>
-<div class="counter-item"><span class="num" data-target="3">0</span><span class="num-suffix">颗</span><div class="label" data-i18n="counter2">在轨卫星</div></div>
+<div class="counter-item"><span class="num" data-target="3">0</span><span class="num-suffix" data-i18n="counter2Suffix">颗</span><div class="label" data-i18n="counter2">在轨卫星</div></div>
 <div class="counter-item"><span class="num" data-target="50">0</span><span class="num-suffix">+</span><div class="label" data-i18n="counter3">专业团队</div></div>
 <div class="counter-item"><span class="num" data-target="100">0</span><span class="num-suffix">%</span><div class="label" data-i18n="counter4">自主可控</div></div>
 </div>
@@ -568,7 +568,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>相控阵天线单元</h3>
 <p>自主研发相控阵天线系统，实现高精度波束控制和快速扫描，支撑宽幅高分辨率成像。</p>
 <span class="badge">自研硬件</span>
-<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<button class="expand-btn" onclick="toggleDetail(this)" data-i18n="expandBtn">展开详情 &#x25BC;</button>
 <div class="detail-content"><p>采用高性能T/R组件，支持多种波束模式快速切换，波束指向精度优于0.1°，具备在轨波束重构能力。工作频段覆盖X波段，支持双极化模式，天线效率＞60%。</p></div>
 </div>
 <div class="tech-card">
@@ -576,7 +576,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>中央电子单元</h3>
 <p>高性能星载计算平台，集成信号处理与数据压缩，实现实时在轨成像能力。</p>
 <span class="badge">自研硬件</span>
-<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<button class="expand-btn" onclick="toggleDetail(this)" data-i18n="expandBtn">展开详情 &#x25BC;</button>
 <div class="detail-content"><p>基于FPGA+CPU异构架构，支持多模式成像参数实时解算与波控码生成。集成高速数据存储与压缩模块，支持在轨实时成像处理，数据吞吐量＞5Gbps。</p></div>
 </div>
 <div class="tech-card">
@@ -584,7 +584,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>地面成像处理系统</h3>
 <p>全链路地面处理软件套件，从原始数据到高级产品的自动化处理流水线。</p>
 <span class="badge">自研硬件</span>
-<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<button class="expand-btn" onclick="toggleDetail(this)" data-i18n="expandBtn">展开详情 &#x25BC;</button>
 <div class="detail-content"><p>支持原始数据解包、成像聚焦、辐射定标、几何校正全流程自动化处理。基于GPU加速，单景处理时间＜5分钟。支持SLC、GEC、GTC等多种标准产品输出。</p></div>
 </div>
 <div class="tech-card">
@@ -592,7 +592,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>高分辨率宽幅成像</h3>
 <p>突破「高分辨率」与「宽幅宽」物理限制，成像效率数量级提升，图像成本下降1-2个数量级。</p>
 <span class="badge">MIMOSAR</span>
-<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<button class="expand-btn" onclick="toggleDetail(this)" data-i18n="expandBtn">展开详情 &#x25BC;</button>
 <div class="detail-content"><p>MIMOSAR核心专利技术，通过多通道合成孔径与数字波束形成技术，同时实现高分辨率（优于1m）与大宽幅（＞50km）。成像效率较传统SAR提升5-10倍。</p></div>
 </div>
 <div class="tech-card">
@@ -600,7 +600,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>多模式成像能力</h3>
 <p>支持条带、聚束、扫描、滑动聚束等多种成像模式，灵活适配不同应用场景需求。</p>
 <span class="badge">多模式</span>
-<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<button class="expand-btn" onclick="toggleDetail(this)" data-i18n="expandBtn">展开详情 &#x25BC;</button>
 <div class="detail-content"><p>聚束模式分辨率优于0.5m，条带模式幅宽＞30km，扫描模式幅宽＞100km。支持GMTI动目标检测模式，可实现地面运动目标检测与跟踪。</p></div>
 </div>
 <div class="tech-card">
@@ -608,7 +608,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <h3>AI增强数据处理</h3>
 <p>集成深度学习与计算机视觉技术，实现目标检测、变化识别、图像解译的智能化分析。</p>
 <span class="badge">AI驱动</span>
-<button class="expand-btn" onclick="toggleDetail(this)">展开详情 &#x25BC;</button>
+<button class="expand-btn" onclick="toggleDetail(this)" data-i18n="expandBtn">展开详情 &#x25BC;</button>
 <div class="detail-content"><p>基于深度卷积神经网络与Transformer架构，支持舰船、车辆、建筑等多类目标自动检测识别。变化检测精度＞90%，单景图像智能解译时间＜30秒。</p></div>
 </div>
 </div>
@@ -708,19 +708,19 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div style="overflow-x:auto;">
 <table class="specs-table">
 <thead>
-<tr><th>参数类别</th><th>指标</th><th>备注</th></tr>
+<tr><th data-i18n="specTh1">参数类别</th><th data-i18n="specTh2">指标</th><th data-i18n="specTh3">备注</th></tr>
 </thead>
 <tbody>
-<tr><td class="spec-label">工作频段</td><td>X波段 (9.6 GHz)</td><td>可扩展至Ku/Ka波段</td></tr>
-<tr><td class="spec-label">极化方式</td><td>单极化 / 双极化 / 全极化</td><td>可选配置</td></tr>
-<tr><td class="spec-label">条带模式分辨率</td><td>3m - 10m</td><td>幅宽 &gt; 30km</td></tr>
-<tr><td class="spec-label">聚束模式分辨率</td><td>优于 0.5m</td><td>滑动聚束可达 0.3m</td></tr>
-<tr><td class="spec-label">扫描模式幅宽</td><td>&gt; 100km</td><td>分辨率 &lt; 20m</td></tr>
-<tr><td class="spec-label">成像模式</td><td>条带 / 聚束 / 扫描 / 滑动聚束 / GMTI</td><td>5种标准模式</td></tr>
-<tr><td class="spec-label">载荷重量</td><td>&lt; 80 kg</td><td>适配微纳卫星平台</td></tr>
-<tr><td class="spec-label">峰值功耗</td><td>&lt; 500 W</td><td>低功耗设计</td></tr>
-<tr><td class="spec-label">数据压缩比</td><td>&gt; 3:1 (无损) / &gt; 8:1 (有损)</td><td>自适应压缩</td></tr>
-<tr><td class="spec-label">在轨处理能力</td><td>实时成像 &amp; 目标检测</td><td>AI加速器</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel1">工作频段</td><td data-i18n="specVal1">X波段 (9.6 GHz)</td><td data-i18n="specNote1">可扩展至Ku/Ka波段</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel2">极化方式</td><td data-i18n="specVal2">单极化 / 双极化 / 全极化</td><td data-i18n="specNote2">可选配置</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel3">条带模式分辨率</td><td data-i18n="specVal3">3m - 10m</td><td data-i18n="specNote3">幅宽 &gt; 30km</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel4">聚束模式分辨率</td><td data-i18n="specVal4">优于 0.5m</td><td data-i18n="specNote4">滑动聚束可达 0.3m</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel5">扫描模式幅宽</td><td data-i18n="specVal5">&gt; 100km</td><td data-i18n="specNote5">分辨率 &lt; 20m</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel6">成像模式</td><td data-i18n="specVal6">条带 / 聚束 / 扫描 / 滑动聚束 / GMTI</td><td data-i18n="specNote6">5种标准模式</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel7">载荷重量</td><td data-i18n="specVal7">&lt; 80 kg</td><td data-i18n="specNote7">适配微纳卫星平台</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel8">峰值功耗</td><td data-i18n="specVal8">&lt; 500 W</td><td data-i18n="specNote8">低功耗设计</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel9">数据压缩比</td><td data-i18n="specVal9">&gt; 3:1 (无损) / &gt; 8:1 (有损)</td><td data-i18n="specNote9">自适应压缩</td></tr>
+<tr><td class="spec-label" data-i18n="specLabel10">在轨处理能力</td><td data-i18n="specVal10">实时成像 &amp; 目标检测</td><td data-i18n="specNote10">AI加速器</td></tr>
 </tbody>
 </table>
 </div>
@@ -782,33 +782,33 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="team-member">
 <div class="team-avatar">MQ</div>
 <div class="team-info">
-<h4>马兵强</h4>
-<div class="title">创始人 &middot; 董事长 &middot; 总师</div>
-<p>中科院空天院SAR系统及信号处理专业博士，具备多年大型雷达系统项目研发与交付经验，全面负责公司技术战略与产品研发。</p>
+<h4 data-i18n="teamName1">马兵强</h4>
+<div class="title" data-i18n="teamTitle1">创始人 &middot; 董事长 &middot; 总师</div>
+<p data-i18n="teamDesc1">中科院空天院SAR系统及信号处理专业博士，具备多年大型雷达系统项目研发与交付经验，全面负责公司技术战略与产品研发。</p>
 </div>
 </div>
 <div class="team-member">
 <div class="team-avatar">JZ</div>
 <div class="team-info">
-<h4>鞠在强</h4>
-<div class="title">联合创始人 &middot; 总经理</div>
-<p>资深商业航天从业者，国内首颗商业SAR卫星"海丝一号"项目负责人，拥有丰富的商业航天项目管理与产业协同经验。</p>
+<h4 data-i18n="teamName2">鞠在强</h4>
+<div class="title" data-i18n="teamTitle2">联合创始人 &middot; 总经理</div>
+<p data-i18n="teamDesc2">资深商业航天从业者，国内首颗商业SAR卫星"海丝一号"项目负责人，拥有丰富的商业航天项目管理与产业协同经验。</p>
 </div>
 </div>
 <div class="team-member">
 <div class="team-avatar">ZX</div>
 <div class="team-info">
-<h4>张鑫</h4>
-<div class="title">技术研发负责人</div>
-<p>博士学历，长期从事SAR成像算法与遥感数据处理研究，在信号处理领域拥有多项技术成果。</p>
+<h4 data-i18n="teamName3">张鑫</h4>
+<div class="title" data-i18n="teamTitle3">技术研发负责人</div>
+<p data-i18n="teamDesc3">博士学历，长期从事SAR成像算法与遥感数据处理研究，在信号处理领域拥有多项技术成果。</p>
 </div>
 </div>
 <div class="team-member">
 <div class="team-avatar">ZL</div>
 <div class="team-info">
-<h4>张磊</h4>
-<div class="title">系统架构师</div>
-<p>硕士学历，拥有多年通信与射频系统开发经验，擅长相控阵天线系统设计与工程实现。</p>
+<h4 data-i18n="teamName4">张磊</h4>
+<div class="title" data-i18n="teamTitle4">系统架构师</div>
+<p data-i18n="teamDesc4">硕士学历，拥有多年通信与射频系统开发经验，擅长相控阵天线系统设计与工程实现。</p>
 </div>
 </div>
 </div>
@@ -821,7 +821,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <span class="investor-logo">苏州里奥未来</span>
 <span class="investor-logo">济南财鑫</span>
 </div>
-<p class="investor-note">累计融资近亿元，加速首台套商业SAR载荷在轨验证与商业化</p>
+<p class="investor-note" data-i18n="investorNote">累计融资近亿元，加速首台套商业SAR载荷在轨验证与商业化</p>
 </div>
 </div>
 </section>
@@ -853,21 +853,21 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="testimonial-track" id="testimonialTrack">
 <div class="testimonial-card">
 <div class="quote">&ldquo;</div>
-<blockquote>感知起源团队在SAR载荷领域的技术积累深厚，MIMOSAR技术路线在高分宽幅成像方面具有显著优势，有望突破传统SAR的物理限制，实现成像效率的量级提升。</blockquote>
-<p class="author">行业观察评论</p>
-<p class="org">36氪 · 硬氪</p>
+<blockquote data-i18n="testimonial1">感知起源团队在SAR载荷领域的技术积累深厚，MIMOSAR技术路线在高分宽幅成像方面具有显著优势，有望突破传统SAR的物理限制，实现成像效率的量级提升。</blockquote>
+<p class="author" data-i18n="testAuth1">行业观察评论</p>
+<p class="org" data-i18n="testOrg1">36氪 · 硬氪</p>
 </div>
 <div class="testimonial-card">
 <div class="quote">&ldquo;</div>
-<blockquote>作为中科院人才创业项目及国内首家商业星载SAR载荷供应商，公司在SAR技术创新与国产化方面实力强劲。核心的小型化、低成本、高集成度SAR产品，可广泛应用于国防安全、应急救灾、环境监测等领域。</blockquote>
-<p class="author">济南源创天使投资</p>
-<p class="org">老股东评价</p>
+<blockquote data-i18n="testimonial2">作为中科院人才创业项目及国内首家商业星载SAR载荷供应商，公司在SAR技术创新与国产化方面实力强劲。核心的小型化、低成本、高集成度SAR产品，可广泛应用于国防安全、应急救灾、环境监测等领域。</blockquote>
+<p class="author" data-i18n="testAuth2">济南源创天使投资</p>
+<p class="org" data-i18n="testOrg2">老股东评价</p>
 </div>
 <div class="testimonial-card">
 <div class="quote">&ldquo;</div>
-<blockquote>感知起源掌握星载SAR载荷相控阵天线单元、中央电子单元和地面成像处理系统的全套软硬件关键技术。通过全栈自研的创新机制重构SAR载荷成本结构，提供更富性价比的商业载荷解决方案。</blockquote>
-<p class="author">投资机构评价</p>
-<p class="org">山东财金</p>
+<blockquote data-i18n="testimonial3">感知起源掌握星载SAR载荷相控阵天线单元、中央电子单元和地面成像处理系统的全套软硬件关键技术。通过全栈自研的创新机制重构SAR载荷成本结构，提供更富性价比的商业载荷解决方案。</blockquote>
+<p class="author" data-i18n="testAuth3">投资机构评价</p>
+<p class="org" data-i18n="testOrg3">山东财金</p>
 </div>
 </div>
 </div>
@@ -1100,7 +1100,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 <div style="text-align:center;margin-top:24px;">
-<p style="color:#6a8ab5;font-size:.85rem;">更多职位请查看 <a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;text-decoration:none;">BOSS直聘 · 感知起源招聘主页</a> 或投递简历至 <a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a></p>
+<p style="color:#6a8ab5;font-size:.85rem;"><span data-i18n="careerMore">更多职位请查看</span> <a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;text-decoration:none;">BOSS直聘 · <span data-i18n="careerZP">感知起源招聘主页</span></a> <span data-i18n="careerOr">或投递简历至</span> <a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a></p>
 </div>
 </div>
 </section>
@@ -1382,6 +1382,33 @@ modalSubmit: '提交咨询',
 modalNote: '或直接发送邮件至',
 modalSuccess: '提交成功！',
 modalSuccessP: '感谢您的咨询，我们的团队将在1-2个工作日内与您联系。',
+statNum2: '端到端',
+statNum4: '自主',
+counter2Suffix: '颗',
+expandBtn: '展开详情 ▼',
+specTh1: '参数类别', specTh2: '指标', specTh3: '备注',
+specLabel1: '工作频段', specVal1: 'X波段 (9.6 GHz)', specNote1: '可扩展至Ku/Ka波段',
+specLabel2: '极化方式', specVal2: '单极化 / 双极化 / 全极化', specNote2: '可选配置',
+specLabel3: '条带模式分辨率', specVal3: '3m - 10m', specNote3: '幅宽 > 30km',
+specLabel4: '聚束模式分辨率', specVal4: '优于 0.5m', specNote4: '滑动聚束可达 0.3m',
+specLabel5: '扫描模式幅宽', specVal5: '> 100km', specNote5: '分辨率 < 20m',
+specLabel6: '成像模式', specVal6: '条带 / 聚束 / 扫描 / 滑动聚束 / GMTI', specNote6: '5种标准模式',
+specLabel7: '载荷重量', specVal7: '< 80 kg', specNote7: '适配微纳卫星平台',
+specLabel8: '峰值功耗', specVal8: '< 500 W', specNote8: '低功耗设计',
+specLabel9: '数据压缩比', specVal9: '> 3:1 (无损) / > 8:1 (有损)', specNote9: '自适应压缩',
+specLabel10: '在轨处理能力', specVal10: '实时成像 & 目标检测', specNote10: 'AI加速器',
+teamName1: '马兵强', teamTitle1: '创始人 · 董事长 · 总师', teamDesc1: '中科院空天院SAR系统及信号处理专业博士，具备多年大型雷达系统项目研发与交付经验，全面负责公司技术战略与产品研发。',
+teamName2: '鞠在强', teamTitle2: '联合创始人 · 总经理', teamDesc2: '资深商业航天从业者，国内首颗商业SAR卫星"海丝一号"项目负责人，拥有丰富的商业航天项目管理与产业协同经验。',
+teamName3: '张鑫', teamTitle3: '技术研发负责人', teamDesc3: '博士学历，长期从事SAR成像算法与遥感数据处理研究，在信号处理领域拥有多项技术成果。',
+teamName4: '张磊', teamTitle4: '系统架构师', teamDesc4: '硕士学历，拥有多年通信与射频系统开发经验，擅长相控阵天线系统设计与工程实现。',
+testimonial1: '感知起源团队在SAR载荷领域的技术积累深厚，MIMOSAR技术路线在高分宽幅成像方面具有显著优势，有望突破传统SAR的物理限制，实现成像效率的量级提升。',
+testAuth1: '行业观察评论', testOrg1: '36氪 · 硬氪',
+testimonial2: '作为中科院人才创业项目及国内首家商业星载SAR载荷供应商，公司在SAR技术创新与国产化方面实力强劲。核心的小型化、低成本、高集成度SAR产品，可广泛应用于国防安全、应急救灾、环境监测等领域。',
+testAuth2: '济南源创天使投资', testOrg2: '老股东评价',
+testimonial3: '感知起源掌握星载SAR载荷相控阵天线单元、中央电子单元和地面成像处理系统的全套软硬件关键技术。通过全栈自研的创新机制重构SAR载荷成本结构，提供更富性价比的商业载荷解决方案。',
+testAuth3: '投资机构评价', testOrg3: '山东财金',
+investorNote: '累计融资近亿元，加速首台套商业SAR载荷在轨验证与商业化',
+careerMore: '更多职位请查看', careerZP: '感知起源招聘主页', careerOr: '或投递简历至',
 modalConfirm: '确 定',
 },
 en: {
@@ -1467,6 +1494,33 @@ modalNote: 'Or email us directly at',
 modalSuccess: 'Submitted!',
 modalSuccessP: 'Thank you for your inquiry. Our team will contact you within 1-2 business days.',
 modalConfirm: 'OK',
+statNum2: 'End-to-End',
+statNum4: 'Self-Reliant',
+counter2Suffix: ' ',
+expandBtn: 'Expand ▼',
+specTh1: 'Category', specTh2: 'Specification', specTh3: 'Notes',
+specLabel1: 'Frequency Band', specVal1: 'X-band (9.6 GHz)', specNote1: 'Extendable to Ku/Ka',
+specLabel2: 'Polarization', specVal2: 'Single / Dual / Quad', specNote2: 'Configurable',
+specLabel3: 'Strip Resolution', specVal3: '3m - 10m', specNote3: 'Swath > 30km',
+specLabel4: 'Spotlight Resolution', specVal4: '< 0.5m', specNote4: 'Sliding spotlight 0.3m',
+specLabel5: 'Scan Swath', specVal5: '> 100km', specNote5: 'Resolution < 20m',
+specLabel6: 'Imaging Modes', specVal6: 'Strip / Spotlight / Scan / Sliding Spotlight / GMTI', specNote6: '5 standard modes',
+specLabel7: 'Payload Mass', specVal7: '< 80 kg', specNote7: 'For micro-satellites',
+specLabel8: 'Peak Power', specVal8: '< 500 W', specNote8: 'Low power design',
+specLabel9: 'Data Compression', specVal9: '> 3:1 (lossless) / > 8:1 (lossy)', specNote9: 'Adaptive',
+specLabel10: 'On-board Processing', specVal10: 'Real-time imaging & target detection', specNote10: 'AI accelerator',
+teamName1: 'Ma Bingqiang', teamTitle1: 'Founder · Chairman · Chief Engineer', teamDesc1: 'PhD in SAR system and signal processing from Aerospace Information Research Institute, CAS. Extensive experience in large-scale radar system R&D.',
+teamName2: 'Ju Zaiqiang', teamTitle2: 'Co-founder · General Manager', teamDesc2: 'Veteran commercial aerospace professional, former project lead of China\'s first commercial SAR satellite "Haisi-1".',
+teamName3: 'Zhang Xin', teamTitle3: 'R&D Director', teamDesc3: 'PhD, long-term research in SAR imaging algorithms and remote sensing data processing.',
+teamName4: 'Zhang Lei', teamTitle4: 'System Architect', teamDesc4: 'Master degree, years of experience in communication and RF system development, specializing in phased array antenna system design.',
+testimonial1: 'Sensing Origin\'s team has deep technical expertise in SAR payloads. The MIMOSAR technology shows significant advantages in high-resolution wide-swath imaging.',
+testAuth1: 'Industry Commentator', testOrg1: '36Kr · Hard Kr',
+testimonial2: 'As a CAS talent entrepreneurship project and China\'s first commercial spaceborne SAR payload supplier, the company demonstrates strong capabilities in SAR technology innovation.',
+testAuth2: 'Jinan Yuanchuang Angel Investment', testOrg2: 'Existing Shareholder',
+testimonial3: 'Sensing Origin masters the full-stack key technologies of phased array antenna, central electronic unit and ground imaging processing system for spaceborne SAR payloads.',
+testAuth3: 'Investment Institution', testOrg3: 'Shandong Caijin',
+investorNote: 'Cumulative financing of nearly ¥100M, accelerating the first commercial SAR payload in-orbit verification and commercialization.',
+careerMore: 'More positions at', careerZP: 'Sensing Origin Careers', careerOr: 'or send resume to',
 }
 };
 
@@ -1913,7 +1967,10 @@ setInterval(function() { goTo((currentIdx + 1) % total); }, 5000);
 window.toggleDetail = function(btn) {
 var content = btn.nextElementSibling;
 var isOpen = content.classList.toggle('open');
-btn.innerHTML = isOpen ? '收起详情 &#x25B2;' : '展开详情 &#x25BC;';
+var lang = document.body.getAttribute('data-lang') || 'zh';
+btn.innerHTML = isOpen
+  ? (lang === 'zh' ? '收起详情 \u25B2' : 'Collapse \u25B2')
+  : (lang === 'zh' ? '展开详情 \u25BC' : 'Expand \u25BC');
 };
 
 // ==========================================
@@ -1922,7 +1979,10 @@ btn.innerHTML = isOpen ? '收起详情 &#x25B2;' : '展开详情 &#x25BC;';
 window.toggleJob = function(btn) {
 var desc = btn.nextElementSibling;
 var isOpen = desc.classList.toggle('open');
-btn.innerHTML = isOpen ? '收起详情 &#x25B2;' : '查看详情 &#x25BC;';
+var lang = document.body.getAttribute('data-lang') || 'zh';
+btn.innerHTML = isOpen
+  ? (lang === 'zh' ? '收起详情 \u25B2' : 'Collapse \u25B2')
+  : (lang === 'zh' ? '查看详情 \u25BC' : 'Details \u25BC');
 };
 
 // ==========================================
@@ -2019,3 +2079,4 @@ observer.observe(el);
 
 </body>
 </html>
+
