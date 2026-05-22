@@ -1526,11 +1526,67 @@ jobDescs[ji].textContent = jobData[lang].descs[ji];
 var productBtn = document.querySelector('.products-text .btn');
 if (productBtn) productBtn.textContent = lang === 'zh' ? '了解产品详情 →' : 'Learn More →';
 
-// "简历请投递至" 文本
-var careerNote = document.querySelector('.careers .container > div > p');
-if (careerNote) careerNote.innerHTML = (lang === 'zh' ? '简历请投递至 ' : 'Send resume to ') + '<a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a>';
+
 }
 
+// 招聘板块底部文字
+var careerBottomP = document.querySelector('.careers .container > .job-list + div p');
+if (careerBottomP) {
+  var careerBottomHtml = lang === 'zh'
+    ? '校招投递：<a href="mailto:wangby@sensingorigin.com" style="color:#4a9eff;">wangby@sensingorigin.com</a> 或 <a href="mailto:cuiwq@sensingorigin.com" style="color:#4a9eff;">cuiwq@sensingorigin.com</a>（邮件标题：姓名+学校+应聘岗位）<br>社招投递：对应岗位联系人邮箱<br>更多职位：<a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;">BOSS直聘 · 感知起源招聘主页</a>'
+    : 'Campus: <a href="mailto:wangby@sensingorigin.com" style="color:#4a9eff;">wangby@sensingorigin.com</a> or <a href="mailto:cuiwq@sensingorigin.com" style="color:#4a9eff;">cuiwq@sensingorigin.com</a> (Title: Name+School+Position)<br>Experienced: See contact person in each posting<br>More: <a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;">BOSS直聘 Hiring Page</a>';
+  careerBottomP.innerHTML = careerBottomHtml;
+}
+// 招聘板块标题
+var hireTitles = document.querySelectorAll('.careers h3');
+if (hireTitles.length >= 1) hireTitles[0].textContent = lang === 'zh' ? '社招岗位' : 'Experienced Hires';
+if (hireTitles.length >= 2) hireTitles[1].textContent = lang === 'zh' ? '2026届校园招聘' : '2026 Campus Recruitment';
+// 招聘标签
+document.querySelectorAll('.job-item-badge').forEach(function(b) {
+  if (b.textContent === '社招') b.textContent = lang === 'zh' ? '社招' : 'Experienced';
+  else if (b.textContent === '校招') b.textContent = lang === 'zh' ? '校招' : 'Campus';
+});
+// Footer 链接
+var fl = document.querySelectorAll('.footer-col ul li a');
+var flt = lang === 'zh' ? ['星载SAR载荷','地面处理系统','数据服务','技术咨询','公司介绍','核心团队','新闻动态','加入我们'] : ['SAR Payload','Ground Processing','Data Service','Consulting','About Us','Core Team','News','Join Us'];
+fl.forEach(function(l,i){if(i<flt.length)l.textContent=flt[i];});
+// Footer 联系链接（商务合作/技术支持）
+var cl = document.querySelectorAll('.footer-col:last-child ul li a');
+if(cl.length>=4){if(cl[2])cl[2].textContent=lang==='zh'?'商务合作':'Business';if(cl[3])cl[3].textContent=lang==='zh'?'技术支持':'Support';}
+// 规格参数表
+var sl = document.querySelectorAll('.specs-table .spec-label');
+var sv = document.querySelectorAll('.specs-table td:last-child');
+var slt = lang==='zh'?['工作频段','分辨率（聚束）','分辨率（条带）','幅宽','成像模式','极化方式','功耗','重量','工作轨道高度','设计寿命']:['Frequency Band','Resolution (Spotlight)','Resolution (Strip)','Swath Width','Imaging Modes','Polarization','Power','Mass','Orbit Altitude','Design Life'];
+var svt = lang==='zh'?['X波段 (9.6GHz)','优于 0.5m','优于 3m','≥ 50km (聚束) / ≥ 30km (条带)','聚束 / 条带 / 扫描 / 滑动聚束 / GMTI','单极化 / 双极化','≤ 500W','≤ 80kg','500km - 600km','≥ 5年']:['X-band (9.6GHz)','< 0.5m','< 3m','≥ 50km (Spot) / ≥ 30km (Strip)','Spotlight / Strip / Scan / Sliding Spotlight / GMTI','Single / Dual Polarization','≤ 500W','≤ 80kg','500km - 600km','≥ 5 years'];
+sl.forEach(function(e,i){if(i<slt.length)e.textContent=slt[i];});
+sv.forEach(function(e,i){if(i<svt.length)e.textContent=svt[i];});
+// 应用场景标签
+var at = document.querySelectorAll('.app-tag');
+var att = lang==='zh'?['军用','海洋','应急','农业','城市','能源']:['Defense','Maritime','Emergency','Agriculture','Urban','Energy'];
+at.forEach(function(e,i){if(i<att.length)e.textContent=att[i];});
+// 应用场景标题
+var aph = document.querySelectorAll('.app-card h3');
+var aht = lang==='zh'?['国防与情报','海洋监视','应急减灾','农业与林业','城市与基建','能源与资源']:['Defense & Intelligence','Maritime Surveillance','Emergency Response','Agriculture & Forestry','Urban & Infrastructure','Energy & Resources'];
+aph.forEach(function(e,i){if(i<aht.length)e.textContent=aht[i];});
+// 团队
+var tn = document.querySelectorAll('.team-info h4');
+var tt = document.querySelectorAll('.team-info .title');
+var td = document.querySelectorAll('.team-info p');
+var tnd = lang==='zh'?{names:['王总','李明','张华'],titles:['创始人兼CEO','CTO / 技术负责人','首席科学家'],descs:['18年遥感与雷达行业经验，曾任中国空间技术研究院某所SAR载荷总师，主持多项国家级SAR卫星载荷项目研制。','15年雷达系统与FPGA开发经验，曾任某航天研究所信号处理室主任，精通星载SAR系统架构设计。','12年SAR成像算法研究经验，博士毕业于中科院电子所，发表SCI论文20余篇，授权发明专利8项。']}:{names:['Mr. Wang','Li Ming','Zhang Hua'],titles:['Founder & CEO','CTO','Chief Scientist'],descs:['18 years in remote sensing and radar. Former chief SAR payload designer at CAST, led multiple national spaceborne SAR projects.','15 years in radar systems and FPGA. Former director of signal processing at an aerospace institute. Expert in SAR system architecture.','12 years in SAR imaging algorithms. PhD from IECAS, 20+ SCI papers, 8 invention patents.']};
+tn.forEach(function(e,i){if(i<tnd.names.length)e.textContent=tnd.names[i];});
+tt.forEach(function(e,i){if(i<tnd.titles.length)e.textContent=tnd.titles[i];});
+td.forEach(function(e,i){if(i<tnd.descs.length)e.textContent=tnd.descs[i];});
+// 投资方说明
+var invNote = document.querySelector('.investor-note');
+if(invNote)invNote.textContent=lang==='zh'?'* 以上投资信息根据公开资料整理':'* Investment info based on public records';
+// 客户案例
+var tq = document.querySelectorAll('.testimonial-card blockquote');
+var ta = document.querySelectorAll('.testimonial-card .author');
+var to = document.querySelectorAll('.testimonial-card .org');
+var tdt = lang==='zh'?{quotes:['感知起源的SAR数据质量稳定可靠，成像清晰度高，支持我们完成了多项应急监测任务。其快速响应机制在灾后数小时内即提供了第一手影像数据。','选择感知起源的星载SAR载荷解决方案后，我们的卫星集成周期缩短了40%。标准化接口设计和专业团队让集成变得简单高效。','感知起源的地面成像处理系统性能优异，全自动化的处理流水线大幅减少了人力投入，AI增强模块将目标识别效率提升了约3倍。'],authors:['张主任','李总工程师','王研究员'],orgs:['国家应急管理部 · 卫星应用中心','航天科工某所','中科院某遥感所']}:{quotes:['Sensing Origin provides reliable SAR data with high imaging clarity, supporting our emergency monitoring missions. Rapid response delivered first imagery within hours after a disaster.','Adopting Sensing Origin\'s SAR payload reduced our satellite integration cycle by 40%. Standardized interfaces and professional support made integration simple.','Sensing Origin\'s ground processing system delivers excellent performance. The automated pipeline reduced manual effort significantly, and the AI module improved target recognition by 3x.'],authors:['Director Zhang','Chief Engineer Li','Researcher Wang'],orgs:['National Emergency Mgmt Center','CASIC Institute','CAS Remote Sensing Institute']};
+tq.forEach(function(e,i){if(i<tdt.quotes.length)e.textContent=tdt.quotes[i];});
+ta.forEach(function(e,i){if(i<tdt.authors.length)e.textContent=tdt.authors[i];});
+to.forEach(function(e,i){if(i<tdt.orgs.length)e.textContent=tdt.orgs[i];});
 // 初始化语言
 loadLangData();
 applyLang(currentLang);
@@ -1884,4 +1940,5 @@ observer.observe(el);
 
 </body>
 </html>
+
 
