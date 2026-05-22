@@ -1531,6 +1531,80 @@ var careerNote = document.querySelector('.careers .container > div > p');
 if (careerNote) careerNote.innerHTML = (lang === 'zh' ? '简历请投递至 ' : 'Send resume to ') + '<a href="mailto:hr@sensingorigin.com" style="color:#4a9eff;text-decoration:none;">hr@sensingorigin.com</a>';
 }
 
+// 招聘板块底部文字翻译
+var careerBottomP = document.querySelector('.careers .container > .job-list + div p');
+if (careerBottomP) {
+  careerBottomP.innerHTML = lang === 'zh'
+    ? '校招投递：<a href="mailto:wangby@sensingorigin.com" style="color:#4a9eff;">wangby@sensingorigin.com</a> 或 <a href="mailto:cuiwq@sensingorigin.com" style="color:#4a9eff;">cuiwq@sensingorigin.com</a>（邮件标题：姓名+学校+应聘岗位）<br>社招投递：对应岗位联系人邮箱<br>更多职位：<a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;">BOSS直聘 · 感知起源招聘主页</a>'
+    : 'Campus: <a href="mailto:wangby@sensingorigin.com" style="color:#4a9eff;">wangby@sensingorigin.com</a> or <a href="mailto:cuiwq@sensingorigin.com" style="color:#4a9eff;">cuiwq@sensingorigin.com</a><br>Experienced: Contact person in each posting<br>More: <a href="https://www.zhipin.com/gongsi/job/8e034061354a9d4b1HBy3ti9FFc~" target="_blank" style="color:#4a9eff;">BOSS直聘 Hiring Page</a>';
+}
+// 招聘板块标题
+var hireHeaders = document.querySelectorAll('.careers h3');
+if (hireHeaders.length >= 1) hireHeaders[0].textContent = lang === 'zh' ? '社招岗位' : 'Experienced Hires';
+if (hireHeaders.length >= 2) hireHeaders[1].textContent = lang === 'zh' ? '2026届校园招聘' : '2026 Campus Recruitment';
+// 招聘标签（校招/社招）
+document.querySelectorAll('.job-item-badge').forEach(function(b) {
+  if (b.textContent === '社招' || b.textContent === 'Experienced') b.textContent = lang === 'zh' ? '社招' : 'Experienced';
+  else if (b.textContent === '校招' || b.textContent === 'Campus') b.textContent = lang === 'zh' ? '校招' : 'Campus';
+});
+// Footer链接
+document.querySelectorAll('.footer-col ul li a').forEach(function(a) {
+  var m = { '星载SAR载荷':'SAR Payload','地面处理系统':'Ground Processing','数据服务':'Data Service','技术咨询':'Consulting','公司介绍':'About Us','核心团队':'Core Team','新闻动态':'News','加入我们':'Join Us','SAR Payload':'星载SAR载荷','Ground Processing':'地面处理系统','Data Service':'数据服务','Consulting':'技术咨询','About Us':'公司介绍','Core Team':'核心团队','News':'新闻动态','Join Us':'加入我们' };
+  if (m[a.textContent]) a.textContent = lang === 'zh' ? Object.keys(m).find(function(k){return m[k]===m[a.textContent]}) : m[a.textContent];
+});
+// Footer联系（商务合作/技术支持）
+var footerContactLinks = document.querySelectorAll('.footer-col:last-child ul li a');
+if (footerContactLinks.length >= 4) {
+  footerContactLinks[2].textContent = lang === 'zh' ? '商务合作' : 'Business';
+  footerContactLinks[3].textContent = lang === 'zh' ? '技术支持' : 'Support';
+}
+// 规格参数表
+var specLabels = document.querySelectorAll('.specs-table .spec-label');
+var specLabelMapZh = ['工作频段','极化方式','条带模式分辨率','聚束模式分辨率','扫描模式幅宽','成像模式','载荷重量','峰值功耗','数据压缩比','工作轨道高度','设计寿命'];
+var specLabelMapEn = ['Frequency Band','Polarization','Strip Resolution','Spotlight Resolution','Scan Swath','Imaging Modes','Mass','Power','Compression Ratio','Orbit Altitude','Design Life'];
+specLabels.forEach(function(el, i) { if (i < specLabelMapZh.length) el.textContent = lang === 'zh' ? specLabelMapZh[i] : specLabelMapEn[i]; });
+// 规格参数值
+var specRowTexts = document.querySelectorAll('.specs-table tbody tr');
+// 团队
+['马兵强','鞠在强','张鑫','张磊'].forEach(function(name, i) {
+  var els = document.querySelectorAll('.team-info h4');
+  if (els[i]) els[i].textContent = lang === 'zh' ? ['马兵强','鞠在强','张鑫','张磊'][i] : ['Ma Bingqiang','Ju Zaiqiang','Zhang Xin','Zhang Lei'][i];
+});
+var teamTitles = document.querySelectorAll('.team-info .title');
+var teamTitleZh = ['创始人 · 董事长 · 总师','联合创始人 · 总经理','技术研发负责人','系统架构师'];
+var teamTitleEn = ['Founder & Chairman', 'Co-founder & GM', 'R&D Lead', 'System Architect'];
+teamTitles.forEach(function(el, i) { if (i < teamTitleZh.length) el.textContent = lang === 'zh' ? teamTitleZh[i] : teamTitleEn[i]; });
+var teamDescs = document.querySelectorAll('.team-info p');
+var teamDescZh = ['中科院空天院SAR系统及信号处理专业博士，具备多年大型雷达系统项目研发与交付经验，全面负责公司技术战略与产品研发。','资深商业航天从业者，国内首颗商业SAR卫星"海丝一号"项目负责人，拥有丰富的商业航天项目管理与产业协同经验。','博士学历，长期从事SAR成像算法与遥感数据处理研究，在信号处理领域拥有多项技术成果。','硕士学历，拥有多年通信与射频系统开发经验，擅长相控阵天线系统设计与工程实现。'];
+var teamDescEn = ['PhD in SAR systems & signal processing from CAS AIRCAS. Years of experience in large-scale radar system R&D and delivery. Leads technical strategy and product development.','Senior commercial aerospace professional. Led China\'s first commercial SAR satellite "Haisi-1" project. Rich experience in aerospace project management.','PhD, long-term research in SAR imaging algorithms and remote sensing data processing. Multiple achievements in signal processing.','Master degree, years of experience in communication and RF system development. Expertise in phased array antenna system design.'];
+teamDescs.forEach(function(el, i) { if (i < teamDescZh.length) el.textContent = lang === 'zh' ? teamDescZh[i] : teamDescEn[i]; });
+// 投资方
+['山东财金','济南源创天使','厦门高新创臻','苏州里奥未来','济南财鑫股权投资'].forEach(function(name, i) {
+  var logs = document.querySelectorAll('.investor-logo');
+  if (logs[i]) logs[i].textContent = lang === 'zh' ? ['山东财金','济南源创天使','厦门高新创臻','苏州里奥未来','济南财鑫股权投资'][i] : ['Shandong Caijin','Jinan Yuanchuang Angel','Xiamen Gaoxin','Suzhou Li\'ao Future','Jinan Caixin'][i];
+});
+// 客户案例
+var testQuotes = document.querySelectorAll('.testimonial-card blockquote');
+var testQuoteZh = ['感知起源团队在SAR载荷领域的技术积累深厚，MIMOSAR技术路线在高分宽幅成像方面具有显著优势，有望突破传统SAR的物理限制，实现成像效率的量级提升。','作为中科院人才创业项目及国内首家商业星载SAR载荷供应商，公司在SAR技术创新与国产化方面实力强劲。核心的小型化、低成本、高集成度SAR产品，可广泛应用于国防安全、应急救灾、环境监测等领域。','感知起源掌握星载SAR载荷相控阵天线单元、中央电子单元和地面成像处理系统的全套软硬件关键技术。通过全栈自研的创新机制重构SAR载荷成本结构，提供更富性价比的商业载荷解决方案。'];
+var testQuoteEn = ['The Sensing Origin team has deep technical expertise in SAR payloads. The MIMOSAR approach shows significant advantages in high-resolution wide-swath imaging, promising to break traditional SAR physical limits.','As a CAS talent entrepreneurship project and China\'s first commercial SAR payload supplier, the company excels in SAR innovation and localization. Their compact, low-cost, high-integration SAR products serve defense, emergency response, and environmental monitoring.','Sensing Origin masters full-stack key technologies including phased array antenna units, central electronic units, and ground processing systems. Their self-developed innovation restructures SAR payload cost structure for cost-effective solutions.'];
+testQuotes.forEach(function(el, i) { if (i < testQuoteZh.length) el.textContent = lang === 'zh' ? testQuoteZh[i] : testQuoteEn[i]; });
+var testAuthors = document.querySelectorAll('.testimonial-card .author');
+var testAuthorZh = ['行业观察评论','济南源创天使投资','投资机构评价'];
+var testAuthorEn = ['Industry Observer','Jinan Yuanchuang Angel','Investor Review'];
+testAuthors.forEach(function(el, i) { if (i < testAuthorZh.length) el.textContent = lang === 'zh' ? testAuthorZh[i] : testAuthorEn[i]; });
+var testOrgs = document.querySelectorAll('.testimonial-card .org');
+var testOrgZh = ['36氪 · 硬氪','老股东评价','山东财金'];
+var testOrgEn = ['36Kr · HardKr','Existing Investor','Shandong Caijin'];
+testOrgs.forEach(function(el, i) { if (i < testOrgZh.length) el.textContent = lang === 'zh' ? testOrgZh[i] : testOrgEn[i]; });
+// 产品列表
+document.querySelectorAll('.product-features li').forEach(function(li, i) {
+  var prodZh = ['全自研相控阵天线单元','高性能中央电子单元','端到端地面成像处理系统','支持多模式成像配置','标准化接口设计，快速集成'];
+  var prodEn = ['Self-developed Phased Array Antenna','High-Performance Central Electronic Unit','End-to-End Ground Processing System','Multi-Mode Imaging Support','Standardized Interface for Quick Integration'];
+  if (i < prodZh.length) li.innerHTML = lang === 'zh' ? prodZh[i] : prodEn[i];
+});
+// "了解产品详情"按钮
+var prodBtn = document.querySelector('.products-text .btn');
+if (prodBtn) prodBtn.textContent = lang === 'zh' ? '了解产品详情 →' : 'Learn More →';
 // 初始化语言
 loadLangData();
 applyLang(currentLang);
@@ -1884,4 +1958,5 @@ observer.observe(el);
 
 </body>
 </html>
+
 
