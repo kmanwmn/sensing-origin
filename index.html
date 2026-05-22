@@ -19,7 +19,9 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden;position:relative}
+/* 星空背景层 - 微光星点 */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,.12),transparent),radial-gradient(1px 1px at 30% 50%,rgba(255,255,255,.1),transparent),radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,.15),transparent),radial-gradient(1px 1px at 70% 80%,rgba(255,255,255,.08),transparent),radial-gradient(1.5px 1.5px at 85% 35%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 15% 75%,rgba(255,255,255,.06),transparent),radial-gradient(1px 1px at 45% 40%,rgba(255,255,255,.12),transparent),radial-gradient(1.5px 1.5px at 60% 90%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 92% 15%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 25% 88%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 78% 58%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 5% 45%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 55% 65%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 38% 15%,rgba(255,255,255,.12),transparent),radial-gradient(1px 1px at 95% 70%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 65% 5%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 20% 60%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 82% 45%,rgba(255,255,255,.08),transparent);pointer-events:none;z-index:0;animation:starTwinkle 5s ease-in-out infinite alternate}
 ::selection{background:rgba(0,123,255,0.3)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#0a0e1a}
@@ -54,6 +56,17 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 html,body{height:100%;min-height:100%}
 #hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
 .hero-radar{position:absolute;top:50%;left:50%;width:700px;height:700px;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
+/* 地球轮廓 - 致敬SAR俯视地球理念 */
+.hero-earth{position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);z-index:1;pointer-events:none;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(74,158,255,.04) 0%,rgba(20,60,120,.08) 40%,transparent 65%);border:1px solid rgba(74,158,255,.06);animation:floatSlow 12s ease-in-out infinite}
+.hero-earth::before{content:'';position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);border-radius:50%;background:repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(74,158,255,.03) 50px,rgba(74,158,255,.03) 51px),repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(74,158,255,.03) 50px,rgba(74,158,255,.03) 51px);clip-path:circle(50%)}
+.hero-earth::after{content:'';position:absolute;top:50%;left:50%;width:70%;height:70%;transform:translate(-50%,-50%);border:1px solid rgba(74,158,255,.05);border-radius:50%;box-shadow:inset 0 0 60px rgba(74,158,255,.04),0 0 80px rgba(74,158,255,.03)}
+/* 卫星轨道弧线 */
+.hero-orbit{position:absolute;top:50%;left:50%;width:800px;height:400px;transform:translate(-50%,-50%) rotateX(60deg);z-index:1;pointer-events:none;border:1px solid rgba(74,158,255,.04);border-radius:50%;animation:orbitRotate 40s linear infinite}
+@keyframes orbitRotate{0%{transform:translate(-50%,-50%) rotateX(60deg) rotate(0deg)}100%{transform:translate(-50%,-50%) rotateX(60deg) rotate(360deg)}}
+.hero-orbit::before{content:'●';position:absolute;top:-6px;left:50%;transform:translateX(-50%);color:#4a9eff;font-size:10px;opacity:.6;text-shadow:0 0 10px rgba(74,158,255,.6)}
+.hero-orbit-2{position:absolute;top:50%;left:50%;width:500px;height:250px;transform:translate(-50%,-50%) rotateX(50deg);z-index:1;pointer-events:none;border:1px solid rgba(74,158,255,.03);border-radius:50%;animation:orbitRotate2 55s linear infinite reverse}
+@keyframes orbitRotate2{0%{transform:translate(-50%,-50%) rotateX(50deg) rotate(0deg)}100%{transform:translate(-50%,-50%) rotateX(50deg) rotate(360deg)}}
+.hero-orbit-2::before{content:'●';position:absolute;top:-5px;left:30%;color:#4a9eff;font-size:8px;opacity:.4;text-shadow:0 0 8px rgba(74,158,255,.4)}
 .hero-radar .ring{position:absolute;top:50%;left:50%;border:1px solid rgba(74,158,255,.08);border-radius:50%;transform:translate(-50%,-50%);animation:pulseGlow 4s ease-in-out infinite}
 .hero-radar .ring:nth-child(1){width:150px;height:150px;animation-delay:0s}
 .hero-radar .ring:nth-child(2){width:300px;height:300px;animation-delay:.8s}
@@ -108,7 +121,7 @@ html,body{height:100%;min-height:100%}
 .stat-card .number.counting{display:inline-block}
 
 /* === 应用场景板块 === */
-.applications{padding:100px 0;background:#080d1a;position:relative;overflow:hidden}
+.applications{padding:100px 0;background:linear-gradient(180deg,#03050a 0%,#080d1a 100%);position:relative;overflow:hidden}
 .app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .app-card{background:linear-gradient(145deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:32px 24px;text-align:center;transition:all .4s;position:relative;overflow:hidden;cursor:default}
 .app-card:hover{border-color:rgba(74,158,255,.2);transform:translateY(-6px);background:linear-gradient(145deg,rgba(74,158,255,.06),rgba(74,158,255,.02))}
@@ -119,7 +132,7 @@ html,body{height:100%;min-height:100%}
 .app-card .app-tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#4a9eff;background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.12)}
 
 /* === SAR科普板块 === */
-.sar-science{padding:100px 0;background:#03050a;position:relative}
+.sar-science{padding:100px 0;background:linear-gradient(180deg,#080d1a 0%,#03050a 50%,#080d1a 100%);position:relative}
 .science-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .science-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:28px;transition:all .3s}
 .science-card:hover{border-color:rgba(74,158,255,.15);background:rgba(74,158,255,.03)}
@@ -129,7 +142,7 @@ html,body{height:100%;min-height:100%}
 .science-card .science-icon{font-size:2rem;margin-bottom:12px;display:block}
 
 /* === 规格参数表 === */
-.specs{padding:100px 0;background:#080d1a}
+.specs{padding:100px 0;background:linear-gradient(180deg,#03050a 0%,#060b1a 50%,#03050a 100%)}
 .specs-table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.02);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
 .specs-table th,.specs-table td{padding:16px 20px;text-align:left;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.04)}
 .specs-table th{background:rgba(74,158,255,.08);color:#4a9eff;font-weight:600;letter-spacing:1px;font-size:.75rem;text-transform:uppercase}
@@ -162,8 +175,10 @@ html,body{height:100%;min-height:100%}
 
 /* === 浅色主题 === */
 body.light-theme{background:#f5f7fa;color:#1a2a3a}
-body.light-theme .hero{background:#f5f7fa}
+body.light-theme .hero{background:linear-gradient(180deg,#e8ecf2 0%,#f5f7fa 100%)}
 body.light-theme .page-loader{background:#f5f7fa}
+body.light-theme .hero-earth{border-color:rgba(74,158,255,.1)}
+body.light-theme .hero-earth::before{background:repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(74,158,255,.04) 50px,rgba(74,158,255,.04) 51px),repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(74,158,255,.04) 50px,rgba(74,158,255,.04) 51px);clip-path:circle(50%)}
 body.light-theme nav.scrolled{background:rgba(245,247,250,.95);backdrop-filter:blur(20px)}
 body.light-theme .nav-logo-text .zh{color:#1a2a3a}
 body.light-theme .nav-links a{color:#4a5a6a}
@@ -260,7 +275,7 @@ body.light-theme .stats-bar-item{background:#ffffff}
 body.light-theme .stats-bar{background:rgba(0,0,0,.06)}
 
 /* === 客户案例轮播 === */
-.testimonials{padding:100px 0;background:#080d1a;position:relative}
+.testimonials{padding:100px 0;background:linear-gradient(180deg,#03050a 0%,#080d1a 50%,#03050a 100%);position:relative}
 body.light-theme .testimonials{background:#ffffff}
 .testimonial-slider{position:relative;max-width:800px;margin:0 auto;overflow:hidden}
 .testimonial-track{display:flex;transition:transform .6s ease}
@@ -289,7 +304,7 @@ body.light-theme .lang-toggle{background:rgba(74,158,255,.2);border-color:rgba(7
 .lang-zh,.lang-en{transition:opacity .3s}
 
 /* === 招聘信息板块 === */
-.careers{padding:100px 0;background:#080d1a;position:relative}
+.careers{padding:100px 0;background:linear-gradient(180deg,#03050a 0%,#080d1a 50%,#080d1a 100%);position:relative}
 body.light-theme .careers{background:#f5f7fa}
 .job-list{max-width:800px;margin:0 auto}
 .job-item{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:24px 28px;margin-bottom:16px;transition:all .3s;cursor:pointer}
@@ -308,7 +323,7 @@ body.light-theme .job-item-desc{color:#4a5a6a}
 .job-item-toggle{color:#4a9eff;font-size:.78rem;cursor:pointer;margin-top:8px;display:inline-block;border:none;background:none;font-family:inherit}
 
 /* === FAQ常见问题 === */
-.faq{padding:100px 0;background:#03050a}
+.faq{padding:100px 0;background:linear-gradient(180deg,#080d1a 0%,#03050a 100%)}
 body.light-theme .faq{background:#f5f7fa}
 .faq-list{max-width:800px;margin:0 auto}
 .faq-item{border-bottom:1px solid rgba(255,255,255,.04);padding:20px 0}
@@ -401,7 +416,7 @@ body{padding-bottom:60px}
 .product-features{list-style:none;display:flex;flex-direction:column;gap:12px}
 .product-features li{display:flex;align-items:center;gap:12px;font-size:.9rem;color:#bcc5d6}
 .product-features li::before{content:'\25B8';color:#4a9eff;font-weight:700}
-.team{padding:100px 0;background:#080d1a}
+.team{padding:100px 0;background:linear-gradient(180deg,#03050a 0%,#080d1a 50%,#03050a 100%)}
 .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:50px}
 .team-member{display:flex;gap:24px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:28px;transition:all .3s}
 .team-member:hover{border-color:rgba(74,158,255,.15);background:rgba(74,158,255,.03)}
@@ -415,7 +430,7 @@ body{padding-bottom:60px}
 .investor-logo{padding:12px 24px;border:1px solid rgba(255,255,255,.05);border-radius:8px;background:rgba(255,255,255,.02);font-size:.8rem;color:#6a8ab5;letter-spacing:1px;transition:all .3s}
 .investor-logo:hover{border-color:rgba(74,158,255,.2);color:#e0e4ee}
 .investor-note{margin-top:16px;font-size:.85rem;color:#5a7a9a}
-.news{padding:100px 0;background:#03050a}
+.news{padding:100px 0;background:linear-gradient(180deg,#080d1a 0%,#03050a 100%)}
 .timeline{position:relative;max-width:800px;margin:0 auto}
 .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,rgba(74,158,255,.3),rgba(74,158,255,.05))}
 .timeline-item{position:relative;padding-left:60px;margin-bottom:40px}
@@ -426,7 +441,7 @@ body{padding-bottom:60px}
 .timeline-content:hover{border-color:rgba(74,158,255,.15)}
 .timeline-content h4{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:6px}
 .timeline-content p{font-size:.85rem;color:#8a9bb5;line-height:1.6}
-footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60px 0 30px}
+footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px solid rgba(255,255,255,.04);padding:60px 0 30px}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
 .footer-brand .nav-logo-icon{margin-bottom:16px}
 .footer-brand p{font-size:.85rem;color:#6a8ab5;line-height:1.7;max-width:280px}
@@ -503,6 +518,9 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="hero-radar">
 <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
 </div>
+<div class="hero-earth"></div>
+<div class="hero-orbit"></div>
+<div class="hero-orbit-2"></div>
 <div class="hero-content">
 <div class="hero-badge" data-i18n="heroBadge">Sensing Origin &middot; SAR 遥感</div>
 <h1 data-i18n="heroH1">感知起源 &middot; <span class="highlight">SAR<br>遥感新维度</span></h1>
@@ -517,6 +535,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 <div class="line"></div>
 </a>
 </section>
+<div class="section-divider"></div>
 <section class="mission" id="mission">
 <div class="container">
 <div class="mission-grid">
@@ -554,6 +573,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 <section class="technology" id="technology">
 <div class="container">
 <div class="tech-header">
@@ -614,6 +634,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="applications" id="applications">
 <div class="container">
@@ -663,6 +684,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="sar-science" id="science">
 <div class="container">
@@ -696,6 +718,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="specs" id="specs">
 <div class="container">
@@ -726,6 +749,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="products" id="products">
 <div class="container">
@@ -770,6 +794,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 <section class="team" id="team">
 <div class="container">
 <div class="tech-header">
@@ -825,6 +850,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="partners">
 <div class="container">
@@ -840,6 +866,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="testimonials" id="testimonials">
 <div class="container">
@@ -878,6 +905,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="news" id="news">
 <div class="container">
@@ -923,6 +951,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="careers" id="careers">
 <div class="container">
@@ -1104,6 +1133,7 @@ footer{background:#050810;border-top:1px solid rgba(255,255,255,.04);padding:60p
 </div>
 </div>
 </section>
+<div class="section-divider"></div>
 
 <section class="faq" id="faq">
 <div class="container">
@@ -2012,11 +2042,12 @@ btn.classList.toggle('open');
 };
 
 // ==========================================
-// 星空Canvas
+// 星空Canvas - 增强版
 // ==========================================
 var canvas = document.getElementById('hero-canvas');
 var ctx = canvas.getContext('2d');
 var stars = [];
+var shootingStars = [];
 var SCREEN = { w: 0, h: 0 };
 
 function resize() {
@@ -2026,19 +2057,51 @@ SCREEN.h = canvas.height = window.innerHeight;
 resize();
 window.addEventListener('resize', resize);
 
-for (var i = 0; i < 200; i++) {
+// 生成星星 - 350颗
+for (var i = 0; i < 350; i++) {
 stars.push({
 x: Math.random() * SCREEN.w,
 y: Math.random() * SCREEN.h,
-r: Math.random() * 1.5 + 0.3,
+r: Math.random() * 1.8 + 0.2,
 a: Math.random() * 0.8 + 0.2,
-speed: Math.random() * 0.3 + 0.05,
+speed: Math.random() * 0.4 + 0.03,
 phase: Math.random() * Math.PI * 2
 });
 }
 
+// 生成流星
+function spawnShootingStar(time) {
+if (Math.sin(time * 0.0008) * 0.5 + 0.5 > 0.995) {
+shootingStars.push({
+x: Math.random() * SCREEN.w * 0.8 + SCREEN.w * 0.1,
+y: -10,
+vx: (Math.random() - 0.5) * 4,
+vy: Math.random() * 6 + 3,
+life: 1,
+len: Math.random() * 80 + 40
+});
+}
+}
+
 function drawStars(time) {
 ctx.clearRect(0, 0, SCREEN.w, SCREEN.h);
+
+// 星云光晕1 - 右上
+var grad = ctx.createRadialGradient(SCREEN.w * 0.7, SCREEN.h * 0.3, 0, SCREEN.w * 0.7, SCREEN.h * 0.3, 300);
+grad.addColorStop(0, 'rgba(74, 158, 255, 0.03)');
+grad.addColorStop(0.5, 'rgba(74, 158, 255, 0.01)');
+grad.addColorStop(1, 'transparent');
+ctx.fillStyle = grad;
+ctx.fillRect(0, 0, SCREEN.w, SCREEN.h);
+
+// 星云光晕2 - 左下
+var grad2 = ctx.createRadialGradient(SCREEN.w * 0.2, SCREEN.h * 0.7, 0, SCREEN.w * 0.2, SCREEN.h * 0.7, 250);
+grad2.addColorStop(0, 'rgba(100, 180, 255, 0.02)');
+grad2.addColorStop(1, 'transparent');
+ctx.fillStyle = grad2;
+ctx.fillRect(0, 0, SCREEN.w, SCREEN.h);
+
+// 绘制星星
 for (var i = 0; i < stars.length; i++) {
 var s = stars[i];
 var alpha = s.a * (0.5 + 0.5 * Math.sin(time * s.speed + s.phase));
@@ -2046,13 +2109,34 @@ ctx.beginPath();
 ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
 ctx.fillStyle = 'rgba(200, 220, 255, ' + alpha + ')';
 ctx.fill();
-if (s.r > 1.0 && Math.sin(time * s.speed * 2 + s.phase) > 0.8) {
+// 亮星辉光
+if (s.r > 1.2 && Math.sin(time * s.speed * 2 + s.phase) > 0.7) {
 ctx.beginPath();
-ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
-ctx.fillStyle = 'rgba(74, 158, 255, 0.04)';
+ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2);
+ctx.fillStyle = 'rgba(74, 158, 255, 0.05)';
 ctx.fill();
 }
 }
+
+// 绘制流星
+spawnShootingStar(time);
+for (var si = shootingStars.length - 1; si >= 0; si--) {
+var ss = shootingStars[si];
+ss.x += ss.vx;
+ss.y += ss.vy;
+ss.life -= 0.02;
+if (ss.life <= 0) {
+shootingStars.splice(si, 1);
+continue;
+}
+ctx.beginPath();
+ctx.moveTo(ss.x, ss.y);
+ctx.lineTo(ss.x - ss.vx * ss.len * 0.05, ss.y - ss.vy * ss.len * 0.05);
+ctx.strokeStyle = 'rgba(180, 210, 255, ' + (ss.life * 0.6) + ')';
+ctx.lineWidth = 1.5;
+ctx.stroke();
+}
+
 requestAnimationFrame(drawStars);
 }
 requestAnimationFrame(drawStars);
