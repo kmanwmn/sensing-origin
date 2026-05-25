@@ -887,6 +887,12 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 <span class="partner-item">济南源创天使</span>
 <span class="partner-item">苏州里奥未来</span>
 <span class="partner-item">济南财鑫</span>
+<span class="partner-item">中国科学院空天院</span>
+<span class="partner-item">厦门高新创臻</span>
+<span class="partner-item">山东财金</span>
+<span class="partner-item">济南源创天使</span>
+<span class="partner-item">苏州里奥未来</span>
+<span class="partner-item">济南财鑫</span>
 </div>
 </div>
 </div>
@@ -2204,6 +2210,35 @@ observer.observe(el);
 });
 
 })();
+
+// ==========================================
+// 合作伙伴滚动 - 动态复制确保无缝循环
+// ==========================================
+(function() {
+var scrollInner = document.getElementById('partnerScrollInner');
+if (!scrollInner) return;
+var items = scrollInner.querySelectorAll('.partner-item');
+if (items.length === 0) return;
+// 获取单个item的宽度（含gap）
+var itemWidth = items[0].offsetWidth || 0;
+var gap = 40; // 与CSS gap保持一致
+var totalWidth = 0;
+for (var pi = 0; pi < items.length; pi++) {
+totalWidth += items[pi].offsetWidth || 0;
+}
+totalWidth += (items.length - 1) * gap;
+// 复制直到总宽度 >= 容器宽度的2倍
+var container = scrollInner.parentElement;
+var containerWidth = container.offsetWidth || 0;
+var clonesNeeded = Math.ceil((containerWidth * 2) / totalWidth);
+for (var ci = 0; ci < clonesNeeded; ci++) {
+for (var cj = 0; cj < items.length; cj++) {
+var clone = items[cj].cloneNode(true);
+scrollInner.appendChild(clone);
+}
+}
+})();
+
 </script>
 
 </body>
