@@ -19,9 +19,8 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden;position:relative;isolation:isolate}
-/* 星空背景层 - 微光星点 */
-body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,.12),transparent),radial-gradient(1px 1px at 30% 50%,rgba(255,255,255,.1),transparent),radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,.15),transparent),radial-gradient(1px 1px at 70% 80%,rgba(255,255,255,.08),transparent),radial-gradient(1.5px 1.5px at 85% 35%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 15% 75%,rgba(255,255,255,.06),transparent),radial-gradient(1px 1px at 45% 40%,rgba(255,255,255,.12),transparent),radial-gradient(1.5px 1.5px at 60% 90%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 92% 15%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 25% 88%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 78% 58%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 5% 45%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 55% 65%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 38% 15%,rgba(255,255,255,.12),transparent),radial-gradient(1px 1px at 95% 70%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 65% 5%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 20% 60%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 82% 45%,rgba(255,255,255,.08),transparent);pointer-events:none;z-index:-1;animation:starTwinkle 5s ease-in-out infinite alternate}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden;position:relative}
+/* 星空由 canvas 绘制，兼容性更好 */
 ::selection{background:rgba(0,123,255,0.3)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#0a0e1a}
@@ -29,7 +28,6 @@ body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;backg
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulseGlow{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:0.8;transform:scale(1.05)}}
 @keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes starTwinkle{0%,100%{opacity:0.2}50%{opacity:1}}
 @keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .section-tag{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:#4a9eff;font-weight:500;margin-bottom:12px}
@@ -2055,10 +2053,13 @@ btn.classList.toggle('open');
 };
 
 // ==========================================
-// 星空Canvas
+// 星空Canvas（容错处理，X5浏览器可能不支持）
 // ==========================================
+try {
 var canvas = document.getElementById('hero-canvas');
+if (!canvas) throw new Error('canvas not found');
 var ctx = canvas.getContext('2d');
+if (!ctx) throw new Error('canvas 2d not supported');
 var stars = [];
 var SCREEN = { w: 0, h: 0 };
 
@@ -2099,6 +2100,10 @@ ctx.fill();
 requestAnimationFrame(drawStars);
 }
 requestAnimationFrame(drawStars);
+} catch(e) {
+// X5浏览器可能不支持canvas 2d，静默失败
+console.log('Canvas not supported: ' + e.message);
+}
 
 // ==========================================
 // 锚点平滑滚动
