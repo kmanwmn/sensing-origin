@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>感知起源 · Sensing Origin | 济南感知起源信息科技有限公司 - 星载SAR遥感载荷</title>
     <meta name="description" content="济南感知起源信息科技有限公司——专注于星载合成孔径雷达（SAR）载荷研发、生产与销售。以MIMOSAR核心技术突破物理极限，提供全天候、高分辨率遥感解决方案。">
     <meta name="keywords" content="感知起源, Sensing Origin, SAR遥感, 星载SAR, 合成孔径雷达, 遥感卫星, MIMOSAR, 雷达载荷, 济南感知起源">
@@ -50,7 +50,7 @@ nav.scrolled{background:#03050a;background:rgba(3,5,10,.92);backdrop-filter:blur
 .nav-links a:hover::after{width:100%}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .nav-hamburger span{width:26px;height:2px;background:#e0e4ee;transition:.3s;border-radius:1px}
-.hero{position:relative;min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;overflow:visible;background:#03050a}
+.hero{position:relative;min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;display:flex;align-items:center;overflow:hidden;background:#03050a}
 html,body{min-height:100%}
 #hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
 .hero-radar{position:absolute;top:50%;left:50%;width:700px;height:700px;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
@@ -502,6 +502,9 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 .app-grid{gap:16px}
 }
 </style>
+<!-- vConsole 微信调试工具 -->
+<script src="https://unpkg.com/vconsole@3/dist/vconsole.min.js"></script>
+<script>try { new VConsole(); } catch(e) {}</script>
 </head>
 <body>
 
@@ -1795,17 +1798,15 @@ langBtn.textContent = currentLang === 'zh' ? 'EN' : '中';
 // 页面加载完成后隐藏加载动画
 window.addEventListener('load', function() {
   setTimeout(function() {
-    if (loader) loader.classList.add('hidden');
-    setTimeout(function() { if (loader) loader.style.display = 'none'; }, 800);
-  }, 400);
+    if (loader) { loader.style.display = 'none'; }
+  }, 200);
 });
 // 强制保险：无论加载是否完成，4秒后隐藏加载动画
 setTimeout(function() {
-  if (loader && !loader.classList.contains('hidden')) {
-    loader.classList.add('hidden');
-    setTimeout(function() { loader.style.display = 'none'; }, 500);
+  if (loader && loader.style.display !== 'none') {
+    loader.style.display = 'none';
   }
-}, 4000);
+}, 3000);
 
 // ==========================================
 // 导航栏滚动效果 + 返回顶部按钮 + 高亮
