@@ -19,7 +19,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden;position:relative}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden;position:relative;isolation:isolate}
 /* 星空背景层 - 微光星点 */
 body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,.12),transparent),radial-gradient(1px 1px at 30% 50%,rgba(255,255,255,.1),transparent),radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,.15),transparent),radial-gradient(1px 1px at 70% 80%,rgba(255,255,255,.08),transparent),radial-gradient(1.5px 1.5px at 85% 35%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 15% 75%,rgba(255,255,255,.06),transparent),radial-gradient(1px 1px at 45% 40%,rgba(255,255,255,.12),transparent),radial-gradient(1.5px 1.5px at 60% 90%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 92% 15%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 25% 88%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 78% 58%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 5% 45%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 55% 65%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 38% 15%,rgba(255,255,255,.12),transparent),radial-gradient(1px 1px at 95% 70%,rgba(255,255,255,.08),transparent),radial-gradient(1px 1px at 65% 5%,rgba(255,255,255,.06),transparent),radial-gradient(1.5px 1.5px at 20% 60%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 82% 45%,rgba(255,255,255,.08),transparent);pointer-events:none;z-index:-1;animation:starTwinkle 5s ease-in-out infinite alternate}
 ::selection{background:rgba(0,123,255,0.3)}
@@ -38,7 +38,7 @@ body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;backg
 .section-title .highlight{color:#4a9eff}
 .glow-line{width:60px;height:2px;background:linear-gradient(90deg,#4a9eff,transparent);margin-bottom:24px}
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:background .4s,padding .3s}
-nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(74,158,255,.1);padding:10px 0}
+nav.scrolled{background:#03050a;background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(74,158,255,.1);padding:10px 0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .nav-logo-icon{width:36px;height:36px;border:2px solid #4a9eff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#4a9eff;background:rgba(74,158,255,.08)}
@@ -52,8 +52,8 @@ nav.scrolled{background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-back
 .nav-links a:hover::after{width:100%}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .nav-hamburger span{width:26px;height:2px;background:#e0e4ee;transition:.3s;border-radius:1px}
-.hero{position:relative;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;overflow:visible;background:#03050a}
-html,body{height:100%;min-height:100%}
+.hero{position:relative;min-height:100vh;min-height:100dvh;min-height:-webkit-fill-available;display:flex;align-items:center;overflow:visible;background:#03050a}
+html,body{min-height:100%}
 #hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
 .hero-radar{position:absolute;top:50%;left:50%;width:700px;height:700px;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
 /* 地球轮廓 - 致敬SAR俯视地球理念 */
@@ -175,11 +175,9 @@ html,body{height:100%;min-height:100%}
 
 /* === 浅色主题 === */
 body.light-theme{background:#f5f7fa;color:#1a2a3a}
-body.light-theme .hero{background:linear-gradient(180deg,#e8ecf2 0%,#f5f7fa 100%)}
+body.light-theme .hero{background:#f5f7fa}
 body.light-theme .page-loader{background:#f5f7fa}
-body.light-theme .hero-earth{border-color:rgba(74,158,255,.1)}
-body.light-theme .hero-earth::before{background:repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(74,158,255,.04) 50px,rgba(74,158,255,.04) 51px),repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(74,158,255,.04) 50px,rgba(74,158,255,.04) 51px);clip-path:circle(50%)}
-body.light-theme nav.scrolled{background:rgba(245,247,250,.95);backdrop-filter:blur(20px)}
+body.light-theme nav.scrolled{background:#f5f7fa;background:rgba(245,247,250,.95);backdrop-filter:blur(20px)}
 body.light-theme .nav-logo-text .zh{color:#1a2a3a}
 body.light-theme .nav-links a{color:#4a5a6a}
 body.light-theme .nav-links a:hover{color:#4a9eff}
@@ -457,53 +455,28 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 .mission-grid{gap:40px}
 .products-content{gap:40px}
 .tech-cards{grid-template-columns:repeat(2,1fr)}
-.app-grid{grid-template-columns:repeat(2,1fr)}
-.science-grid{grid-template-columns:1fr 1fr}
-.counter-row{grid-template-columns:repeat(2,1fr)}
-.hero-earth{width:450px;height:450px}
-.hero-orbit{width:600px;height:300px}
-.hero-orbit-2{width:380px;height:190px}
-.hero-radar{width:450px;height:450px}
-.hero-radar .ring:nth-child(5){display:none}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem)}
 }
 @media(max-width:768px){
 .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(3,5,10,.98);backdrop-filter:blur(20px);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid rgba(74,158,255,.1)}
 .nav-links.open{display:flex}
 .nav-hamburger{display:flex}
-.mission-grid,.products-content,.team-grid,.science-grid{grid-template-columns:1fr}
-.app-grid{grid-template-columns:repeat(2,1fr)}
+.mission-grid,.products-content,.team-grid{grid-template-columns:1fr}
 .tech-cards{grid-template-columns:1fr}
 .mission-stats{grid-template-columns:1fr 1fr}
-.counter-row{grid-template-columns:repeat(2,1fr)}
 .footer-grid{grid-template-columns:1fr 1fr}
 .hero-radar{width:400px;height:400px}
-.hero-earth{width:350px;height:350px}
-.hero-orbit{width:480px;height:240px}
-.hero-orbit-2{width:300px;height:150px}
 .hero-radar .ring:nth-child(4),.hero-radar .ring:nth-child(5){display:none}
 .team-member{flex-direction:column}
 .investor-logos{gap:12px}
 .investor-logo{padding:8px 16px;font-size:.7rem}
-.timeline::before{left:14px}
-.timeline-item{padding-left:44px}
-.timeline-dot{left:6px;width:14px;height:14px}
 }
 @media(max-width:480px){
 .footer-grid{grid-template-columns:1fr}
 .mission-stats{grid-template-columns:1fr}
-.app-grid{grid-template-columns:1fr}
-.counter-row{grid-template-columns:1fr}
 .hero-actions{flex-direction:column}
 .hero-actions .btn{width:100%;justify-content:center}
 .hero-radar{width:280px;height:280px}
-.hero-earth{width:240px;height:240px}
-.hero-orbit{width:340px;height:170px;display:none}
-.hero-orbit-2{display:none}
 .hero-radar .ring:nth-child(3){display:none}
-.section-title{font-size:1.5rem}
-.science-grid{gap:20px}
-.app-grid{gap:16px}
 }
 </style>
 </head>
@@ -560,7 +533,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 <div class="line"></div>
 </a>
 </section>
-<div class="section-divider"></div>
 <section class="mission" id="mission">
 <div class="container">
 <div class="mission-grid">
@@ -598,7 +570,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 <section class="technology" id="technology">
 <div class="container">
 <div class="tech-header">
@@ -659,7 +630,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="applications" id="applications">
 <div class="container">
@@ -709,7 +679,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="sar-science" id="science">
 <div class="container">
@@ -743,7 +712,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="specs" id="specs">
 <div class="container">
@@ -774,7 +742,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="products" id="products">
 <div class="container">
@@ -819,7 +786,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 <section class="team" id="team">
 <div class="container">
 <div class="tech-header">
@@ -875,7 +841,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="partners">
 <div class="container">
@@ -887,17 +852,10 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 <span class="partner-item">济南源创天使</span>
 <span class="partner-item">苏州里奥未来</span>
 <span class="partner-item">济南财鑫</span>
-<span class="partner-item">中国科学院空天院</span>
-<span class="partner-item">厦门高新创臻</span>
-<span class="partner-item">山东财金</span>
-<span class="partner-item">济南源创天使</span>
-<span class="partner-item">苏州里奥未来</span>
-<span class="partner-item">济南财鑫</span>
 </div>
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="testimonials" id="testimonials">
 <div class="container">
@@ -936,7 +894,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="news" id="news">
 <div class="container">
@@ -982,7 +939,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="careers" id="careers">
 <div class="container">
@@ -1164,7 +1120,6 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </div>
 </div>
 </section>
-<div class="section-divider"></div>
 
 <section class="faq" id="faq">
 <div class="container">
@@ -2073,12 +2028,11 @@ btn.classList.toggle('open');
 };
 
 // ==========================================
-// 星空Canvas - 增强版
+// 星空Canvas
 // ==========================================
 var canvas = document.getElementById('hero-canvas');
 var ctx = canvas.getContext('2d');
 var stars = [];
-var shootingStars = [];
 var SCREEN = { w: 0, h: 0 };
 
 function resize() {
@@ -2088,54 +2042,19 @@ SCREEN.h = canvas.height = window.innerHeight;
 resize();
 window.addEventListener('resize', resize);
 
-// 生成星星 - 350颗
-for (var i = 0; i < 350; i++) {
+for (var i = 0; i < 200; i++) {
 stars.push({
 x: Math.random() * SCREEN.w,
 y: Math.random() * SCREEN.h,
-r: Math.random() * 1.8 + 0.2,
+r: Math.random() * 1.5 + 0.3,
 a: Math.random() * 0.8 + 0.2,
-speed: Math.random() * 0.4 + 0.03,
+speed: Math.random() * 0.3 + 0.05,
 phase: Math.random() * Math.PI * 2
 });
 }
 
-// 生成流星
-function spawnShootingStar(time) {
-if (Math.sin(time * 0.0008) * 0.5 + 0.5 > 0.995) {
-shootingStars.push({
-x: Math.random() * SCREEN.w * 0.8 + SCREEN.w * 0.1,
-y: -10,
-vx: (Math.random() - 0.5) * 4,
-vy: Math.random() * 6 + 3,
-life: 1,
-len: Math.random() * 80 + 40
-});
-}
-}
-
 function drawStars(time) {
-// 填充背景
-ctx.fillStyle = '#03050a';
-ctx.fillRect(0, 0, SCREEN.w, SCREEN.h);
 ctx.clearRect(0, 0, SCREEN.w, SCREEN.h);
-
-// 星云光晕1 - 右上
-var grad = ctx.createRadialGradient(SCREEN.w * 0.7, SCREEN.h * 0.3, 0, SCREEN.w * 0.7, SCREEN.h * 0.3, 300);
-grad.addColorStop(0, 'rgba(74, 158, 255, 0.03)');
-grad.addColorStop(0.5, 'rgba(74, 158, 255, 0.01)');
-grad.addColorStop(1, 'transparent');
-ctx.fillStyle = grad;
-ctx.fillRect(0, 0, SCREEN.w, SCREEN.h);
-
-// 星云光晕2 - 左下
-var grad2 = ctx.createRadialGradient(SCREEN.w * 0.2, SCREEN.h * 0.7, 0, SCREEN.w * 0.2, SCREEN.h * 0.7, 250);
-grad2.addColorStop(0, 'rgba(100, 180, 255, 0.02)');
-grad2.addColorStop(1, 'transparent');
-ctx.fillStyle = grad2;
-ctx.fillRect(0, 0, SCREEN.w, SCREEN.h);
-
-// 绘制星星
 for (var i = 0; i < stars.length; i++) {
 var s = stars[i];
 var alpha = s.a * (0.5 + 0.5 * Math.sin(time * s.speed + s.phase));
@@ -2143,34 +2062,13 @@ ctx.beginPath();
 ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
 ctx.fillStyle = 'rgba(200, 220, 255, ' + alpha + ')';
 ctx.fill();
-// 亮星辉光
-if (s.r > 1.2 && Math.sin(time * s.speed * 2 + s.phase) > 0.7) {
+if (s.r > 1.0 && Math.sin(time * s.speed * 2 + s.phase) > 0.8) {
 ctx.beginPath();
-ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2);
-ctx.fillStyle = 'rgba(74, 158, 255, 0.05)';
+ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
+ctx.fillStyle = 'rgba(74, 158, 255, 0.04)';
 ctx.fill();
 }
 }
-
-// 绘制流星
-spawnShootingStar(time);
-for (var si = shootingStars.length - 1; si >= 0; si--) {
-var ss = shootingStars[si];
-ss.x += ss.vx;
-ss.y += ss.vy;
-ss.life -= 0.02;
-if (ss.life <= 0) {
-shootingStars.splice(si, 1);
-continue;
-}
-ctx.beginPath();
-ctx.moveTo(ss.x, ss.y);
-ctx.lineTo(ss.x - ss.vx * ss.len * 0.05, ss.y - ss.vy * ss.len * 0.05);
-ctx.strokeStyle = 'rgba(180, 210, 255, ' + (ss.life * 0.6) + ')';
-ctx.lineWidth = 1.5;
-ctx.stroke();
-}
-
 requestAnimationFrame(drawStars);
 }
 requestAnimationFrame(drawStars);
@@ -2210,35 +2108,6 @@ observer.observe(el);
 });
 
 })();
-
-// ==========================================
-// 合作伙伴滚动 - 动态复制确保无缝循环
-// ==========================================
-(function() {
-var scrollInner = document.getElementById('partnerScrollInner');
-if (!scrollInner) return;
-var items = scrollInner.querySelectorAll('.partner-item');
-if (items.length === 0) return;
-// 获取单个item的宽度（含gap）
-var itemWidth = items[0].offsetWidth || 0;
-var gap = 40; // 与CSS gap保持一致
-var totalWidth = 0;
-for (var pi = 0; pi < items.length; pi++) {
-totalWidth += items[pi].offsetWidth || 0;
-}
-totalWidth += (items.length - 1) * gap;
-// 复制直到总宽度 >= 容器宽度的2倍
-var container = scrollInner.parentElement;
-var containerWidth = container.offsetWidth || 0;
-var clonesNeeded = Math.ceil((containerWidth * 2) / totalWidth);
-for (var ci = 0; ci < clonesNeeded; ci++) {
-for (var cj = 0; cj < items.length; cj++) {
-var clone = items[cj].cloneNode(true);
-scrollInner.appendChild(clone);
-}
-}
-})();
-
 </script>
 
 </body>
