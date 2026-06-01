@@ -455,28 +455,53 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 .mission-grid{gap:40px}
 .products-content{gap:40px}
 .tech-cards{grid-template-columns:repeat(2,1fr)}
+.app-grid{grid-template-columns:repeat(2,1fr)}
+.science-grid{grid-template-columns:1fr 1fr}
+.counter-row{grid-template-columns:repeat(2,1fr)}
+.hero-earth{width:450px;height:450px}
+.hero-orbit{width:600px;height:300px}
+.hero-orbit-2{width:380px;height:190px}
+.hero-radar{width:500px;height:500px}
+.hero-radar .ring:nth-child(5){display:none}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem)}
 }
 @media(max-width:768px){
 .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(3,5,10,.98);backdrop-filter:blur(20px);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid rgba(74,158,255,.1)}
 .nav-links.open{display:flex}
 .nav-hamburger{display:flex}
-.mission-grid,.products-content,.team-grid{grid-template-columns:1fr}
+.mission-grid,.products-content,.team-grid,.science-grid{grid-template-columns:1fr}
+.app-grid{grid-template-columns:repeat(2,1fr)}
 .tech-cards{grid-template-columns:1fr}
 .mission-stats{grid-template-columns:1fr 1fr}
+.counter-row{grid-template-columns:repeat(2,1fr)}
 .footer-grid{grid-template-columns:1fr 1fr}
 .hero-radar{width:400px;height:400px}
+.hero-earth{width:350px;height:350px}
+.hero-orbit{width:480px;height:240px}
+.hero-orbit-2{width:300px;height:150px}
 .hero-radar .ring:nth-child(4),.hero-radar .ring:nth-child(5){display:none}
 .team-member{flex-direction:column}
 .investor-logos{gap:12px}
 .investor-logo{padding:8px 16px;font-size:.7rem}
+.timeline::before{left:14px}
+.timeline-item{padding-left:44px}
+.timeline-dot{left:6px;width:14px;height:14px}
 }
 @media(max-width:480px){
 .footer-grid{grid-template-columns:1fr}
 .mission-stats{grid-template-columns:1fr}
+.app-grid{grid-template-columns:1fr}
+.counter-row{grid-template-columns:1fr}
 .hero-actions{flex-direction:column}
 .hero-actions .btn{width:100%;justify-content:center}
 .hero-radar{width:280px;height:280px}
+.hero-earth{width:240px;height:240px}
+.hero-orbit{width:340px;height:170px;display:none}
+.hero-orbit-2{display:none}
 .hero-radar .ring:nth-child(3){display:none}
+.section-title{font-size:1.5rem}
+.science-grid{gap:20px}
+.app-grid{gap:16px}
 }
 </style>
 </head>
@@ -1942,6 +1967,7 @@ el.textContent = current;
 }
 
 // 用 IntersectionObserver 触发计数器
+try {
 var counterObserver = new IntersectionObserver(function(entries) {
 entries.forEach(function(entry) {
 if (entry.isIntersecting) {
@@ -1953,6 +1979,7 @@ counterObserver.unobserve(entry.target);
 
 var counterRow = document.querySelector('.counter-row');
 if (counterRow) counterObserver.observe(counterRow);
+} catch(e) { /* X5浏览器不支持IntersectionObserver */ }
 
 // ==========================================
 // 客户案例轮播
@@ -2091,6 +2118,7 @@ window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset -
 // ==========================================
 // 滚动入场动画
 // ==========================================
+try {
 var observer = new IntersectionObserver(function(entries) {
 entries.forEach(function(entry) {
 if (entry.isIntersecting) {
@@ -2106,6 +2134,13 @@ el.style.transform = 'translateY(30px)';
 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
 observer.observe(el);
 });
+} catch(e) {
+// X5浏览器不支持IntersectionObserver, 直接显示所有元素
+document.querySelectorAll('.stat-card, .tech-card, .team-member, .timeline-item, .app-card, .science-card, .specs-table tr').forEach(function(el) {
+el.style.opacity = '1';
+el.style.transform = 'translateY(0)';
+});
+}
 
 })();
 </script>
