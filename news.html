@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>新闻动态 · 感知起源 | Sensing Origin</title>
+    <meta name="description" content="感知起源新闻动态——了解济南感知起源信息科技有限公司最新进展，涵盖融资动态、产品研发、市场拓展等。">
+    <style>
+        /* ===== 基础重置 ===== */
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;overflow-x:hidden;min-height:100%;background-image:radial-gradient(ellipse at 20% 20%,rgba(74,158,255,.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(74,158,255,.02) 0%,transparent 50%)}
+        ::selection{background:rgba(0,123,255,0.3)}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:#0a0e1a}
+        ::-webkit-scrollbar-thumb{background:#1a3a5a;border-radius:3px}
+
+        /* ===== 导航 ===== */
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(74,158,255,.1);padding:14px 0}
+        .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+        .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+        .nav-logo-icon{width:34px;height:34px;border:2px solid #4a9eff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#4a9eff;background:rgba(74,158,255,.08)}
+        .nav-logo-text{display:flex;flex-direction:column}
+        .nav-logo-text .zh{font-size:.85rem;font-weight:700;color:#fff;letter-spacing:1px}
+        .nav-logo-text .en{font-size:.6rem;color:#6a8ab5;letter-spacing:3px;text-transform:uppercase}
+        .nav-back{color:#6a8ab5;text-decoration:none;font-size:.82rem;font-weight:500;transition:color .3s;display:flex;align-items:center;gap:6px}
+        .nav-back:hover{color:#4a9eff}
+
+        /* ===== 页面头部 ===== */
+        .page-header{padding:120px 24px 60px;text-align:center;position:relative}
+        .page-header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,#4a9eff,transparent)}
+        .page-header .tag{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:#4a9eff;font-weight:500;margin-bottom:16px}
+        .page-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:12px}
+        .page-header h1 .highlight{color:#4a9eff}
+        .page-header p{font-size:clamp(.9rem,1.1vw,1.05rem);color:#8a9bb5;max-width:600px;margin:0 auto}
+
+        /* ===== 新闻列表 ===== */
+        .news-list{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+        .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px}
+
+        /* ===== 新闻卡片 ===== */
+        .news-card{cursor:pointer;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.04);transition:all .4s;position:relative}
+        .news-card:hover{transform:translateY(-6px);border-color:rgba(74,158,255,.25);background:linear-gradient(145deg,rgba(74,158,255,.04),rgba(74,158,255,.02));box-shadow:0 20px 60px rgba(0,0,0,.3)}
+        .news-card:hover .card-img img{transform:scale(1.05)}
+        .card-img{width:100%;height:200px;overflow:hidden;position:relative}
+        .card-img .img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem}
+        .card-img .img-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,rgba(3,5,10,.95))}
+        .card-date{position:absolute;top:16px;left:16px;background:rgba(3,5,10,.8);backdrop-filter:blur(10px);padding:6px 14px;border-radius:6px;font-size:.7rem;color:#4a9eff;border:1px solid rgba(74,158,255,.15);font-weight:600;letter-spacing:.5px}
+        .card-body{padding:24px}
+        .card-body .card-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;background:rgba(74,158,255,.1);color:#4a9eff;margin-bottom:12px}
+        .card-body h3{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.4;margin-bottom:10px;transition:color .3s}
+        .news-card:hover .card-body h3{color:#4a9eff}
+        .card-body p{font-size:.85rem;color:#8a9bb5;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid rgba(255,255,255,.04)}
+        .card-source{font-size:.7rem;color:#5a7a9a}
+        .card-readmore{font-size:.75rem;color:#4a9eff;display:flex;align-items:center;gap:4px;font-weight:500}
+
+        /* ===== 详情页 ===== */
+        .detail-view{display:none;max-width:860px;margin:0 auto;padding:120px 24px 80px}
+        .detail-view.active{display:block;animation:fadeIn .5s ease}
+        .detail-back{display:inline-flex;align-items:center;gap:6px;color:#6a8ab5;text-decoration:none;font-size:.85rem;margin-bottom:40px;cursor:pointer;transition:color .3s;border:none;background:none;font-family:inherit}
+        .detail-back:hover{color:#4a9eff}
+        .detail-header{margin-bottom:40px}
+        .detail-header .detail-badge{display:inline-block;padding:4px 12px;border-radius:4px;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;background:rgba(74,158,255,.1);color:#4a9eff;margin-bottom:16px}
+        .detail-header .detail-date{font-size:.8rem;color:#5a7a9a;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .detail-header .detail-date::before{content:'';display:inline-block;width:4px;height:4px;background:#4a9eff;border-radius:50%}
+        .detail-header h1{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:700;line-height:1.3;margin-bottom:16px}
+        .detail-header .detail-source{font-size:.8rem;color:#5a7a9a}
+        .detail-header .detail-source a{color:#4a9eff;text-decoration:none}
+        .detail-header .detail-source a:hover{text-decoration:underline}
+
+        .detail-hero-img{width:100%;border-radius:12px;overflow:hidden;margin-bottom:40px;position:relative;aspect-ratio:16/7;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.04)}
+        .detail-hero-img .img-placeholder{font-size:4rem}
+
+        .detail-body{line-height:1.9}
+        .detail-body p{margin-bottom:20px;font-size:.95rem;color:#bcc5d6}
+        .detail-body h2{font-size:1.3rem;font-weight:700;color:#fff;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(74,158,255,.1)}
+        .detail-body h3{font-size:1.1rem;font-weight:600;color:#e0e4ee;margin:28px 0 12px}
+        .detail-body ul{padding-left:24px;margin-bottom:20px}
+        .detail-body ul li{margin-bottom:8px;color:#bcc5d6;font-size:.9rem}
+        .detail-body ul li::marker{color:#4a9eff}
+        .detail-body .highlight-box{padding:20px 24px;background:rgba(74,158,255,.04);border-left:3px solid #4a9eff;border-radius:0 8px 8px 0;margin:24px 0;color:#bcc5d6;font-size:.9rem;line-height:1.7}
+
+        .detail-body .img-inline{width:100%;border-radius:10px;margin:24px 0;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.04);position:relative}
+        .detail-body .img-inline .img-caption{position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:rgba(3,5,10,.8);font-size:.75rem;color:#8a9bb5;text-align:center}
+
+        .detail-nav-bottom{display:flex;justify-content:space-between;margin-top:60px;padding-top:30px;border-top:1px solid rgba(255,255,255,.06);gap:20px}
+        .detail-nav-btn{display:flex;align-items:center;gap:10px;color:#6a8ab5;text-decoration:none;font-size:.85rem;cursor:pointer;transition:color .3s;max-width:45%;border:none;background:none;font-family:inherit;text-align:left;padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02)}
+        .detail-nav-btn:hover{color:#4a9eff;background:rgba(74,158,255,.04)}
+        .detail-nav-btn .nav-arrow{font-size:1.2rem;color:#4a9eff}
+        .detail-nav-btn .nav-text{font-size:.75rem;color:#5a7a9a;margin-bottom:2px}
+        .detail-nav-btn .nav-title{font-size:.82rem;font-weight:500}
+        .detail-nav-btn.next{text-align:right;flex-direction:row-reverse}
+
+        /* ===== 页面加载动画 ===== */
+        .page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:#03050a;z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .6s ease}
+        .page-loader.hidden{opacity:0;pointer-events:none}
+        .loader-icon{width:36px;height:36px;border:2px solid rgba(74,158,255,.15);border-top-color:#4a9eff;border-radius:50%;animation:spin .8s linear infinite}
+        .loader-text{font-size:.75rem;color:#4a6a8a;letter-spacing:4px;text-transform:uppercase}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+        /* ===== 响应式 ===== */
+        @media(max-width:768px){
+            .page-header{padding:100px 20px 40px}
+            .news-grid{grid-template-columns:1fr;gap:20px}
+            .card-img{height:180px}
+            .detail-view{padding:100px 20px 60px}
+            .detail-hero-img{aspect-ratio:16/9}
+            .detail-nav-bottom{flex-direction:column;gap:12px}
+            .detail-nav-btn,.detail-nav-btn.next{max-width:100%;text-align:left;flex-direction:row}
+            .nav-inner{padding:0 16px}
+        }
+        @media(max-width:480px){
+            .page-header{padding:90px 16px 32px}
+            .news-grid{gap:16px}
+            .card-img{height:160px}
+            .card-body{padding:18px}
+            .detail-header h1{font-size:1.3rem}
+            .detail-body p{font-size:.88rem}
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== 加载动画 ===== -->
+<div class="page-loader" id="pageLoader">
+    <div class="loader-icon"></div>
+    <div class="loader-text">感知起源 · 加载中</div>
+</div>
+
+<!-- ===== 顶部导航 ===== -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">SO</div>
+            <div class="nav-logo-text">
+                <span class="zh">感知起源</span>
+                <span class="en">Sensing Origin</span>
+            </div>
+        </a>
+        <a href="index.html" class="nav-back">← 返回首页</a>
+    </div>
+</nav>
+
+<!-- ===== 列表视图 ===== -->
+<div id="listView">
+    <div class="page-header">
+        <div class="tag">News &amp; Milestones</div>
+        <h1>新闻 <span class="highlight">动态</span></h1>
+        <p>感知起源的发展足迹——从创立起步到技术突破，从融资里程碑到产业布局</p>
+    </div>
+    <div class="news-list">
+        <div class="news-grid" id="newsGrid"></div>
+    </div>
+</div>
+
+<!-- ===== 详情视图 ===== -->
+<div class="detail-view" id="detailView">
+    <button class="detail-back" id="detailBack">← 返回新闻列表</button>
+    <div id="detailContent"></div>
+    <div class="detail-nav-bottom" id="detailNav"></div>
+</div>
+
+<script>
+(function() {
+    // ==========================================
+    // 新闻数据
+    // ==========================================
+    var newsData = [{
+        id: 'news-7',
+        date: '2026年',
+        badge: '产品进展',
+        title: '首套商业MIMOSAR载荷进入正样阶段',
+        summary: '感知起源首套商业MIMOSAR载荷已完成研制进入正样阶段，计划2026年内完成入轨验证并启动批量生产，有望成为国内首个全自研商业SAR载荷在轨验证的先例。',
+        category: 'milestone',
+        imgGradient: 'linear-gradient(135deg,#0a1628,#1a3a5a,#0d2840)',
+        imgIcon: '🛰️',
+        source: '36氪 · 硬氪首发、DoNews',
+        sourceUrl: 'https://m.36kr.com/p/3681056499642245',
+        content: [
+            {type: 'p', text: '感知起源首套商业MIMOSAR载荷已完成研制，正式进入正样（飞行正样/工程定型）阶段。按当前规划，预计2026年内完成入轨验证并启动批量生产，有望成为国内首个实现全自研商业SAR载荷在轨验证的先例。'},
+            {type: 'h2', text: 'MIMOSAR技术突破'},
+            {type: 'p', text: 'MIMOSAR是感知起源核心专利技术，通过多通道合成孔径与数字波束形成技术，同时实现高分辨率（优于1m）与大宽幅（＞50km）。该技术路线可突破传统SAR"高分辨率与大幅宽不可兼得"的物理制约，成像效率较传统SAR提升5-10倍，单位面积图像成本下降1-2个数量级。'},
+            {type: 'img', text: 'MIMOSAR技术示意图', caption: 'MIMOSAR多通道合成孔径成像技术原理'},
+            {type: 'h2', text: '正样阶段意味着什么'},
+            {type: 'p', text: '在航天工程中，载荷研制通常经历：方案阶段→初样阶段→正样阶段→在轨验证。正样阶段意味着产品设计已定型，进入飞行件生产制造环节，是发射入轨前的最后一道关键工序。首套商业MIMOSAR载荷入轨验证成功后，感知起源将启动批量生产，为商业遥感卫星星座建设提供核心硬件支撑。'},
+            {type: 'highlight', text: '目前国内尚无全自研商业SAR载荷成功在轨验证的先例。若感知起源首套MIMOSAR载荷验证成功，将填补国产商业化星载SAR载荷的空白。'},
+            {type: 'h2', text: '商业化前景'},
+            {type: 'p', text: 'SAR卫星具备全天时、全天候对地观测能力，在国防安全、应急救灾、环境监测等领域具有不可替代的作用。长期以来，国内SAR载荷供应依赖特定科研体系，存在成本高、交付周期长、成像效率低等问题。感知起源通过全栈自研的商业化路径，正在打破这一格局，提供更具性价比、更适应规模化生产的商业载荷解决方案。'}
+        ]},{
+        id: 'news-6',
+        date: '2026年2月',
+        badge: '融资动态',
+        title: '完成新一轮融资 累计融资近亿元',
+        summary: '由山东财金领投，厦门高新创臻、苏州里奥未来、济南财鑫共同参与。资金用于首台套自研SAR载荷研发及入轨验证、新型谱产品预研及商业拓展。',
+        category: 'finance',
+        imgGradient: 'linear-gradient(135deg,#0a1a2e,#1a4a6a,#0e2a3e)',
+        imgIcon: '💰',
+        source: '36氪（硬氪首发）、投资界',
+        sourceUrl: 'https://news.pedaily.cn/202602/561037.shtml',
+        content: [
+            {type: 'p', text: '2026年2月，济南感知起源信息科技有限公司完成新一轮数千万元融资，累计融资额近亿元。本轮融资由山东财金集团领投，厦门高新创臻、苏州里奥未来、济南财鑫股权投资共同参与。'},
+            {type: 'h2', text: '本轮融资详情'},
+            {type: 'ul', items: [
+                '领投方：山东财金集团',
+                '跟投方：厦门高新创臻、苏州里奥未来、济南财鑫',
+                '累计融资：近亿元（含天使轮及天使+轮）',
+                '资金用途：首台套自研SAR载荷研发及入轨验证、新型谱产品预研、产能升级及商业拓展'
+            ]},
+            {type: 'img', text: '融资发布', caption: '感知起源融资发布'},
+            {type: 'h2', text: '投资方看好商业航天赛道'},
+            {type: 'p', text: '山东财金集团表示："感知起源团队在SAR载荷领域的技术积累深厚，MIMOSAR技术路线在高分宽幅成像方面具有显著优势，有望突破传统SAR的物理限制，实现成像效率的量级提升。作为国内首家商业星载SAR载荷供应商，公司在SAR技术创新与国产化方面实力强劲。"'},
+            {type: 'highlight', text: '感知起源核心的小型化、低成本、高集成度SAR产品，可广泛应用于国防安全、应急救灾、环境监测等领域，市场前景广阔。'},
+            {type: 'p', text: '感知起源创始人马兵强博士表示，本轮融资将加速首台套自研商业SAR载荷的在轨验证进程，同时启动下一代产品的预研工作。公司致力于成为国内首家全自研商业SAR载荷制造商，填补国产化空白。'}
+        ]},{
+        id: 'news-5',
+        date: '2025年12月',
+        badge: '战略布局',
+        title: '感知起源国际业务总部落地厦门集美',
+        summary: '感知起源正式将国际业务总部落户厦门集美区，集美产业促进基金作为战略投资方参与投资。借助厦门区位优势，推动中国空天信息产业走向全球。',
+        category: 'strategy',
+        imgGradient: 'linear-gradient(135deg,#0a1e2e,#1a4a5a,#0e2a3e)',
+        imgIcon: '🌏',
+        source: '厦门日报、投资厦门',
+        sourceUrl: 'https://xm.fjsen.com/wap/2025-12/02/content_32089093.htm',
+        content: [
+            {type: 'p', text: '2025年12月，感知起源正式将国际业务总部落户厦门集美区。厦门市集美产业促进基金作为战略投资方，参与了感知起源天使+轮融资。此次落地厦门，是感知起源全球化战略的重要一步。'},
+            {type: 'h2', text: '为什么选择厦门'},
+            {type: 'p', text: '厦门作为中国东南沿海重要的对外开放门户，在"一带一路"建设中具有独特的区位优势。厦门市近年来积极布局商业航天和空天信息产业，出台了一系列产业扶持政策。集美区作为厦门市跨岛发展的核心区域，已经形成了良好的产业生态和创新氛围。'},
+            {type: 'img', text: '厦门集美区', caption: '厦门集美区——感知起源国际业务总部所在地'},
+            {type: 'highlight', text: '感知起源国际业务总部落户厦门集美，将借助厦门的区位优势和政策支持，推动中国自主可控的商业SAR载荷技术走向全球市场。'},
+            {type: 'h2', text: '国际业务布局'},
+            {type: 'p', text: '感知起源计划以厦门国际业务总部为窗口，面向东南亚、中东、非洲等"一带一路"沿线国家拓展市场，提供SAR遥感数据服务和载荷产品解决方案。同时，国际业务总部也将承担海外技术合作、国际人才引进等功能，助力公司打造国际竞争力的商业SAR载荷品牌。'}
+        ]},{
+        id: 'news-4',
+        date: '2025年11月',
+        badge: '融资动态',
+        title: '完成天使+轮融资 多机构联合投资',
+        summary: '感知起源完成天使+轮融资，投资方包括源创多盈、济南科创投、福建闽招产投、阳光融汇资本、广电平云资本等多家机构。',
+        category: 'finance',
+        imgGradient: 'linear-gradient(135deg,#0e1628,#1a2a5a,#0e1a3e)',
+        imgIcon: '📈',
+        source: '投资界、泰伯网',
+        sourceUrl: 'https://news.pedaily.cn/202602/561037.shtml',
+        content: [
+            {type: 'p', text: '2025年11月，感知起源完成天使+轮融资。本轮融资由源创多盈集团、济南科创投、福建闽招产投、阳光融汇资本、广电平云资本等多家机构联合投资。这是公司在天使轮融资基础上的进一步资金加持。'},
+            {type: 'h2', text: '投资方阵容'},
+            {type: 'ul', items: [
+                '源创多盈集团——专注于科技创新领域的投资机构',
+                '济南科创投——济南市科技创业投资平台',
+                '福建闽招产投——福建省招标采购集团产业投资平台',
+                '阳光融汇资本——阳光保险集团旗下专业投资机构',
+                '广电平云资本——广州无线电集团旗下资本平台',
+                '集美区产业促进基金——厦门市集美区产业引导基金'
+            ]},
+            {type: 'h2', text: '研发进展'},
+            {type: 'p', text: '本轮融资资金继续用于首台套自研商业SAR载荷的研制工作。在天使轮融资完成之后，感知起源团队迅速推进了原型验证和关键技术攻关，核心MIMOSAR技术取得突破性进展，为后续正样阶段奠定了坚实基础。'},
+            {type: 'img', text: '研发团队工作场景', caption: '感知起源研发团队进行载荷测试'},
+            {type: 'p', text: '鞠在强博士（联合创始人兼总经理）表示："多家知名投资机构的加入，是对感知起源技术路线和商业化前景的高度认可。我们将加速推进首台套自研SAR载荷的研制进程，力争早日实现国产商业SAR载荷的突破。"'}
+        ]},{
+        id: 'news-3',
+        date: '2025年8月',
+        badge: '产业布局',
+        title: '招福创新基金首个项目成功落地感知起源',
+        summary: '福建省招标采购集团旗下招福创新基金成功完成对感知起源的投资，以福建省"海丝星座"为切入点，推动商业SAR载荷国产化。',
+        category: 'finance',
+        imgGradient: 'linear-gradient(135deg,#0a1628,#162a4a,#0e1e3e)',
+        imgIcon: '🎯',
+        source: '福建省国资委官网',
+        sourceUrl: 'http://gzw.fujian.gov.cn/zwgk/gzdt/gzyw/fjszbcgjtyxgs_31457/202508/t20250815_6991620.htm',
+        content: [
+            {type: 'p', text: '2025年8月，福建省招标采购集团旗下招福创新基金首个项目成功落地——完成对商业航天核心硬件供应商感知起源的战略投资。这是福建省在商业航天和空天信息产业的重要布局。'},
+            {type: 'h2', text: '招福创新基金'},
+            {type: 'p', text: '招福创新基金是福建省招标采购集团发起设立的产业创新投资基金，重点关注新一代信息技术、高端装备制造、空天信息等战略性新兴产业。感知起源是该基金成立以来的首个投资项目。'},
+            {type: 'h2', text: '"海丝星座"战略'},
+            {type: 'p', text: '福建省正积极推进"海丝星座"建设，以海洋经济和"一带一路"为特色，构建覆盖海上丝绸之路沿线区域的遥感卫星星座。感知起源的SAR载荷技术是"海丝星座"建设的核心支撑之一，有助于解决目前SAR载荷价格高、分辨率低的行业痛点。'},
+            {type: 'highlight', text: '感知起源SAR载荷可全天时、全天候对地观测，在海洋监视、应急减灾、国防安全等领域具有不可替代的技术优势，与福建省"海丝星座"战略高度契合。'},
+            {type: 'h2', text: '产业协同效应'},
+            {type: 'p', text: '此次投资不仅是财务投资，更是产业协同的战略合作。感知起源将借助福建省在海洋经济和"一带一路"建设中的独特优势，推动SAR载荷技术在海洋监视、港口监测、海上交通管理等领域的应用落地。同时，福建省的航天信息产业生态也将为感知起源提供丰富的上下游合作资源。'}
+        ]},{
+        id: 'news-2',
+        date: '2024年',
+        badge: '融资动态',
+        title: '获奇绩创坛种子轮投资 启动SAR载荷研发',
+        summary: '感知起源获得奇绩创坛（MiraclePlus）种子轮投资，启动星载SAR载荷原型研发工作，核心团队组建完成。',
+        category: 'finance',
+        imgGradient: 'linear-gradient(135deg,#0e1628,#1a2a4a,#0e1e3e)',
+        imgIcon: '🌱',
+        source: '投资界、企查查',
+        sourceUrl: '#',
+        content: [
+            {type: 'p', text: '2024年，感知起源获得奇绩创坛（MiraclePlus，原YC中国）种子轮投资，正式启动星载SAR载荷原型研发工作。这是公司成立后获得的首笔机构投资，标志着感知起源商业航天征程的正式开启。'},
+            {type: 'h2', text: '奇绩创坛'},
+            {type: 'p', text: '奇绩创坛由前YC中国创始人、著名AI科学家陆奇博士创立，是国内领先的早期创业投资和加速器机构。奇绩创坛专注于投资具有核心技术壁垒的科技创业公司，在AI、航天、半导体等硬科技领域有深入布局。'},
+            {type: 'h2', text: '从技术到产品'},
+            {type: 'p', text: '获得种子轮融资后，感知起源团队正式启动星载SAR载荷的原型研发工作。核心团队由来自中科院空天院、航天科技集团等机构的资深专家组成，在SAR系统设计、相控阵天线、信号处理等领域拥有深厚的技术积累。'},
+            {type: 'img', text: '技术研发', caption: '感知起源研发团队开展SAR载荷技术攻关'},
+            {type: 'h2', text: '早期里程碑'},
+            {type: 'p', text: '在种子轮融资的支持下，感知起源完成了多项关键技术突破：MIMOSAR核心技术方案的可行性验证、相控阵天线单元的初步设计、地面成像处理系统的算法原型开发。这些早期成果为后续的产品化和融资奠定了坚实的技术基础。'}
+        ]},{
+        id: 'news-1',
+        date: '2023年9月',
+        badge: '公司里程碑',
+        title: '济南感知起源信息科技有限公司正式成立',
+        summary: '济南感知起源信息科技有限公司在山东省济南市市中区正式注册成立，核心团队由中科院空天院SAR领域资深专家组成，启动星载SAR载荷研发。',
+        category: 'milestone',
+        imgGradient: 'linear-gradient(135deg,#0a1628,#0d2840,#061828)',
+        imgIcon: '🚀',
+        source: '企查查、启信宝',
+        sourceUrl: 'https://m.qixin.com/company/89604498-760c-4b70-9975-95c75846b457',
+        content: [
+            {type: 'p', text: '2023年9月，济南感知起源信息科技有限公司在山东省济南市市中区正式注册成立。公司专注于商业星载合成孔径雷达（SAR）载荷的研发、生产与销售，是国内首家专注于商业SAR载荷的民营企业。'},
+            {type: 'h2', text: '核心团队'},
+            {type: 'p', text: '感知起源核心团队成员来自中国科学院空天信息创新研究院（原电子所），在SAR系统及信号处理领域拥有数十年技术积累。'},
+            {type: 'ul', items: [
+                '马兵强博士——创始人兼董事长、总师。中科院空天院SAR系统及信号处理专业博士，具备多年大型雷达系统项目研发与交付经验，全面负责公司技术战略与产品研发',
+                '鞠在强博士——联合创始人兼总经理。资深商业航天从业者，国内首颗商业SAR卫星"海丝一号"项目负责人，拥有丰富的商业航天项目管理与产业协同经验'
+            ]},
+            {type: 'img', text: '公司成立', caption: '感知起源正式启航'},
+            {type: 'h2', text: '公司使命'},
+            {type: 'p', text: '感知起源以「感知数据、创新价值」为使命，致力于成为国内首家全自研商业SAR载荷制造商，填补国产化空白。公司以小型化、低成本、高集成度为产品理念，通过全栈自研的创新机制重构SAR载荷成本结构，提供更富性价比、更适应规模化生产的商业载荷解决方案。'},
+            {type: 'highlight', text: 'SAR载荷作为SAR卫星的核心分系统，负责收发微波信号并进行成像处理，相当于SAR卫星的「眼睛+大脑」。感知起源立志打造自主可控的商业SAR载荷，共建天基遥感信息基础设施。'},
+            {type: 'h2', text: '早期规划'},
+            {type: 'p', text: '公司成立后，随即启动了首款星载SAR载荷产品的方案设计工作。团队以前瞻性的MIMOSAR技术路线为指引，致力于突破传统SAR高分辨率和大幅宽之间的物理制约关系，实现成像效率的量级提升。同时，公司积极筹备天使轮融资，为后续的研发和商业化落地做准备。'}
+        ]}
+    ];
+
+    // ==========================================
+    // DOM引用
+    // ==========================================
+    var listView = document.getElementById('listView');
+    var detailView = document.getElementById('detailView');
+    var newsGrid = document.getElementById('newsGrid');
+    var detailContent = document.getElementById('detailContent');
+    var detailNav = document.getElementById('detailNav');
+    var detailBack = document.getElementById('detailBack');
+    var loader = document.getElementById('pageLoader');
+
+    // ==========================================
+    // 渲染新闻列表
+    // ==========================================
+    function renderList() {
+        var html = '';
+        for (var i = newsData.length - 1; i >= 0; i--) {
+            var item = newsData[i];
+            html += '<div class="news-card" data-id="' + item.id + '" onclick="window.openNews(\'' + item.id + '\')">';
+            html += '<div class="card-img">';
+            html += '<div class="img-placeholder" style="background:' + item.imgGradient + '">' + item.imgIcon + '</div>';
+            html += '<div class="img-overlay"></div>';
+            html += '<div class="card-date">' + item.date + '</div>';
+            html += '</div>';
+            html += '<div class="card-body">';
+            html += '<div class="card-badge">' + item.badge + '</div>';
+            html += '<h3>' + item.title + '</h3>';
+            html += '<p>' + item.summary + '</p>';
+            html += '<div class="card-footer">';
+            html += '<span class="card-source">' + item.source + '</span>';
+            html += '<span class="card-readmore">阅读全文 →</span>';
+            html += '</div></div></div>';
+        }
+        newsGrid.innerHTML = html;
+    }
+
+    // ==========================================
+    // 渲染详情页
+    // ==========================================
+    function renderDetail(id) {
+        var item = null;
+        var index = -1;
+        for (var i = 0; i < newsData.length; i++) {
+            if (newsData[i].id === id) {
+                item = newsData[i];
+                index = i;
+                break;
+            }
+        }
+        if (!item) return;
+
+        // 内容渲染
+        var contentHtml = '';
+
+        // 头部
+        contentHtml += '<div class="detail-header">';
+        contentHtml += '<div class="detail-badge">' + item.badge + '</div>';
+        contentHtml += '<div class="detail-date">' + item.date + '</div>';
+        contentHtml += '<h1>' + item.title + '</h1>';
+        contentHtml += '<div class="detail-source">来源：<a href="' + item.sourceUrl + '" target="_blank" rel="noopener">' + item.source + '</a></div>';
+        contentHtml += '</div>';
+
+        // hero图
+        contentHtml += '<div class="detail-hero-img" style="background:' + item.imgGradient + '">';
+        contentHtml += '<div class="img-placeholder" style="font-size:5rem">' + item.imgIcon + '</div>';
+        contentHtml += '</div>';
+
+        // 正文
+        contentHtml += '<div class="detail-body">';
+        for (var ci = 0; ci < item.content.length; ci++) {
+            var block = item.content[ci];
+            if (block.type === 'p') {
+                contentHtml += '<p>' + block.text + '</p>';
+            } else if (block.type === 'h2') {
+                contentHtml += '<h2>' + block.text + '</h2>';
+            } else if (block.type === 'h3') {
+                contentHtml += '<h3>' + block.text + '</h3>';
+            } else if (block.type === 'ul') {
+                contentHtml += '<ul>';
+                for (var ui = 0; ui < block.items.length; ui++) {
+                    contentHtml += '<li>' + block.items[ui] + '</li>';
+                }
+                contentHtml += '</ul>';
+            } else if (block.type === 'img') {
+                contentHtml += '<div class="img-inline" style="background:' + item.imgGradient + '">';
+                contentHtml += '<div style="font-size:3rem">' + item.imgIcon + '</div>';
+                if (block.caption) {
+                    contentHtml += '<div class="img-caption">' + block.caption + '</div>';
+                }
+                contentHtml += '</div>';
+            } else if (block.type === 'highlight') {
+                contentHtml += '<div class="highlight-box">' + block.text + '</div>';
+            }
+        }
+        contentHtml += '</div>';
+        detailContent.innerHTML = contentHtml;
+
+        // 上下篇导航
+        var navHtml = '';
+        var prevIndex = index - 1;
+        var nextIndex = index + 1;
+
+        if (prevIndex >= 0) {
+            navHtml += '<button class="detail-nav-btn" onclick="window.openNews(\'' + newsData[prevIndex].id + '\')">';
+            navHtml += '<span class="nav-arrow">←</span>';
+            navHtml += '<div><div class="nav-text">上一篇</div><div class="nav-title">' + newsData[prevIndex].title + '</div></div>';
+            navHtml += '</button>';
+        } else {
+            navHtml += '<div></div>';
+        }
+
+        if (nextIndex < newsData.length) {
+            navHtml += '<button class="detail-nav-btn next" onclick="window.openNews(\'' + newsData[nextIndex].id + '\')">';
+            navHtml += '<span class="nav-arrow">→</span>';
+            navHtml += '<div><div class="nav-text">下一篇</div><div class="nav-title">' + newsData[nextIndex].title + '</div></div>';
+            navHtml += '</button>';
+        } else {
+            navHtml += '<div></div>';
+        }
+
+        detailNav.innerHTML = navHtml;
+
+        // 切换视图
+        listView.style.display = 'none';
+        detailView.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // 返回列表
+    // ==========================================
+    function showList() {
+        detailView.classList.remove('active');
+        listView.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // 暴露全局
+    // ==========================================
+    window.openNews = renderDetail;
+    detailBack.addEventListener('click', showList);
+
+    // ==========================================
+    // URL Hash 路由
+    // ==========================================
+    function handleHash() {
+        var hash = window.location.hash.replace('#', '');
+        if (hash && hash.startsWith('news-')) {
+            renderDetail(hash);
+        } else {
+            showList();
+        }
+    }
+    window.addEventListener('hashchange', handleHash);
+
+    // ==========================================
+    // 初始化
+    // ==========================================
+    renderList();
+    handleHash();
+
+    // 页面加载动画
+    setTimeout(function() {
+        if (loader) loader.style.display = 'none';
+    }, 300);
+})();
+</script>
+</body>
+</html>
