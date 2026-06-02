@@ -466,9 +466,9 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 .hero h1{font-size:clamp(2rem,5vw,3.2rem)}
 }
 @media(max-width:768px){
-.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(3,5,10,.98);backdrop-filter:blur(20px);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid rgba(74,158,255,.1)}
-.nav-links.open{display:flex}
-.nav-hamburger{display:flex}
+.nav-links{gap:12px}
+.nav-links a{font-size:.75rem}
+.nav-links li a[style*="padding"]{padding:6px 12px!important;font-size:.72rem}
 .mission-grid,.products-content,.team-grid,.science-grid{grid-template-columns:1fr}
 .app-grid{grid-template-columns:repeat(2,1fr)}
 .tech-cards{grid-template-columns:1fr}
@@ -488,6 +488,9 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 .timeline-dot{left:6px;width:14px;height:14px}
 }
 @media(max-width:480px){
+.nav-links{gap:6px}
+.nav-links a{font-size:.65rem}
+.nav-links li a[style*="padding"]{padding:5px 10px!important;font-size:.65rem}
 .footer-grid{grid-template-columns:1fr}
 .mission-stats{grid-template-columns:1fr}
 .app-grid{grid-template-columns:1fr}
