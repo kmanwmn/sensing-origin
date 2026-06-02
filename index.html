@@ -52,6 +52,7 @@ nav.scrolled{background:#03050a;background:rgba(3,5,10,.92);backdrop-filter:blur
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .nav-hamburger span{width:26px;height:2px;background:#e0e4ee;transition:.3s;border-radius:1px}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible;background:#03050a}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:1}
 html{height:100%}body{min-height:100%}
 #hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
 .hero-radar{position:absolute;top:50%;left:50%;width:700px;height:700px;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
@@ -539,6 +540,7 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 </nav>
 
 <section class="hero" id="hero">
+<div class="hero-bg">
 <canvas id="hero-canvas"></canvas>
 <div class="hero-radar">
 <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
@@ -546,6 +548,7 @@ footer{background:linear-gradient(180deg,#03050a 0%,#050810 100%);border-top:1px
 <div class="hero-earth"></div>
 <div class="hero-orbit"></div>
 <div class="hero-orbit-2"></div>
+</div>
 <div class="hero-content">
 <div class="hero-badge" data-i18n="heroBadge">Sensing Origin &middot; SAR 遥感</div>
 <h1 data-i18n="heroH1">感知起源 &middot; <span class="highlight">SAR<br>遥感新维度</span></h1>
