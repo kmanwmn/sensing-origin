@@ -509,9 +509,21 @@ body{padding-bottom:0}
 .app-grid{gap:16px}
 }
 </style>
-<!-- vConsole 微信调试工具 -->
+<!-- vConsole 调试工具 连续按 l y c 三个键呼出 -->
 <script src="https://unpkg.com/vconsole@3/dist/vconsole.min.js"></script>
-<script>try { new VConsole(); } catch(e) {}</script>
+<script>
+(function() {
+    var vc = null, seq = '';
+    document.addEventListener('keyup', function(e) {
+        seq += e.key.toLowerCase();
+        if (seq.length > 6) seq = seq.slice(-6);
+        if (seq.indexOf('lyc') !== -1) {
+            if (!vc) { try { vc = new VConsole(); } catch(ex) {} }
+            seq = '';
+        }
+    });
+})();
+</script>
 </head>
 <body>
 
