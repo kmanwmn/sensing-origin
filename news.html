@@ -243,7 +243,7 @@
 
     function renderList() {
         var html = '', lang = currentLang;
-        for (var i = newsData.length - 1; i >= 0; i--) {
+        for (var i = 0; i < newsData.length; i++) {
             var item = newsData[i];
             html += '<div class="news-card" data-id="' + item.id + '">';
             html += '<div class="card-img">';
@@ -305,13 +305,13 @@
         detailContent.innerHTML = html;
 
         var navHtml = '';
-        if (index + 1 < newsData.length) {
-            var p = newsData[index + 1];
-            navHtml += '<button class="detail-nav-btn" onclick="window.location.hash=\'' + p.id + '\'"><span class="nav-arrow">←</span><div><div class="nav-text">' + t.prev + '</div><div class="nav-title">' + p.title[lang] + '</div></div></button>';
-        } else { navHtml += '<div></div>'; }
         if (index - 1 >= 0) {
             var n = newsData[index - 1];
-            navHtml += '<button class="detail-nav-btn next" onclick="window.location.hash=\'' + n.id + '\'"><span class="nav-arrow">→</span><div><div class="nav-text">' + t.next + '</div><div class="nav-title">' + n.title[lang] + '</div></div></button>';
+            navHtml += '<button class="detail-nav-btn" onclick="window.location.hash=\'' + n.id + '\'"><span class="nav-arrow">←</span><div><div class="nav-text">' + t.prev + '</div><div class="nav-title">' + n.title[lang] + '</div></div></button>';
+        } else { navHtml += '<div></div>'; }
+        if (index + 1 < newsData.length) {
+            var p = newsData[index + 1];
+            navHtml += '<button class="detail-nav-btn next" onclick="window.location.hash=\'' + p.id + '\'"><span class="nav-arrow">→</span><div><div class="nav-text">' + t.next + '</div><div class="nav-title">' + p.title[lang] + '</div></div></button>';
         } else { navHtml += '<div></div>'; }
         detailNav.innerHTML = navHtml;
 
