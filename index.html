@@ -40,7 +40,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:b
 nav.scrolled{background:#03050a;background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(74,158,255,.1);padding:10px 0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo-icon{width:36px;height:36px;border:2px solid #4a9eff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#4a9eff;background:rgba(74,158,255,.08)}
+.nav-logo-icon{width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.nav-logo-icon img{width:100%;height:100%;display:block}
 .nav-logo-text{display:flex;flex-direction:column}
 .nav-logo-text .zh{font-size:.9rem;font-weight:700;color:#fff;letter-spacing:1px}
 .nav-logo-text .en{font-size:.65rem;color:#6a8ab5;letter-spacing:3px;text-transform:uppercase}
@@ -536,7 +537,7 @@ body{padding-bottom:0}
 <nav id="navbar">
 <div class="nav-inner">
 <a href="#" class="nav-logo">
-<div class="nav-logo-icon">SO</div>
+<div class="nav-logo-icon"><img src="图片/感知起源图标.png" alt="感知起源"></div>
 <div class="nav-logo-text">
 <span class="zh">感知起源</span>
 <span class="en">Sensing Origin</span>
@@ -1277,7 +1278,7 @@ body{padding-bottom:0}
 <div class="container">
 <div class="footer-grid">
 <div class="footer-brand">
-<div class="nav-logo-icon">SO</div>
+<div class="nav-logo-icon"><img src="图片/感知起源图标.png" alt="感知起源"></div>
 <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">感知起源 &middot; Sensing Origin</h4>
 <p data-i18n="footerP">济南感知起源信息科技有限公司<br>以「感知数据、创新价值」为使命，打造自主可控的商业SAR载荷，共建天基遥感信息基础设施。</p>
 </div>
