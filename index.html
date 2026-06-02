@@ -1864,13 +1864,15 @@ window.addEventListener('scroll', function() {
 var scrollY = window.scrollY + 100;
 mobileLinks.forEach(function(link) {
 var href = link.getAttribute('href');
-if (href && href.startsWith('#')) {
+if (href && href.startsWith('#') && href.length > 1) {
+try {
 var target = document.querySelector(href);
 if (target) {
 var top = target.offsetTop;
 var bottom = top + target.offsetHeight;
 link.classList.toggle('active', scrollY >= top && scrollY < bottom);
 }
+} catch(ex) { /* 跳过无效选择器 */ }
 }
 });
 });
@@ -2112,12 +2114,14 @@ console.log('Canvas not supported: ' + e.message);
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 a.addEventListener('click', function(e) {
 var id = this.getAttribute('href');
-if (id === '#' || this.classList.contains('btn')) return;
+if (!id || id === '#' || id.length < 2 || this.classList.contains('btn')) return;
+try {
 var target = document.querySelector(id);
 if (target) {
 e.preventDefault();
 window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
 }
+} catch(ex) { /* 选择器不合法，跳过 */ }
 });
 });
 
