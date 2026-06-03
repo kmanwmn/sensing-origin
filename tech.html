@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="图片/感知起源图标.png">
+    <title>技术交流 · 感知起源 | Sensing Origin Tech Exchange</title>
+    <meta name="description" content="感知起源技术交流——视频分享、技术演示与SAR载荷产品展示。">
+    <!-- Video.js CDN -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
+    <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;min-height:100%}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,'PingFang SC','Microsoft YaHei',sans-serif;background:#03050a;color:#e0e4ee;line-height:1.6;min-height:100%;overflow-x:hidden;position:relative;transition:background .4s,color .4s}
+    body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(ellipse at 20% 20%,rgba(74,158,255,.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(74,158,255,.02) 0%,transparent 50%);pointer-events:none;z-index:-1;transition:opacity .4s}
+    body.light-theme::before{opacity:0}
+    ::selection{background:rgba(0,123,255,0.3)}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:#0a0e1a}
+    ::-webkit-scrollbar-thumb{background:#1a3a5a;border-radius:3px}
+    body.light-theme ::-webkit-scrollbar-track{background:#eef1f5}
+    body.light-theme ::-webkit-scrollbar-thumb{background:#b0b8c8}
+    body.light-theme{background:#f5f7fa;color:#1a2a3a}
+    body.light-theme .page-loader{background:#f5f7fa}
+    body.light-theme nav{background:rgba(245,247,250,.95);border-bottom-color:rgba(0,0,0,.06)}
+    body.light-theme .nav-logo-text .zh{color:#1a2a3a}
+    body.light-theme .nav-back{color:#5a6a7a}
+    body.light-theme .nav-back:hover{color:#4a9eff}
+    body.light-theme .page-header .sub{color:#5a6a7a}
+    body.light-theme .video-section{background:#ffffff;border-color:rgba(0,0,0,.06)}
+    body.light-theme .video-section .section-title{color:#1a2a3a}
+    body.light-theme .video-section .section-desc{color:#5a6a7a}
+    body.light-theme .file-list{background:#f0f2f6}
+    body.light-theme .file-list h3{color:#5a6a7a}
+    body.light-theme .file-list a{color:#1a2a3a}
+    body.light-theme .file-list a:hover{color:#4a9eff}
+    body.light-theme .controls input{background:#ffffff;border-color:rgba(0,0,0,.15);color:#1a2a3a}
+    body.light-theme .controls input:focus{border-color:#4a9eff}
+    body.light-theme .theme-toggle{background:rgba(74,158,255,.2);border-color:rgba(74,158,255,.3)}
+    body.light-theme .lang-toggle{background:rgba(74,158,255,.2);border-color:rgba(74,158,255,.3)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,5,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(74,158,255,.1);padding:14px 0;transition:background .4s,border .4s}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo-icon{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0}
+    .nav-logo-icon img{width:100%;height:100%;display:block}
+    .nav-logo-text{display:flex;flex-direction:column}
+    .nav-logo-text .zh{font-size:.85rem;font-weight:700;color:#fff;letter-spacing:1px;transition:color .4s}
+    .nav-logo-text .en{font-size:.6rem;color:#6a8ab5;letter-spacing:3px;text-transform:uppercase}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-back{color:#6a8ab5;text-decoration:none;font-size:.82rem;font-weight:500;transition:color .3s;display:flex;align-items:center;gap:6px}
+    .nav-back:hover{color:#4a9eff}
+    .theme-toggle,.lang-toggle{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;border:1px solid rgba(74,158,255,.25);background:rgba(74,158,255,.1);transition:all .3s;color:#4a9eff;flex-shrink:0}
+    .theme-toggle:hover,.lang-toggle:hover{background:rgba(74,158,255,.2)}
+    .lang-toggle{width:auto;padding:0 12px;border-radius:16px;font-size:.7rem;font-weight:600;letter-spacing:1px}
+    .page-header{padding:120px 24px 50px;text-align:center;position:relative}
+    .page-header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,#4a9eff,transparent)}
+    .page-header .tag{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:#4a9eff;font-weight:500;margin-bottom:16px}
+    .page-header h1{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:700;line-height:1.2;margin-bottom:12px;color:#fff;transition:color .4s}
+    body.light-theme .page-header h1{color:#1a2a3a}
+    .page-header h1 .highlight{color:#4a9eff}
+    .page-header .sub{font-size:clamp(.85rem,1vw,.95rem);color:#8a9bb5;max-width:600px;margin:0 auto;transition:color .4s}
+
+    /* 视频区域 */
+    .video-section{max-width:960px;margin:40px auto 80px;padding:0 24px}
+    .player-wrap{width:100%;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+    .video-js{width:100%;height:0;padding-bottom:56.25%}
+    .video-js .vjs-tech{position:absolute;top:0;left:0;width:100%;height:100%}
+    .controls{display:flex;gap:10px;margin-top:20px}
+    .controls input{flex:1;padding:12px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#e0e4ee;font-size:.88rem;outline:none;transition:all .3s;font-family:inherit}
+    .controls input:focus{border-color:#4a9eff;background:rgba(74,158,255,.06)}
+    .controls input::placeholder{color:#5a7a9a}
+    .controls button{padding:12px 28px;border-radius:8px;border:none;background:linear-gradient(135deg,#4a9eff,#1a6bcc);color:#fff;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap}
+    .controls button:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(74,158,255,.3)}
+    .file-list{margin-top:28px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:20px 24px}
+    .file-list h3{font-size:.85rem;color:#8a9bb5;margin-bottom:14px;font-weight:500;display:flex;align-items:center;gap:8px}
+    .file-list h3::before{content:'📁'}
+    .file-list a{display:flex;align-items:center;gap:10px;color:#e0e4ee;text-decoration:none;padding:8px 0;font-size:.88rem;transition:color .3s;border-bottom:1px solid rgba(255,255,255,.03)}
+    .file-list a:last-child{border-bottom:none}
+    .file-list a:hover{color:#4a9eff}
+    .file-list a .play-icon{color:#4a9eff;font-size:.7rem;opacity:.7}
+    .file-list a:hover .play-icon{opacity:1}
+
+    /* 页面加载 */
+    .page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:#03050a;z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .8s ease}
+    .page-loader.hidden{opacity:0;pointer-events:none}
+    .loader-icon{width:36px;height:36px;border:2px solid rgba(74,158,255,.15);border-top-color:#4a9eff;border-radius:50%;animation:spin .8s linear infinite}
+    .loader-text{font-size:.75rem;color:#4a6a8a;letter-spacing:4px;text-transform:uppercase}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* 响应式 */
+    @media(max-width:768px){
+        .page-header{padding:100px 20px 36px}
+        .video-section{margin:24px auto 60px;padding:0 16px}
+        .controls{flex-direction:column}
+        .controls button{width:100%}
+        .file-list{padding:16px 18px}
+        .nav-inner{padding:0 16px}
+        .nav-right{gap:8px}
+    }
+    @media(max-width:480px){
+        .page-header{padding:90px 16px 28px}
+        .page-header h1{font-size:1.5rem}
+        .nav-logo-text .zh{font-size:.78rem}
+        .nav-logo-text .en{font-size:.55rem}
+    }
+    </style>
+</head>
+<body>
+
+<div class="page-loader" id="pageLoader">
+    <div class="loader-icon"></div>
+    <div class="loader-text" data-i18n="loader">感知起源 · 加载中</div>
+</div>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><img src="图片/感知起源图标.png" alt="感知起源"></div>
+            <div class="nav-logo-text">
+                <span class="zh">感知起源</span>
+                <span class="en">Sensing Origin</span>
+            </div>
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="切换主题">&#x263E;</button>
+            <button class="lang-toggle" id="langToggle">EN</button>
+            <a href="index.html" class="nav-back" data-i18n="backHome">← 返回首页</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="tag" data-i18n="techTag">Tech Exchange</div>
+    <h1><span data-i18n="techTitle">技术</span> <span class="highlight" data-i18n="techTitleHL">交流</span></h1>
+    <p class="sub" data-i18n="techSub">技术视频分享、载荷演示与SAR遥感知识交流平台</p>
+</div>
+
+<div class="video-section" id="playerSection">
+    <!-- 播放器 -->
+    <div class="player-wrap">
+        <video id="myPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{"fluid": true}'>
+            <source src="http://124.223.88.48/vod/testuser_test.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- 控制栏 -->
+    <div class="controls">
+        <input id="videoUrl" type="text" placeholder="输入视频文件名，如 testuser_test.mp4"
+               onkeydown="if(event.key==='Enter') playVideo()" data-i18n="inputPH">
+        <button onclick="playVideo()" data-i18n="playBtn">▶ 播放</button>
+    </div>
+
+    <!-- 文件列表 -->
+    <div class="file-list">
+        <h3><span data-i18n="fileListTitle">演示视频列表</span></h3>
+        <a href="#" onclick="playFile('testuser_test.mp4');return false">
+            <span class="play-icon">▶</span> testuser_test.mp4 <span style="color:#5a7a9a;font-size:.72rem">(SAR 载荷测试视频)</span>
+        </a>
+        <a href="#" onclick="playFile('testuser_test.flv');return false">
+            <span class="play-icon">▶</span> testuser_test.flv <span style="color:#5a7a9a;font-size:.72rem">(FLV 格式)</span>
+        </a>
+    </div>
+</div>
+
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script>
+(function() {
+    var i18nData = {
+        zh: {
+            techTag: 'Tech Exchange',
+            techTitle: '技术',
+            techTitleHL: '交流',
+            techSub: '技术视频分享、载荷演示与SAR遥感知识交流平台',
+            backHome: '← 返回首页',
+            loader: '感知起源 · 加载中',
+            inputPH: '输入视频文件名，如 testuser_test.mp4',
+            playBtn: '▶ 播放',
+            fileListTitle: '📁 演示视频列表'
+        },
+        en: {
+            techTag: 'Tech Exchange',
+            techTitle: 'Tech',
+            techTitleHL: 'Exchange',
+            techSub: 'Technical video sharing, payload demos & SAR remote sensing knowledge exchange',
+            backHome: '← Home',
+            loader: 'Sensing Origin · Loading',
+            inputPH: 'Enter filename, e.g. testuser_test.mp4',
+            playBtn: '▶ Play',
+            fileListTitle: '📁 Demo Videos'
+        }
+    };
+
+    var currentLang = 'zh';
+    var currentTheme = 'dark';
+    var loader = document.getElementById('pageLoader');
+    var themeBtn = document.getElementById('themeToggle');
+    var langBtn = document.getElementById('langToggle');
+
+    function applyLang(lang) {
+        currentLang = lang;
+        document.body.setAttribute('data-lang', lang);
+        langBtn.textContent = lang === 'zh' ? 'EN' : '中';
+        var t = i18nData[lang];
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        localStorage.setItem('so-tech-lang', lang);
+    }
+
+    function applyTheme(theme) {
+        currentTheme = theme;
+        document.body.classList.toggle('light-theme', theme === 'light');
+        themeBtn.innerHTML = theme === 'light' ? '&#x2600;' : '&#x263E;';
+        localStorage.setItem('so-tech-theme', theme);
+    }
+
+    themeBtn.addEventListener('click', function() {
+        applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+    langBtn.addEventListener('click', function() {
+        applyLang(currentLang === 'zh' ? 'en' : 'zh');
+    });
+
+    applyTheme(localStorage.getItem('so-tech-theme') || 'dark');
+    applyLang(localStorage.getItem('so-tech-lang') || 'zh');
+
+    setTimeout(function() {
+        if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(function() { loader.style.display = 'none'; }, 800);
+        }
+    }, 200);
+
+    // 播放器
+    var player = videojs('myPlayer');
+
+    window.playVideo = function() {
+        var input = document.getElementById('videoUrl');
+        var file = input.value.trim();
+        if (!file) return;
+        playFile(file);
+    };
+
+    window.playFile = function(filename) {
+        var url = 'http://124.223.88.48/vod/' + filename;
+        player.src({ src: url, type: 'video/mp4' });
+        player.play();
+        // 更新输入框
+        var input = document.getElementById('videoUrl');
+        if (input) input.value = filename;
+    };
+})();
+</script>
+</body>
+</html>
