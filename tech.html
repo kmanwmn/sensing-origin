@@ -334,6 +334,7 @@
         if (!v) return;
 
         gridView.style.display = 'none';
+        detailView.style.display = '';          // 清除 backToGrid 可能设置的 display:none
         detailView.classList.add('active');
 
         var title = v.title[currentLang] || v.title.zh;
@@ -354,7 +355,10 @@
 
     // ===== 返回列表 =====
     function backToGrid() {
-        if (player) player.pause();
+        if (player) {
+            player.pause();
+            player.reset();                     // 清除播放器状态，避免下次播放异常
+        }
         detailView.classList.remove('active');
         detailView.style.display = 'none';
         gridView.style.display = 'block';
