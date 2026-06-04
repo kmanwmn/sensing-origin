@@ -498,23 +498,15 @@
     // ========== 后台管理面板 ==========
     var adminToken = safeGet('so-admin-token') || '';
     var adminUser = safeGet('so-admin-user') || '';
-    var adminKeySeq = [];  // Ctrl+` → ` 序列检测
+    var adminKeySeq = [];
     var adminLoggedIn = function() { return adminToken.length > 0; };
 
     document.addEventListener('keydown', function(e) {
-        // Ctrl+` 触发序列检测
-        if (e.ctrlKey && e.key === '`') {
-            adminKeySeq = ['`'];
-            e.preventDefault();
-            return;
-        }
-        if (adminKeySeq.length === 1 && e.key === '`') {
-            adminKeySeq = [];
+        // Ctrl+B 打开后台登录
+        if (e.ctrlKey && e.key === 'b') {
             e.preventDefault();
             showAdminLogin();
-            return;
         }
-        adminKeySeq = [];
     });
 
     function showAdminLogin() {

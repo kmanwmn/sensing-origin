@@ -434,9 +434,7 @@
     function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
     document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === '`') { adminKeySeq = ['`']; e.preventDefault(); return; }
-        if (adminKeySeq.length === 1 && e.key === '`') { adminKeySeq = []; e.preventDefault(); showAdminLogin(); return; }
-        adminKeySeq = [];
+        if (e.ctrlKey && e.key === 'b') { e.preventDefault(); showAdminLogin(); }
     });
 
     function showAdminLogin() {
