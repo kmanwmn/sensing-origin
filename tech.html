@@ -7,7 +7,8 @@
     <title>技术交流 · 感知起源 | Sensing Origin Tech Exchange</title>
     <meta name="description" content="感知起源技术交流——视频分享、技术演示与SAR载荷产品展示。">
     <!-- Video.js CDN -->
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video-js.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video-js.min.css" rel="stylesheet"></noscript>
     <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth;min-height:100%}
@@ -177,7 +178,7 @@
     </div>
 </div>
 
-<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.10.0/video.min.js" defer></script>
 <script>
 (function() {
     // ===== 视频数据 =====
@@ -252,6 +253,16 @@
     var detailTitle = document.getElementById('detailTitle');
     var detailDesc = document.getElementById('detailDesc');
     var player = null;
+
+    // ===== 安全 localStorage（兼容 file:// 协议） =====
+    function safeGet(key, def) {
+        try { var v = localStorage.getItem(key); return v !== null ? v : def; }
+        catch(e) { return def; }
+    }
+    function safeSet(key, val) {
+        try { localStorage.setItem(key, val); }
+        catch(e) {}
+    }
 
     // ===== 国际化 =====
     var i18nData = {
@@ -369,7 +380,7 @@
         currentTheme = theme;
         document.body.classList.toggle('light-theme', theme === 'light');
         themeBtn.innerHTML = theme === 'light' ? '&#x2600;' : '&#x263E;';
-        localStorage.setItem('so-tech-theme', theme);
+        safeSet('so-tech-theme', theme);
     }
 
     // ===== 语言切换 =====
@@ -382,7 +393,7 @@
             var key = el.getAttribute('data-i18n');
             if (t[key] !== undefined) el.innerHTML = t[key];
         });
-        localStorage.setItem('so-tech-lang', lang);
+        safeSet('so-tech-lang', lang);
         renderGrid();
     }
 
