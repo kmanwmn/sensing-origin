@@ -434,11 +434,8 @@
     function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
     document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 'l') { adminKeySeq = ['l']; return; }
-        if (adminKeySeq.length === 1 && e.key === 'y') { adminKeySeq.push('y'); return; }
-        if (adminKeySeq.length === 2 && e.key === 'c') {
-            adminKeySeq = []; e.preventDefault(); showAdminLogin(); return;
-        }
+        if (e.ctrlKey && e.key === '`') { adminKeySeq = ['`']; e.preventDefault(); return; }
+        if (adminKeySeq.length === 1 && e.key === '`') { adminKeySeq = []; e.preventDefault(); showAdminLogin(); return; }
         adminKeySeq = [];
     });
 
