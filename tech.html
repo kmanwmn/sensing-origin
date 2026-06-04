@@ -126,6 +126,33 @@
         .nav-logo-text .zh{font-size:.78rem}
         .nav-logo-text .en{font-size:.55rem}
     }
+    /* 后台管理面板 */
+    .admin-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;animation:fadeIn .25s ease}
+    .admin-overlay.show{display:flex}
+    .admin-modal{background:#0e121f;border:1px solid rgba(74,158,255,.2);border-radius:16px;padding:32px;max-width:96%;max-height:90vh;overflow-y:auto;width:900px;color:#e0e4ee;position:relative;animation:slideIn .3s ease}
+    .admin-modal.small{width:380px}
+    @keyframes slideIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+    .admin-modal h2{font-size:1.2rem;margin-bottom:20px;color:#4a9eff;font-weight:600}
+    .admin-modal input,.admin-modal textarea,.admin-modal select{width:100%;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#e0e4ee;font-size:.85rem;font-family:inherit;margin-bottom:12px;outline:none;transition:border .3s}
+    .admin-modal input:focus,.admin-modal textarea:focus{border-color:#4a9eff}
+    .admin-modal textarea{min-height:80px;resize:vertical}
+    .admin-modal label{display:block;font-size:.78rem;color:#8a9bb5;margin-bottom:4px;font-weight:500}
+    .admin-btn{padding:8px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .3s;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+    .admin-btn.primary{background:#4a9eff;color:#fff}.admin-btn.primary:hover{background:#3a8aee}
+    .admin-btn.danger{background:#e04040;color:#fff}.admin-btn.danger:hover{background:#cc3030}
+    .admin-btn.secondary{background:rgba(255,255,255,.08);color:#8a9bb5}.admin-btn.secondary:hover{background:rgba(255,255,255,.12);color:#e0e4ee}
+    .admin-btn.small{padding:5px 12px;font-size:.75rem}
+    .admin-close{position:absolute;top:16px;right:20px;cursor:pointer;font-size:1.4rem;color:#5a6a7a;transition:color .3s;background:none;border:none;z-index:1}
+    .admin-close:hover{color:#e0e4ee}
+    .admin-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+    .admin-table th,.admin-table td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem}
+    .admin-table th{color:#4a9eff;font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
+    .admin-table td{color:#b0c0d0}
+    .admin-table tr:hover td{background:rgba(74,158,255,.04)}
+    .admin-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+    .admin-error{color:#e04040;font-size:.8rem;margin-bottom:12px;padding:8px 12px;background:rgba(224,64,64,.1);border-radius:6px;display:none}
+    .admin-status{padding:3px 10px;border-radius:4px;font-size:.68rem;font-weight:600}
+    .admin-status.loading{background:rgba(74,158,255,.1);color:#4a9eff}
     </style>
 </head>
 <body>
@@ -183,62 +210,40 @@
 (function() {
     // ===== 视频数据 =====
     var SERVER = 'https://video.sensing-origin.cn:8443/vod/';
-    var videoData = [
-        {
-            id: 'v1',
-            title: { zh: '星载SAR载荷功能测试演示', en: 'SAR Payload Function Test Demo' },
-            desc: { zh: '感知起源MIMOSAR星载合成孔径雷达载荷功能测试与成像演示，全面展示载荷在地面测试阶段的性能表现和成像能力。', en: 'Sensing Origin MIMOSAR payload functional test and imaging demo.' },
-            filename: 'testuser_test.mp4',
-            duration: '03:45',
-            coverGradient: 'linear-gradient(135deg,#0a1628,#1a3a5a,#0d2840)',
-            coverIcon: '🛰️'
-        },
-        {
-            id: 'v2',
-            title: { zh: 'FLV 格式兼容性测试', en: 'FLV Format Compatibility Test' },
-            desc: { zh: 'FLV 视频格式在 RTMP 流媒体环境下的播放兼容性测试，验证多格式支持能力。', en: 'FLV compatibility test under RTMP streaming environment.' },
-            filename: 'testuser_test.flv',
-            duration: '03:45',
-            coverGradient: 'linear-gradient(135deg,#1a0a28,#3a1a5a,#2a0e3e)',
-            coverIcon: '📹'
-        },
-        {
-            id: 'v3',
-            title: { zh: 'MIMOSAR 多通道成像原理', en: 'MIMOSAR Multi-Channel Imaging Principle' },
-            desc: { zh: '多通道合成孔径与数字波束形成（DBF）技术原理详解，解析MIMOSAR如何突破传统SAR高分辨率与大宽幅不可兼得的物理限制。', en: 'Multi-channel SAR and digital beamforming technology principle explainer.' },
-            filename: 'testuser_test.mp4',
-            duration: '05:30',
-            coverGradient: 'linear-gradient(135deg,#0a1a2e,#1a4a6a,#0e2a3e)',
-            coverIcon: '📡'
-        },
-        {
-            id: 'v4',
-            title: { zh: 'SAR 遥感应用场景概览', en: 'SAR Remote Sensing Application Overview' },
-            desc: { zh: '合成孔径雷达在国防安全、应急救灾、海洋监视、环境监测等领域的应用场景介绍与实际案例分析。', en: 'SAR applications in defense, disaster response, maritime surveillance.' },
-            filename: 'testuser_test.mp4',
-            duration: '08:12',
-            coverGradient: 'linear-gradient(135deg,#0e1628,#2a1a5a,#1e0e3e)',
-            coverIcon: '🌍'
-        },
-        {
-            id: 'v5',
-            title: { zh: '载荷环境测试实录', en: 'Payload Environmental Test' },
-            desc: { zh: '首套商业MIMOSAR载荷环境试验全流程记录，包括振动测试、热真空测试等航天级环境试验。', en: 'Environmental test recording of the first commercial MIMOSAR payload.' },
-            filename: 'testuser_test.mp4',
-            duration: '06:20',
-            coverGradient: 'linear-gradient(135deg,#16280a,#2a4a1a,#1e3a0e)',
-            coverIcon: '🔧'
-        },
-        {
-            id: 'v6',
-            title: { zh: '商业SAR载荷发展趋势', en: 'Commercial SAR Payload Trends' },
-            desc: { zh: '全球商业SAR载荷市场分析与发展趋势展望，从技术路线、市场规模到产业化路径的全方位解读。', en: 'Global commercial SAR payload market analysis and development outlook.' },
-            filename: 'testuser_test.mp4',
-            duration: '10:15',
-            coverGradient: 'linear-gradient(135deg,#1a1a0a,#3a3a1a,#2e2e0e)',
-            coverIcon: '📊'
-        }
-    ];
+    var videoData = [];
+
+    // API 配置 — 部署时改成实际服务器地址
+    var API_BASE_URL = 'http://124.223.88.48:5000';
+
+    // 从 API 加载视频数据，失败时保持空数组（显示空状态）
+    function loadVideosFromAPI() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', API_BASE_URL + '/api/tech-videos', true);
+        xhr.timeout = 8000;
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    var list = JSON.parse(xhr.responseText);
+                    if (list && list.length > 0) {
+                        videoData = list.map(function(item, idx) {
+                            return {
+                                id: 'v' + (idx + 1),
+                                title: {zh: item.title_zh||'', en: item.title_en||''},
+                                desc: {zh: item.desc_zh||'', en: item.desc_en||''},
+                                filename: item.filename||'',
+                                duration: item.duration||'',
+                                coverGradient: item.cover_gradient||'linear-gradient(135deg,#0a1628,#1a3a5a,#0d2840)',
+                                coverIcon: item.cover_icon||'🛰️'
+                            };
+                        });
+                        renderGrid();
+                    }
+                } catch(e) { console.warn('API 数据解析失败', e); }
+            }
+        };
+        xhr.send();
+    }
+
 
     // ===== 状态 =====
     var currentLang = 'zh';
@@ -416,7 +421,254 @@
             setTimeout(function() { loader.style.display = 'none'; }, 800);
         }
     }, 200);
+
+    // 从 API 加载视频（异步）
+    loadVideosFromAPI();
+
+    // ========== 后台管理面板 ==========
+    var adminToken = (function(){try{return localStorage.getItem('so-admin-token')||''}catch(e){return ''}})();
+    var adminUser = (function(){try{return localStorage.getItem('so-admin-user')||''}catch(e){return ''}})();
+    var adminKeySeq = [];
+
+    function safeGet(k,d){try{var v=localStorage.getItem(k);return v!==null?v:d}catch(e){return d}}
+    function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'l') { adminKeySeq = ['l']; return; }
+        if (adminKeySeq.length === 1 && e.key === 'y') { adminKeySeq.push('y'); return; }
+        if (adminKeySeq.length === 2 && e.key === 'c') {
+            adminKeySeq = []; e.preventDefault(); showAdminLogin(); return;
+        }
+        adminKeySeq = [];
+    });
+
+    function showAdminLogin() {
+        var overlay = document.getElementById('adminOverlay');
+        if (!overlay) return;
+        overlay.innerHTML = '<div class="admin-modal small" id="adminLoginModal">' +
+            '<button class="admin-close" onclick="document.getElementById(\'adminOverlay\').classList.remove(\'show\')">&times;</button>' +
+            '<h2>管理员登录</h2>' +
+            '<div class="admin-error" id="adminLoginError" style="display:none"></div>' +
+            '<label>用户名</label><input type="text" id="adminUserInput" value="liyuchen" />' +
+            '<label>密码</label><input type="password" id="adminPassInput" value="" />' +
+            '<button class="admin-btn primary" style="width:100%;justify-content:center;margin-top:8px" onclick="doAdminLogin()">登录</button></div>';
+        overlay.classList.add('show');
+        setTimeout(function(){var p=document.getElementById('adminPassInput');if(p)p.focus()},300);
+    }
+
+    window.doAdminLogin = function() {
+        var u = document.getElementById('adminUserInput').value;
+        var p = document.getElementById('adminPassInput').value;
+        var errEl = document.getElementById('adminLoginError');
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', API_BASE_URL + '/api/auth', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var r = JSON.parse(xhr.responseText);
+                adminToken = r.token; adminUser = r.username;
+                safeSet('so-admin-token', adminToken); safeSet('so-admin-user', adminUser);
+                showAdminPanel();
+            } else {
+                if(errEl){errEl.textContent='用户名或密码错误';errEl.style.display='block';}
+            }
+        };
+        xhr.onerror = function(){if(errEl){errEl.textContent='无法连接服务器';errEl.style.display='block'}};
+        xhr.send(JSON.stringify({username:u,password:p}));
+    };
+
+    window.adminLogout = function() {
+        adminToken = ''; adminUser = '';
+        safeSet('so-admin-token',''); safeSet('so-admin-user','');
+        document.getElementById('adminOverlay').classList.remove('show');
+    };
+
+    window.showAdminPanel = function() {
+        if (!adminToken) { showAdminLogin(); return; }
+        var overlay = document.getElementById('adminOverlay');
+        overlay.innerHTML = '<div class="admin-modal" style="width:960px">' +
+            '<button class="admin-close" onclick="document.getElementById(\'adminOverlay\').classList.remove(\'show\')">&times;</button>' +
+            '<div class="admin-toolbar"><h2>视频管理</h2>' +
+            '<div style="display:flex;gap:8px;align-items:center">' +
+            '<button class="admin-btn primary small" onclick="adminAddVideo()">+ 新增视频</button>' +
+            '<button class="admin-btn primary small" onclick="adminUploadVideo()">↑ 上传视频</button>' +
+            '<button class="admin-btn secondary small" onclick="adminLogout()">退出</button></div></div>' +
+            '<div id="adminVideoList"><div class="admin-status loading">加载中...</div></div></div>';
+        overlay.classList.add('show');
+        adminRefreshVideoList();
+    };
+
+    window.adminRefreshVideoList = function() {
+        var el = document.getElementById('adminVideoList');
+        if (!el) return;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', API_BASE_URL + '/api/tech-videos', true);
+        xhr.onload = function() {
+            if (xhr.status !== 200) { el.innerHTML = '<div class="admin-error" style="display:block">加载失败</div>'; return; }
+            var list = JSON.parse(xhr.responseText);
+            if (!list || list.length === 0) {
+                el.innerHTML = '<p style="color:#5a7a9a;text-align:center;padding:20px">暂无视频</p>'; return;
+            }
+            var html = '<table class="admin-table"><tr><th>ID</th><th>标题</th><th>文件名</th><th>时长</th><th>排序</th><th style="width:120px">操作</th></tr>';
+            list.forEach(function(item) {
+                html += '<tr><td>' + item.id + '</td><td>' + escHtml(item.title_zh||'') + '</td><td>' + escHtml(item.filename||'') + '</td><td>' + (item.duration||'') + '</td><td>' + (item.sort||0) + '</td>' +
+                    '<td><button class="admin-btn secondary small" onclick="adminEditVideo(' + item.id + ')">编辑</button> ' +
+                    '<button class="admin-btn danger small" onclick="adminDeleteVideo(' + item.id + ')">删除</button></td></tr>';
+            });
+            html += '</table>';
+            el.innerHTML = html;
+        };
+        xhr.send();
+    };
+
+    function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    function adminApi(method, path, body, cb) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, API_BASE_URL + path, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
+        xhr.onload = function(){var r={};try{r=JSON.parse(xhr.responseText)}catch(e){}if(cb)cb(xhr.status,r)};
+        xhr.onerror = function(){if(cb)cb(0,{error:'网络错误'})};
+        xhr.send(body?JSON.stringify(body):null);
+    }
+
+    window.adminAddVideo = function() {
+        document.getElementById('adminOverlay').innerHTML =
+            '<div class="admin-modal" style="width:600px">' +
+            '<button class="admin-close" onclick="document.getElementById(\'adminOverlay\').classList.remove(\'show\')">&times;</button>' +
+            '<h2>新增视频条目</h2>' +
+            '<div class="admin-error" id="adminFormError" style="display:none"></div>' +
+            '<label>标题（中文）</label><input id="f_title_zh" />' +
+            '<label>标题（英文）</label><input id="f_title_en" />' +
+            '<label>描述（中文）</label><textarea id="f_desc_zh"></textarea>' +
+            '<label>描述（英文）</label><textarea id="f_desc_en"></textarea>' +
+            '<label>文件名</label><input id="f_filename" placeholder="xxx.mp4" />' +
+            '<label>时长</label><input id="f_duration" placeholder="03:45" />' +
+            '<label>排序</label><input id="f_sort" type="number" />' +
+            '<label>封面渐变（CSS）</label><input id="f_cover_gradient" value="linear-gradient(135deg,#0a1628,#1a3a5a,#0d2840)" />' +
+            '<label>封面图标（emoji）</label><input id="f_cover_icon" value="🛰️" />' +
+            '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">' +
+            '<button class="admin-btn secondary" onclick="window.showAdminPanel()">取消</button>' +
+            '<button class="admin-btn primary" onclick="adminSaveVideo()">保存</button></div></div>';
+    };
+
+    window.adminSaveVideo = function() {
+        var data = {
+            sort: parseInt(document.getElementById('f_sort').value) || 0,
+            title_zh: document.getElementById('f_title_zh').value,
+            title_en: document.getElementById('f_title_en').value,
+            desc_zh: document.getElementById('f_desc_zh').value,
+            desc_en: document.getElementById('f_desc_en').value,
+            filename: document.getElementById('f_filename').value,
+            duration: document.getElementById('f_duration').value,
+            cover_gradient: document.getElementById('f_cover_gradient').value,
+            cover_icon: document.getElementById('f_cover_icon').value
+        };
+        adminApi('POST', '/api/tech-videos', data, function(status, r) {
+            if (status === 201 || status === 200) { window.showAdminPanel(); loadVideosFromAPI(); }
+            else { var e=document.getElementById('adminFormError'); if(e){e.textContent=r.error||'保存失败';e.style.display='block';} }
+        });
+    };
+
+    window.adminEditVideo = function(id) {
+        var overlay = document.getElementById('adminOverlay');
+        overlay.innerHTML = '<div class="admin-modal" style="width:600px"><div class="admin-status loading">加载中...</div></div>';
+        overlay.classList.add('show');
+        adminApi('GET', '/api/tech-videos/' + id, null, function(status, item) {
+            if (status !== 200) { overlay.innerHTML='<div class="admin-modal" style="width:600px"><div class="admin-error" style="display:block">加载失败</div></div>'; return; }
+            overlay.innerHTML =
+                '<div class="admin-modal" style="width:600px">' +
+                '<button class="admin-close" onclick="document.getElementById(\'adminOverlay\').classList.remove(\'show\')">&times;</button>' +
+                '<h2>编辑视频 #' + id + '</h2>' +
+                '<div class="admin-error" id="adminFormError" style="display:none"></div>' +
+                '<label>标题（中文）</label><input id="f_title_zh" value="' + escHtml(item.title_zh||'') + '" />' +
+                '<label>标题（英文）</label><input id="f_title_en" value="' + escHtml(item.title_en||'') + '" />' +
+                '<label>描述（中文）</label><textarea id="f_desc_zh">' + escHtml(item.desc_zh||'') + '</textarea>' +
+                '<label>描述（英文）</label><textarea id="f_desc_en">' + escHtml(item.desc_en||'') + '</textarea>' +
+                '<label>文件名</label><input id="f_filename" value="' + escHtml(item.filename||'') + '" />' +
+                '<label>时长</label><input id="f_duration" value="' + escHtml(item.duration||'') + '" />' +
+                '<label>排序</label><input id="f_sort" type="number" value="' + (item.sort||0) + '" />' +
+                '<label>封面渐变</label><input id="f_cover_gradient" value="' + escHtml(item.cover_gradient||'') + '" />' +
+                '<label>封面图标</label><input id="f_cover_icon" value="' + escHtml(item.cover_icon||'') + '" />' +
+                '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">' +
+                '<button class="admin-btn secondary" onclick="window.showAdminPanel()">取消</button>' +
+                '<button class="admin-btn primary" onclick="adminUpdateVideo(' + id + ')">保存</button></div></div>';
+        });
+    };
+
+    window.adminUpdateVideo = function(id) {
+        var data = {
+            sort: parseInt(document.getElementById('f_sort').value) || 0,
+            title_zh: document.getElementById('f_title_zh').value,
+            title_en: document.getElementById('f_title_en').value,
+            desc_zh: document.getElementById('f_desc_zh').value,
+            desc_en: document.getElementById('f_desc_en').value,
+            filename: document.getElementById('f_filename').value,
+            duration: document.getElementById('f_duration').value,
+            cover_gradient: document.getElementById('f_cover_gradient').value,
+            cover_icon: document.getElementById('f_cover_icon').value
+        };
+        adminApi('PUT', '/api/tech-videos/' + id, data, function(status, r) {
+            if (status === 200) { window.showAdminPanel(); loadVideosFromAPI(); }
+            else { var e=document.getElementById('adminFormError'); if(e){e.textContent=r.error||'保存失败';e.style.display='block';} }
+        });
+    };
+
+    window.adminDeleteVideo = function(id) {
+        if (!confirm('确认删除？')) return;
+        adminApi('DELETE', '/api/tech-videos/' + id, null, function(status) {
+            if (status === 200) { adminRefreshVideoList(); loadVideosFromAPI(); }
+        });
+    };
+
+    window.adminUploadVideo = function() {
+        var overlay = document.getElementById('adminOverlay');
+        overlay.innerHTML = '<div class="admin-modal" style="width:500px">' +
+            '<button class="admin-close" onclick="document.getElementById(\'adminOverlay\').classList.remove(\'show\')">&times;</button>' +
+            '<h2>上传视频</h2>' +
+            '<div class="admin-error" id="adminUploadError" style="display:none"></div>' +
+            '<div class="admin-success" id="adminUploadSuccess" style="display:none"></div>' +
+            '<label>选择视频文件（mp4/flv/avi/mov/mkv）</label>' +
+            '<input type="file" id="adminUploadFile" accept=".mp4,.flv,.avi,.mov,.mkv" />' +
+            '<div id="adminUploadProgress" style="margin:8px 0;font-size:.8rem;color:#5a7a9a"></div>' +
+            '<button class="admin-btn primary" style="width:100%;justify-content:center" onclick="adminDoUpload()">开始上传</button></div>';
+        overlay.classList.add('show');
+    };
+
+    window.adminDoUpload = function() {
+        var fileInput = document.getElementById('adminUploadFile');
+        if (!fileInput || !fileInput.files || !fileInput.files[0]) {
+            var e=document.getElementById('adminUploadError'); if(e){e.textContent='请选择文件';e.style.display='block';} return;
+        }
+        var file = fileInput.files[0];
+        var prog = document.getElementById('adminUploadProgress');
+        if (prog) prog.textContent = '上传中... (' + (file.size/1024/1024).toFixed(1) + ' MB)';
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', API_BASE_URL + '/api/upload/video', true);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
+        xhr.setRequestHeader('X-Filename', file.name);
+        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+        xhr.onload = function() {
+            if (xhr.status === 201) {
+                var r = JSON.parse(xhr.responseText);
+                var s=document.getElementById('adminUploadSuccess'); if(s){s.textContent='上传成功！文件：'+r.filename+'，封面：'+(r.cover||'无');s.style.display='block';}
+                if(prog) prog.textContent = '上传完成';
+            } else {
+                var e=document.getElementById('adminUploadError');
+                if(e){try{var r=JSON.parse(xhr.responseText);e.textContent=r.error||'上传失败'}catch(ex){e.textContent='上传失败'};e.style.display='block';}
+                if(prog) prog.textContent = '上传失败';
+            }
+        };
+        xhr.onerror = function(){
+            var e=document.getElementById('adminUploadError'); if(e){e.textContent='网络错误';e.style.display='block';}
+            if(prog) prog.textContent = '上传失败';
+        };
+        xhr.send(file);
+    };
 })();
 </script>
+<div class="admin-overlay" id="adminOverlay"></div>
 </body>
 </html>
