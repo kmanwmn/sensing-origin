@@ -434,7 +434,7 @@
     function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
     document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 'b') { e.preventDefault(); showAdminLogin(); }
+        if (e.ctrlKey && e.key === '`') { e.preventDefault(); showAdminLogin(); }
     });
 
     function showAdminLogin() {

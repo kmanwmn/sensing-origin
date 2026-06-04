@@ -502,8 +502,8 @@
     var adminLoggedIn = function() { return adminToken.length > 0; };
 
     document.addEventListener('keydown', function(e) {
-        // Ctrl+B 打开后台登录
-        if (e.ctrlKey && e.key === 'b') {
+        // Ctrl+` 打开后台登录
+        if (e.ctrlKey && e.key === '`') {
             e.preventDefault();
             showAdminLogin();
         }
