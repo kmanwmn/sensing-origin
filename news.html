@@ -257,12 +257,6 @@
                     if (list && list.length > 0) {
                         // 转换 API 扁平结构为前端嵌套格式
                         newsData = list.map(function(item) {
-                            // images: API 存的是字符串数组 ["a.jpg","b.jpg"] 或对象数组
-                            var imgs = item.images;
-                            if (!imgs || !Array.isArray(imgs)) imgs = [];
-                            imgs = imgs.map(function(img) {
-                                return typeof img === 'string' ? {src:img,caption:''} : img;
-                            });
                             return {
                                 id: 'news-' + item.id,
                                 sort: item.sort || 0,
@@ -271,7 +265,6 @@
                                 title: {zh:item.title_zh||'', en:item.title_en||''},
                                 summary: {zh:item.summary_zh||'', en:item.summary_en||''},
                                 imgGradient: item.imgGradient || 'linear-gradient(135deg,#0a1628,#1a2a4a,#0d1e38)',
-                                images: imgs,
                                 source: {zh:item.source_zh||'感知起源', en:item.source_en||'Sensing Origin'},
                                 sourceUrl: item.sourceUrl || '#',
                                 content: {zh:item.content_zh||[], en:item.content_en||[]}
@@ -341,6 +334,15 @@
     function toggleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
     function toggleLang() { applyLang(currentLang === 'zh' ? 'en' : 'zh'); }
 
+    // 从正文 content 数组中查找第一张图片（用于封面）
+    function firstImg(content) {
+        if (!content) return null;
+        for (var ci = 0; ci < content.length; ci++) {
+            if (content[ci].type === 'img') return content[ci];
+        }
+        return null;
+    }
+
     var sortAscending = false;
     var searchQuery = '';
 
@@ -369,9 +371,10 @@
         var filtered = getFilteredData();
         for (var i = 0; i < filtered.length; i++) {
             var item = filtered[i];
+            var cover = firstImg(item.content[lang] || item.content.zh);
             html += '<div class="news-card" data-id="' + item.id + '">';
-            if (item.images && item.images[0]) {
-                html += '<div class="card-img"><img src="' + item.images[0].src + '" alt="' + item.images[0].caption + '" style="width:100%;height:100%;object-fit:cover;display:block"><div class="img-overlay"></div><div class="card-date">' + item.date[lang] + '</div></div>';
+            if (cover) {
+                html += '<div class="card-img"><img src="' + cover.src + '" alt="' + (cover.caption||'') + '" style="width:100%;height:100%;object-fit:cover;display:block"><div class="img-overlay"></div><div class="card-date">' + item.date[lang] + '</div></div>';
             }
             html += '<div class="card-body"><div class="card-badge">' + item.badge[lang] + '</div><h3>' + item.title[lang] + '</h3><p>' + item.summary[lang] + '</p>';
             html += '<div class="card-footer"><span class="card-source">' + (lang==='zh'?'来源：':'Source: ') + item.source[lang] + '</span><span class="card-readmore">' + i18nData[lang].readMore + '</span></div></div></div>';
@@ -398,17 +401,17 @@
         if (!item) return;
         var lang = currentLang, t = i18nData[lang];
         var content = item.content[lang] || item.content['zh'];
+        var hero = firstImg(content);
         var html = '<div class="detail-header"><div class="detail-badge">' + item.badge[lang] + '</div><div class="detail-date">' + item.date[lang] + '</div><h1>' + item.title[lang] + '</h1><div class="detail-source">' + t.source + '：<a href="' + item.sourceUrl + '" target="_blank">' + item.source[lang] + '</a></div></div>';
-        // Hero图：有真实图片就用第一张
-        if (item.images && item.images[0]) {
-            html += '<div class="detail-hero-img" style="overflow:hidden"><img src="' + item.images[0].src + '" alt="' + item.images[0].caption + '" style="width:100%;height:100%;object-fit:cover"></div>';
+        // Hero图：用正文第一张图片，没有则用渐变色
+        if (hero) {
+            html += '<div class="detail-hero-img" style="overflow:hidden"><img src="' + hero.src + '" alt="' + (hero.caption||'') + '" style="width:100%;height:100%;object-fit:cover"></div>';
         } else {
             html += '<div class="detail-hero-img" style="background:' + item.imgGradient + '"><div class="img-visual"></div></div>';
         }
         // 正文
         html += '<div class="detail-body">';
         if (content) {
-            var imgIdx = 0;
             for (var ci = 0; ci < content.length; ci++) {
                 var b = content[ci];
                 if (b.type === 'p') html += '<p>' + b.text + '</p>';
@@ -416,13 +419,11 @@
                 else if (b.type === 'ul') { html += '<ul>'; for (var ui = 0; ui < b.items.length; ui++) html += '<li>' + b.items[ui] + '</li>'; html += '</ul>'; }
                 else if (b.type === 'highlight') html += '<div class="highlight-box">' + b.text + '</div>';
                 else if (b.type === 'img') {
-                    var imgData = item.images && item.images[imgIdx] ? item.images[imgIdx] : null;
-                    if (imgData) {
-                        html += '<div class="img-inline" style="overflow:hidden"><img src="' + imgData.src + '" alt="' + (imgData.caption||'') + '" style="width:100%;height:100%;object-fit:cover;display:block">' + (imgData.caption ? '<div class="img-caption">' + imgData.caption + '</div>' : '') + '</div>';
+                    if (b.src) {
+                        html += '<div class="img-inline" style="overflow:hidden"><img src="' + b.src + '" alt="' + (b.caption||'') + '" style="width:100%;height:100%;object-fit:cover;display:block">' + (b.caption ? '<div class="img-caption">' + b.caption + '</div>' : '') + '</div>';
                     } else {
-                        html += '<div class="img-inline" style="background:' + item.imgGradient + '"><div class="img-visual" style="font-size:2.5rem">' + b.text + '</div></div>';
+                        html += '<div class="img-inline" style="background:' + item.imgGradient + '"><div class="img-visual" style="font-size:2.5rem">' + (b.caption||b.text||'') + '</div></div>';
                     }
-                    imgIdx++;
                 }
             }
         }
@@ -634,9 +635,9 @@
             '<label>来源（中文）</label><input id="f_source_zh" />' +
             '<label>来源（英文）</label><input id="f_source_en" />' +
             '<label>来源链接</label><input id="f_sourceUrl" />' +
-            '<label>图片路径（JSON 数组，如 ["图片/a.jpg"]）</label><textarea class="json-editor" id="f_images"></textarea>' +
-            '<label>正文内容（中文，JSON 数组）</label><textarea class="json-editor" id="f_content_zh"></textarea>' +
-            '<label>正文内容（英文，JSON 数组）</label><textarea class="json-editor" id="f_content_en"></textarea>' +
+            '<label>图片路径（不再使用，直接在正文中用 {"type":"img","src":"图片/xxx.jpg","caption":"说明"}）</label><textarea class="json-editor" id="f_images"></textarea>' +
+            '<label>正文内容（中文，JSON 数组，图片用 {"type":"img","src":"图片/xxx.jpg","caption":"说明"}）</label><textarea class="json-editor" id="f_content_zh"></textarea>' +
+            '<label>正文内容（英文，JSON 数组，同上）</label><textarea class="json-editor" id="f_content_en"></textarea>' +
             '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">' +
             '<button class="admin-btn secondary" onclick="adminRefreshNewsList();var o=document.getElementById(\'adminOverlay\');o.innerHTML=\'<div class=\\\\\'admin-modal\\\\\' style=\\\\\'width:960px\\\\\'></div>\';window.showAdminPanel()">取消</button>' +
             '<button class="admin-btn primary" onclick="adminSaveNews()">保存</button></div></div>';
@@ -665,9 +666,9 @@
                 '<label>来源（中文）</label><input id="f_source_zh" value="' + escapeHtml(item.source_zh||'') + '" />' +
                 '<label>来源（英文）</label><input id="f_source_en" value="' + escapeHtml(item.source_en||'') + '" />' +
                 '<label>来源链接</label><input id="f_sourceUrl" value="' + escapeHtml(item.sourceUrl||'') + '" />' +
-                '<label>图片路径（JSON 数组）</label><textarea class="json-editor" id="f_images">' + escapeHtml(JSON.stringify(item.images||[], null, 2)) + '</textarea>' +
-                '<label>正文内容（中文，JSON 数组）</label><textarea class="json-editor" id="f_content_zh">' + escapeHtml(JSON.stringify(item.content_zh||[], null, 2)) + '</textarea>' +
-                '<label>正文内容（英文，JSON 数组）</label><textarea class="json-editor" id="f_content_en">' + escapeHtml(JSON.stringify(item.content_en||[], null, 2)) + '</textarea>' +
+                '<label>图片路径（不再使用，直接在正文中用 img 块）</label><textarea class="json-editor" id="f_images">' + escapeHtml(JSON.stringify(item.images||[], null, 2)) + '</textarea>' +
+                '<label>正文内容（中文，JSON 数组，图片用 {"type":"img","src":"图片/xxx.jpg","caption":"说明"}）</label><textarea class="json-editor" id="f_content_zh">' + escapeHtml(JSON.stringify(item.content_zh||[], null, 2)) + '</textarea>' +
+                '<label>正文内容（英文，JSON 数组，同上）</label><textarea class="json-editor" id="f_content_en">' + escapeHtml(JSON.stringify(item.content_en||[], null, 2)) + '</textarea>' +
                 '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">' +
                 '<button class="admin-btn secondary" onclick="window.showAdminPanel()">取消</button>' +
                 '<button class="admin-btn primary" onclick="adminUpdateNews(' + id + ')">保存</button></div></div>';
