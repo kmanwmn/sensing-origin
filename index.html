@@ -509,6 +509,35 @@ body{padding-bottom:0}
 .science-grid{gap:20px}
 .app-grid{gap:16px}
 }
+/* ========== 后台管理面板样式 ========== */
+.admin-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;animation:fadeIn .25s ease}
+.admin-overlay.show{display:flex}
+.admin-modal{background:#0e121f;border:1px solid rgba(74,158,255,.2);border-radius:16px;padding:32px;max-width:96%;max-height:90vh;overflow-y:auto;width:900px;color:#e0e4ee;position:relative;animation:slideIn .3s ease}
+.admin-modal.small{width:380px}
+@keyframes slideIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.admin-modal h2{font-size:1.2rem;margin-bottom:20px;color:#4a9eff;font-weight:600}
+.admin-modal input,.admin-modal textarea,.admin-modal select{width:100%;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#e0e4ee;font-size:.85rem;font-family:inherit;margin-bottom:12px;outline:none;transition:border .3s}
+.admin-modal input:focus,.admin-modal textarea:focus{border-color:#4a9eff}
+.admin-modal textarea{min-height:80px;resize:vertical}
+.admin-modal textarea.json-editor{min-height:200px;font-family:monospace;font-size:.78rem}
+.admin-modal label{display:block;font-size:.78rem;color:#8a9bb5;margin-bottom:4px;font-weight:500}
+.admin-btn{padding:8px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .3s;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.admin-btn.primary{background:#4a9eff;color:#fff}.admin-btn.primary:hover{background:#3a8aee}
+.admin-btn.danger{background:#e04040;color:#fff}.admin-btn.danger:hover{background:#cc3030}
+.admin-btn.secondary{background:rgba(255,255,255,.08);color:#8a9bb5}
+.admin-btn.secondary:hover{background:rgba(255,255,255,.12);color:#e0e4ee}
+.admin-btn.small{padding:5px 12px;font-size:.75rem}
+.admin-close{position:absolute;top:16px;right:20px;cursor:pointer;font-size:1.4rem;color:#5a6a7a;transition:color .3s;background:none;border:none;z-index:1}
+.admin-close:hover{color:#e0e4ee}
+.admin-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+.admin-table th,.admin-table td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem}
+.admin-table th{color:#4a9eff;font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
+.admin-table td{color:#b0c0d0}
+.admin-table tr:hover td{background:rgba(74,158,255,.04)}
+.admin-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.admin-error{color:#e04040;font-size:.8rem;margin-bottom:12px;padding:8px 12px;background:rgba(224,64,64,.1);border-radius:6px;display:none}
+.admin-status{padding:3px 10px;border-radius:4px;font-size:.68rem;font-weight:600}
+.admin-status.loading{background:rgba(74,158,255,.1);color:#4a9eff}
 </style>
 <!-- vConsole 调试工具 连续按 l y c 三个键呼出 -->
 <script src="https://unpkg.com/vconsole@3/dist/vconsole.min.js"></script>
@@ -2154,6 +2183,67 @@ el.style.transform = 'translateY(0)';
 });
 }
 
+})();
+</script>
+
+<div class="admin-overlay" id="adminOverlay"></div>
+<script>
+(function() {
+    var API_BASE_URL = 'http://124.223.88.48:5000';
+    var adminToken = (function(){try{var v=localStorage.getItem('so-admin-token');return v!==null?v:''}catch(e){return ''}})();
+    var adminUser = (function(){try{var v=localStorage.getItem('so-admin-user');return v!==null?v:''}catch(e){return ''}})();
+
+    function safeSet(key, val) {
+        try { localStorage.setItem(key, val); } catch(e) {}
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'b') {
+            e.preventDefault();
+            showAdminLogin();
+        }
+    });
+
+    function showAdminLogin() {
+        var overlay = document.getElementById('adminOverlay');
+        if (!overlay) return;
+        overlay.innerHTML = '<div class="admin-modal small" id="adminLoginModal">' +
+            '<button class="admin-close" onclick="this.closest(\'.admin-overlay\').classList.remove(\'show\')">&times;</button>' +
+            '<h2>管理员登录</h2>' +
+            '<div class="admin-error" id="adminLoginError" style="display:none"></div>' +
+            '<label>用户名</label><input type="text" id="adminUserInput" value="liyuchen" />' +
+            '<label>密码</label><input type="password" id="adminPassInput" value="" />' +
+            '<button class="admin-btn primary" style="width:100%;justify-content:center;margin-top:8px" onclick="doAdminLogin()">登录</button>' +
+            '</div>';
+        overlay.classList.add('show');
+        setTimeout(function() {
+            var p = document.getElementById('adminPassInput');
+            if (p) p.focus();
+        }, 300);
+    }
+
+    window.doAdminLogin = function() {
+        var u = document.getElementById('adminUserInput').value;
+        var p = document.getElementById('adminPassInput').value;
+        var errEl = document.getElementById('adminLoginError');
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', API_BASE_URL + '/api/auth', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var r = JSON.parse(xhr.responseText);
+                safeSet('so-admin-token', r.token);
+                safeSet('so-admin-user', r.username);
+                window.location.href = 'news.html';
+            } else {
+                if (errEl) { errEl.textContent = '用户名或密码错误'; errEl.style.display = 'block'; }
+            }
+        };
+        xhr.onerror = function() {
+            if (errEl) { errEl.textContent = '无法连接服务器'; errEl.style.display = 'block'; }
+        };
+        xhr.send(JSON.stringify({username: u, password: p}));
+    };
 })();
 </script>
 
