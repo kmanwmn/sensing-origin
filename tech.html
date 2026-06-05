@@ -648,17 +648,8 @@
         var fill = document.getElementById('adminUploadFill');
         var label = document.getElementById('adminUploadLabel');
         var sizeMB = (file.size/1024/1024).toFixed(1);
-        if (label) label.textContent = '上传中... (' + sizeMB + ' MB)';
-        if (fill) fill.classList.add('anim');
-
-        // 模拟进度（浏览器跨域上传可能不触发 onprogress，做个降级动画）
-        var simPct = 0;
-        var simTimer = setInterval(function() {
-            simPct += Math.random() * 8 + 1;
-            if (simPct > 85) simPct = 85;
-            if (fill) fill.style.width = Math.round(simPct) + '%';
-            if (label) label.textContent = '上传中 ' + Math.round(simPct) + '% (' + sizeMB + ' MB)';
-        }, 600);
+        if (label) label.textContent = '上传中 0% (0/' + sizeMB + ' MB)';
+        if (fill) { fill.style.width = '0%'; fill.classList.add('anim'); }
 
         var xhr = new XMLHttpRequest();
         xhr.open('POST', API_BASE_URL + '/api/upload/video', true);
@@ -666,18 +657,18 @@
         xhr.setRequestHeader('X-Filename', file.name);
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
 
-        // 尝试监听真实上传进度
         xhr.upload.onprogress = function(e) {
             if (e.lengthComputable && e.total > 0) {
-                clearInterval(simTimer);
                 var pct = Math.round(e.loaded / e.total * 100);
                 if (fill) { fill.style.width = pct + '%'; fill.classList.remove('anim'); }
                 if (label) label.textContent = '上传中 ' + pct + '% (' + (e.loaded/1024/1024).toFixed(1) + '/' + sizeMB + ' MB)';
+            } else {
+                // 总大小未知时显示已传字节数
+                if (label) label.textContent = '上传中... (' + (e.loaded/1024/1024).toFixed(1) + '/' + sizeMB + ' MB)';
             }
         };
 
         xhr.onload = function() {
-            clearInterval(simTimer);
             if (xhr.status === 201) {
                 var r = JSON.parse(xhr.responseText);
                 var s=document.getElementById('adminUploadSuccess'); if(s){s.textContent='上传成功！文件：'+r.filename+'，封面：'+(r.cover||'无');s.style.display='block';}
@@ -687,11 +678,10 @@
                 var e=document.getElementById('adminUploadError');
                 if(e){try{var r=JSON.parse(xhr.responseText);e.textContent=r.error||'上传失败'}catch(ex){e.textContent='上传失败'};e.style.display='block';}
                 if (fill) { fill.style.width = '0%'; fill.classList.remove('anim'); }
-                if (label) label.textContent = '上传失败 ❌';
+                if (label) label.textContent = '上传失败 ❌ (' + xhr.status + ')';
             }
         };
         xhr.onerror = function(){
-            clearInterval(simTimer);
             var e=document.getElementById('adminUploadError'); if(e){e.textContent='网络错误';e.style.display='block';}
             if (fill) { fill.style.width = '0%'; fill.classList.remove('anim'); }
             if (label) label.textContent = '网络错误 ❌';
