@@ -153,6 +153,11 @@
     .admin-error{color:#e04040;font-size:.8rem;margin-bottom:12px;padding:8px 12px;background:rgba(224,64,64,.1);border-radius:6px;display:none}
     .admin-status{padding:3px 10px;border-radius:4px;font-size:.68rem;font-weight:600}
     .admin-status.loading{background:rgba(74,158,255,.1);color:#4a9eff}
+    .progress-bar{width:100%;height:24px;background:rgba(255,255,255,.06);border-radius:12px;overflow:hidden;margin:8px 0;position:relative}
+    .progress-bar .fill{height:100%;width:0%;background:linear-gradient(90deg,#4a9eff,#3a8aee);border-radius:12px;transition:width .3s ease}
+    .progress-bar .label{position:absolute;top:0;left:0;right:0;height:24px;line-height:24px;text-align:center;font-size:.72rem;color:#fff;font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+    body.light-theme .progress-bar{background:rgba(0,0,0,.06)}
+    body.light-theme .progress-bar .label{color:#1a2a3a;text-shadow:none}
     </style>
 </head>
 <body>
@@ -626,7 +631,7 @@
             '<div class="admin-success" id="adminUploadSuccess" style="display:none"></div>' +
             '<label>选择视频文件（mp4/flv/avi/mov/mkv）</label>' +
             '<input type="file" id="adminUploadFile" accept=".mp4,.flv,.avi,.mov,.mkv" />' +
-            '<div id="adminUploadProgress" style="margin:8px 0;font-size:.8rem;color:#5a7a9a"></div>' +
+            '<div class="progress-bar" id="adminUploadProgress"><div class="fill" id="adminUploadFill"></div><div class="label" id="adminUploadLabel">等待上传</div></div>' +
             '<button class="admin-btn primary" style="width:100%;justify-content:center" onclick="adminDoUpload()">开始上传</button></div>';
         overlay.classList.add('show');
     };
@@ -637,28 +642,43 @@
             var e=document.getElementById('adminUploadError'); if(e){e.textContent='请选择文件';e.style.display='block';} return;
         }
         var file = fileInput.files[0];
-        var prog = document.getElementById('adminUploadProgress');
-        if (prog) prog.textContent = '上传中... (' + (file.size/1024/1024).toFixed(1) + ' MB)';
+        var fill = document.getElementById('adminUploadFill');
+        var label = document.getElementById('adminUploadLabel');
+        var progContainer = document.getElementById('adminUploadProgress');
+        if (label) label.textContent = '上传中... 0% (' + (file.size/1024/1024).toFixed(1) + ' MB)';
 
         var xhr = new XMLHttpRequest();
         xhr.open('POST', API_BASE_URL + '/api/upload/video', true);
         xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
         xhr.setRequestHeader('X-Filename', file.name);
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+
+        // 监听上传进度
+        xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                var pct = Math.round(e.loaded / e.total * 100);
+                if (fill) fill.style.width = pct + '%';
+                if (label) label.textContent = '上传中 ' + pct + '% (' + (e.loaded/1024/1024).toFixed(1) + '/' + (e.total/1024/1024).toFixed(1) + ' MB)';
+            }
+        };
+
         xhr.onload = function() {
             if (xhr.status === 201) {
                 var r = JSON.parse(xhr.responseText);
                 var s=document.getElementById('adminUploadSuccess'); if(s){s.textContent='上传成功！文件：'+r.filename+'，封面：'+(r.cover||'无');s.style.display='block';}
-                if(prog) prog.textContent = '上传完成';
+                if (fill) fill.style.width = '100%';
+                if (label) label.textContent = '上传完成 ✅';
             } else {
                 var e=document.getElementById('adminUploadError');
                 if(e){try{var r=JSON.parse(xhr.responseText);e.textContent=r.error||'上传失败'}catch(ex){e.textContent='上传失败'};e.style.display='block';}
-                if(prog) prog.textContent = '上传失败';
+                if (fill) fill.style.width = '0%';
+                if (label) label.textContent = '上传失败 ❌';
             }
         };
         xhr.onerror = function(){
             var e=document.getElementById('adminUploadError'); if(e){e.textContent='网络错误';e.style.display='block';}
-            if(prog) prog.textContent = '上传失败';
+            if (fill) fill.style.width = '0%';
+            if (label) label.textContent = '网络错误 ❌';
         };
         xhr.send(file);
     };
