@@ -665,11 +665,9 @@
             var chunkBlob = file.slice(start, end);
 
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', API_BASE_URL + '/api/upload/video', true);
+            xhr.open('POST', API_BASE_URL + '/api/upload/video?chunk=' + currentChunk + '&total=' + totalChunks, true);
             xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
             xhr.setRequestHeader('X-Filename', file.name);
-            xhr.setRequestHeader('X-Chunk-Index', currentChunk);
-            xhr.setRequestHeader('X-Total-Chunks', totalChunks);
             xhr.setRequestHeader('Content-Type', 'application/octet-stream');
 
             xhr.onload = function() {
