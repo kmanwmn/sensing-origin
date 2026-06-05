@@ -645,48 +645,72 @@
             var e=document.getElementById('adminUploadError'); if(e){e.textContent='请选择文件';e.style.display='block';} return;
         }
         var file = fileInput.files[0];
+        var CHUNK_SIZE = 1024 * 1024; // 1MB 一个分片
+        var totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+        var sizeMB = (file.size/1024/1024).toFixed(1);
         var fill = document.getElementById('adminUploadFill');
         var label = document.getElementById('adminUploadLabel');
-        var sizeMB = (file.size/1024/1024).toFixed(1);
+        var errorEl = document.getElementById('adminUploadError');
+        var successEl = document.getElementById('adminUploadSuccess');
+        if (errorEl) errorEl.style.display = 'none';
+        if (successEl) successEl.style.display = 'none';
         if (label) label.textContent = '上传中 0% (0/' + sizeMB + ' MB)';
         if (fill) { fill.style.width = '0%'; fill.classList.add('anim'); }
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', API_BASE_URL + '/api/upload/video', true);
-        xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
-        xhr.setRequestHeader('X-Filename', file.name);
-        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+        var currentChunk = 0;
 
-        xhr.upload.onprogress = function(e) {
-            if (e.lengthComputable && e.total > 0) {
-                var pct = Math.round(e.loaded / e.total * 100);
-                if (fill) { fill.style.width = pct + '%'; fill.classList.remove('anim'); }
-                if (label) label.textContent = '上传中 ' + pct + '% (' + (e.loaded/1024/1024).toFixed(1) + '/' + sizeMB + ' MB)';
-            } else {
-                // 总大小未知时显示已传字节数
-                if (label) label.textContent = '上传中... (' + (e.loaded/1024/1024).toFixed(1) + '/' + sizeMB + ' MB)';
-            }
-        };
+        function uploadNextChunk() {
+            var start = currentChunk * CHUNK_SIZE;
+            var end = Math.min(start + CHUNK_SIZE, file.size);
+            var chunkBlob = file.slice(start, end);
 
-        xhr.onload = function() {
-            if (xhr.status === 201) {
-                var r = JSON.parse(xhr.responseText);
-                var s=document.getElementById('adminUploadSuccess'); if(s){s.textContent='上传成功！文件：'+r.filename+'，封面：'+(r.cover||'无');s.style.display='block';}
-                if (fill) { fill.style.width = '100%'; fill.classList.remove('anim'); }
-                if (label) label.textContent = '上传完成 ✅';
-            } else {
-                var e=document.getElementById('adminUploadError');
-                if(e){try{var r=JSON.parse(xhr.responseText);e.textContent=r.error||'上传失败'}catch(ex){e.textContent='上传失败'};e.style.display='block';}
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', API_BASE_URL + '/api/upload/video', true);
+            xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
+            xhr.setRequestHeader('X-Filename', file.name);
+            xhr.setRequestHeader('X-Chunk-Index', currentChunk);
+            xhr.setRequestHeader('X-Total-Chunks', totalChunks);
+            xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+
+            xhr.onload = function() {
+                if (xhr.status === 201) {
+                    currentChunk++;
+                    var pct = Math.round(currentChunk / totalChunks * 100);
+                    if (fill) { fill.style.width = pct + '%'; fill.classList.remove('anim'); }
+                    if (label) label.textContent = '上传中 ' + pct + '% (' + currentChunk + '/' + totalChunks + ' 块)';
+
+                    if (currentChunk < totalChunks) {
+                        uploadNextChunk();
+                    } else {
+                        // 所有分片上传完成，处理最后一个响应
+                        try {
+                            var r = JSON.parse(xhr.responseText);
+                            if (successEl) { successEl.textContent = '上传成功！文件：'+r.filename+'，封面：'+(r.cover||'无'); successEl.style.display='block'; }
+                            if (fill) { fill.style.width = '100%'; fill.classList.remove('anim'); }
+                            if (label) label.textContent = '上传完成 ✅';
+                        } catch(ex) {
+                            if (errorEl) { errorEl.textContent = '解析响应失败'; errorEl.style.display='block'; }
+                        }
+                    }
+                } else {
+                    if (errorEl) {
+                        try { var r = JSON.parse(xhr.responseText); errorEl.textContent = r.error || '上传失败'; }
+                        catch(ex) { errorEl.textContent = '上传失败'; }
+                        errorEl.style.display = 'block';
+                    }
+                    if (fill) { fill.style.width = '0%'; fill.classList.remove('anim'); }
+                    if (label) label.textContent = '上传失败 ❌ (' + xhr.status + ')';
+                }
+            };
+            xhr.onerror = function(){
+                if (errorEl) { errorEl.textContent = '网络错误'; errorEl.style.display='block'; }
                 if (fill) { fill.style.width = '0%'; fill.classList.remove('anim'); }
-                if (label) label.textContent = '上传失败 ❌ (' + xhr.status + ')';
-            }
-        };
-        xhr.onerror = function(){
-            var e=document.getElementById('adminUploadError'); if(e){e.textContent='网络错误';e.style.display='block';}
-            if (fill) { fill.style.width = '0%'; fill.classList.remove('anim'); }
-            if (label) label.textContent = '网络错误 ❌';
-        };
-        xhr.send(file);
+                if (label) label.textContent = '网络错误 ❌';
+            };
+            xhr.send(chunkBlob);
+        }
+
+        uploadNextChunk();
     };
     window.showAdminLogin = showAdminLogin;
 })();
